@@ -1,1 +1,2254 @@
-content://com.android.providers.downloads.ui.fileprovider/root_files_storage/emulated/0/Download/index-7.html
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0b">
+
+<title>TAF dos Campeões | Preparação para o TAF</title>
+
+<style>
+:root{
+--bg:#08090b;
+--panel:#111318;
+--panel2:#17191f;
+--gold:#ffb000;
+--gold2:#ffd65a;
+--text:#f7f7f5;
+--muted:#9da1aa;
+--line:#292c34;
+--green:#72d59a;
+--red:#ef7c7c;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+background:
+radial-gradient(circle at 50% -10%,#282015 0,#0a0a0c 32%,#08090b 70%);
+color:var(--text);
+font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+.wrap{
+max-width:1180px;
+margin:auto;
+padding:18px;
+}
+
+/* MENU */
+
+.top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:10px 0;
+position:sticky;
+top:0;
+z-index:20;
+background:#08090be8;
+backdrop-filter:blur(12px);
+border-bottom:1px solid #252525;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.crest{
+width:44px;
+height:44px;
+border-radius:12px;
+display:grid;
+place-items:center;
+font-weight:900;
+background:linear-gradient(145deg,#ffb000,#8b5f00);
+color:#090909;
+}
+
+.brand b{
+letter-spacing:1.8px;
+}
+
+.brand span{
+display:block;
+color:var(--muted);
+font-size:12px;
+margin-top:3px;
+}
+
+.nav{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+}
+
+.nav button,
+.btn{
+border:1px solid var(--line);
+background:#17191e;
+color:#eee;
+padding:10px 13px;
+border-radius:10px;
+font-weight:750;
+}
+
+.nav button.active,
+.btn.primary{
+background:var(--gold);
+color:#17130a;
+border-color:var(--gold);
+}
+
+.btn.danger{
+background:#321a1c;
+color:#ffb0b0;
+border-color:#5b2c30;
+}
+
+/* TELAS */
+
+.view{display:none}
+.view.active{display:block}
+
+/* HERO */
+
+.heroV4{
+min-height:72vh;
+border-radius:24px;
+overflow:hidden;
+position:relative;
+display:flex;
+align-items:flex-end;
+background:url('assets/hero.jpg') center 42%/cover no-repeat;
+margin-top:12px;
+box-shadow:0 25px 70px #0009;
+}
+
+.heroV4:before{
+content:'';
+position:absolute;
+inset:0;
+background:
+linear-gradient(90deg,#050505e8 0%,#0505059c 47%,#0505053d 72%),
+linear-gradient(0deg,#050505e8 0%,transparent 55%);
+}
+
+.heroContent{
+position:relative;
+z-index:1;
+padding:clamp(24px,5vw,64px);
+max-width:760px;
+}
+
+.eyebrow{
+color:var(--gold2);
+font-weight:900;
+letter-spacing:2.2px;
+font-size:12px;
+}
+
+.heroV4 h1{
+font-size:clamp(42px,8vw,82px);
+line-height:.92;
+margin:10px 0 16px;
+text-transform:uppercase;
+font-style:italic;
+}
+
+.heroV4 h1 em{
+color:var(--gold);
+font-style:normal;
+}
+
+.heroV4 p{
+font-size:clamp(15px,2vw,19px);
+line-height:1.6;
+color:#e8e8e8;
+}
+
+.actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.trust{
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+margin-top:18px;
+}
+
+.trust span{
+padding:7px 10px;
+background:#000a;
+border:1px solid #ffffff25;
+border-radius:99px;
+font-size:12px;
+}
+
+/* COMPONENTES */
+
+.sectionTitle{
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:10px;
+margin:28px 0 12px;
+}
+
+.sectionTitle h2{
+margin:0;
+}
+
+.proofTitle{
+font-size:clamp(28px,5vw,44px);
+text-transform:uppercase;
+margin-bottom:4px;
+}
+
+.proofTitle em{
+font-style:normal;
+color:var(--gold);
+}
+
+.muted{color:var(--muted)}
+
+.card{
+background:linear-gradient(145deg,#15171c,#0f1014);
+border:1px solid var(--line);
+border-radius:18px;
+padding:20px;
+box-shadow:0 18px 50px #0005;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+
+.proofGrid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+}
+
+.proofCard{
+overflow:hidden;
+border-radius:15px;
+border:1px solid #2b2b2b;
+background:#111;
+aspect-ratio:1/1;
+}
+
+.proofCard img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+transition:.25s;
+}
+
+.proofCard:hover img{
+transform:scale(1.035);
+}
+
+.ctaBand{
+margin:28px 0;
+padding:26px;
+border-radius:18px;
+background:linear-gradient(135deg,#ffb000,#d78900);
+color:#090909;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:18px;
+}
+
+.ctaBand h2{
+margin:0 0 6px;
+}
+
+.ctaBand p{
+margin:0;
+color:#2b210b;
+}
+
+.ctaBand .btn{
+background:#090909;
+color:white;
+border-color:#090909;
+}
+
+/* FORMULÁRIOS */
+
+.formgrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.field{
+margin-bottom:14px;
+}
+
+.field label{
+display:block;
+font-weight:800;
+font-size:13px;
+margin-bottom:7px;
+}
+
+.field input,
+.field select,
+.field textarea{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid var(--line);
+background:#0b0c0f;
+color:var(--text);
+outline:none;
+}
+
+.field textarea{
+min-height:100px;
+resize:vertical;
+}
+
+.step{display:none}
+.step.active{display:block}
+
+.progress{
+display:flex;
+gap:6px;
+margin-bottom:18px;
+}
+
+.p{
+height:5px;
+flex:1;
+border-radius:99px;
+background:#292c33;
+}
+
+.p.on{
+background:var(--gold);
+}
+
+.notice{
+padding:13px;
+border-radius:10px;
+border-left:4px solid var(--gold);
+background:#211c12;
+color:#eadfca;
+line-height:1.5;
+}
+
+.score{
+font-size:54px;
+font-weight:950;
+color:var(--gold2);
+}
+
+.metric{
+display:flex;
+justify-content:space-between;
+padding:13px 0;
+border-bottom:1px solid var(--line);
+}
+
+.metric span{color:var(--muted)}
+.metric strong{color:var(--gold2)}
+
+.tag{
+display:inline-flex;
+padding:5px 8px;
+border-radius:99px;
+font-size:11px;
+font-weight:850;
+background:#252830;
+color:#ddd;
+}
+
+.tag.gold{
+background:#3a301d;
+color:var(--gold2);
+}
+
+.tag.green{
+background:#173022;
+color:#8de2a9;
+}
+
+.tag.red{
+background:#361b1e;
+color:#ff9e9e;
+}
+
+.kpi{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.stat{
+font-size:32px;
+font-weight:950;
+margin:8px 0;
+}
+
+.table{
+width:100%;
+border-collapse:collapse;
+}
+
+.table th,
+.table td{
+padding:12px 9px;
+border-bottom:1px solid var(--line);
+text-align:left;
+font-size:14px;
+}
+
+.table th{
+color:var(--muted);
+}
+
+.client{
+border:1px solid var(--line);
+border-radius:13px;
+padding:14px;
+background:#101217;
+margin-bottom:10px;
+}
+
+.client strong{display:block}
+
+.pillrow{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+margin-top:9px;
+}
+
+.empty{
+padding:30px;
+text-align:center;
+color:var(--muted);
+border:1px dashed var(--line);
+border-radius:13px;
+}
+
+.calendarGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+}
+
+.slot{
+padding:13px;
+border-radius:10px;
+border:1px solid var(--line);
+background:#111318;
+color:#fff;
+}
+
+.contract{
+background:#fff;
+color:#111;
+padding:26px;
+border-radius:12px;
+line-height:1.58;
+}
+
+.footer{
+padding:40px 0 15px;
+text-align:center;
+color:#656871;
+font-size:12px;
+}
+
+.small{
+font-size:12px;
+color:var(--muted);
+}
+
+.toast{
+position:fixed;
+right:16px;
+bottom:16px;
+background:#1d211e;
+border:1px solid #37543e;
+color:#c8f2d3;
+padding:13px 15px;
+border-radius:11px;
+display:none;
+z-index:50;
+}
+
+/* CELULAR */
+
+@media(max-width:900px){
+
+.proofGrid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.nav{
+overflow-x:auto;
+flex-wrap:nowrap;
+max-width:100%;
+}
+
+.nav button{
+white-space:nowrap;
+}
+
+.top{
+align-items:flex-start;
+flex-direction:column;
+}
+
+.heroV4{
+min-height:68vh;
+background-position:58% center;
+}
+
+}
+
+@media(max-width:650px){
+
+.formgrid{
+grid-template-columns:1fr;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.kpi{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:560px){
+
+.wrap{padding:10px}
+
+.proofGrid{
+grid-template-columns:repeat(2,1fr);
+gap:7px;
+}
+
+.heroV4{
+border-radius:16px;
+min-height:72vh;
+}
+
+.heroContent{
+padding:22px;
+}
+
+.ctaBand{
+align-items:flex-start;
+flex-direction:column;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<header class="top">
+
+<div class="brand">
+<div class="crest">TC</div>
+
+<div>
+<b>TAF DOS CAMPEÕES</b>
+<span>Plataforma de preparação e avaliação</span>
+</div>
+</div>
+
+<nav class="nav" id="nav">
+
+<button data-view="home" class="active">Início</button>
+<button data-view="avaliacao">Pré-avaliação</button>
+<button data-view="simulado">Simulado</button>
+<button data-view="alunos">Alunos</button>
+<button data-view="agenda">Agenda</button>
+<button data-view="admin">Painel</button>
+
+</nav>
+
+</header>
+
+<main>
+
+<!-- INÍCIO -->
+
+<section id="home" class="view active">
+
+<div class="heroV4">
+
+<div class="heroContent">
+
+<div class="eyebrow">
+PREPARAÇÃO • ESTRATÉGIA • RESULTADO
+</div>
+
+<h1>
+TAF DOS <em>CAMPEÕES</em>
+</h1>
+
+<p>
+Preparação direcionada para candidatos que querem chegar ao
+Teste de Aptidão Física com confiança, estratégia e desempenho.
+</p>
+
+<div class="actions">
+
+<button class="btn primary"
+onclick="go('avaliacao')">
+FAZER PRÉ-AVALIAÇÃO
+</button>
+
+<button class="btn"
+onclick="go('simulado')">
+AGENDAR SIMULADO
+</button>
+
+</div>
+
+<div class="trust">
+
+<span>✓ Diagnóstico inicial</span>
+<span>✓ Análise do edital</span>
+<span>✓ Simulado avaliativo</span>
+<span>✓ Acompanhamento</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="sectionTitle">
+
+<div>
+
+<div class="eyebrow">
+RESULTADOS REAIS
+</div>
+
+<h2 class="proofTitle">
+Quem treina com propósito
+<em>chega preparado.</em>
+</h2>
+
+<p class="muted">
+Alguns dos candidatos que conquistaram aprovação no TAF.
+</p>
+
+</div>
+</div>
+
+<!-- APROVADOS -->
+
+<div class="proofGrid">
+
+<div class="proofCard">
+<img src="assets/aprovado-01.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-02.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-03.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-04.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-05.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-06.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-07.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-08.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-09.png"
+alt="Candidato aprovado">
+</div>
+
+<div class="proofCard">
+<img src="assets/aprovado-10.png"
+alt="Candidato aprovado">
+</div>
+
+</div>
+
+<div class="ctaBand">
+
+<div>
+
+<h2>QUERO SER O PRÓXIMO APROVADO</h2>
+
+<p>
+Descubra seu nível atual e comece sua preparação.
+</p>
+
+</div>
+
+<button class="btn"
+onclick="go('avaliacao')">
+COMEÇAR AGORA
+</button>
+
+</div>
+
+</section>
+
+<!-- AVALIAÇÃO -->
+
+<section id="avaliacao" class="view">
+
+<div class="sectionTitle">
+
+<div>
+
+<div class="eyebrow">DIAGNÓSTICO</div>
+
+<h2>Pré-avaliação TAF</h2>
+
+<p class="muted">
+Conte como está sua preparação atualmente.
+</p>
+
+</div>
+
+<span id="stepLabel" class="tag gold">
+Etapa 1 de 5
+</span>
+
+</div>
+
+<div class="card">
+
+<div class="progress" id="prog"></div>
+
+<form id="leadForm">
+
+<!-- ETAPA 1 -->
+
+<div class="step active">
+
+<h3>Seus dados</h3>
+
+<div class="formgrid">
+
+<div class="field">
+<label>Nome *</label>
+<input name="nome" required>
+</div>
+
+<div class="field">
+<label>WhatsApp *</label>
+<input name="whatsapp"
+placeholder="(00) 00000-0000"
+required>
+</div>
+
+<div class="field">
+<label>E-mail</label>
+<input name="email"
+type="email">
+</div>
+
+<div class="field">
+<label>Idade *</label>
+<input name="idade"
+type="number"
+required>
+</div>
+
+<div class="field">
+<label>Cidade / Estado</label>
+<input name="cidade">
+</div>
+
+<div class="field">
+<label>Concurso</label>
+<input name="concurso"
+placeholder="Ex.: PMPE, PMSE, PMPB...">
+</div>
+
+</div>
+
+</div>
+
+<!-- ETAPA 2 -->
+
+<div class="step">
+
+<h3>Seu desempenho atual</h3>
+
+<div class="formgrid">
+
+<div class="field">
+<label>Peso (kg)</label>
+<input name="peso"
+type="number"
+step="0.1">
+</div>
+
+<div class="field">
+<label>Altura (m)</label>
+<input name="altura"
+type="number"
+step="0.01"
+placeholder="1.80">
+</div>
+
+<div class="field">
+
+<label>Você corre atualmente?</label>
+
+<select name="corre">
+
+<option>Sim</option>
+<option>Às vezes</option>
+<option>Não</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Tempo atual nos 2.400 m</label>
+
+<input name="tempo2400"
+placeholder="Ex.: 12:30">
+
+</div>
+
+<div class="field">
+
+<label>Barra fixa</label>
+
+<input name="barra"
+type="number"
+value="0">
+
+</div>
+
+<div class="field">
+
+<label>Abdominal</label>
+
+<input name="abdominal"
+type="number"
+value="0">
+
+</div>
+
+<div class="field">
+
+<label>Flexões</label>
+
+<input name="flexao"
+type="number"
+value="0">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ETAPA 3 -->
+
+<div class="step">
+
+<h3>Treinamento e alimentação</h3>
+
+<div class="formgrid">
+
+<div class="field">
+
+<label>Dias de treino por semana</label>
+
+<select name="dias">
+
+<option value="0">Não treino</option>
+<option value="1">1 dia</option>
+<option value="2">2 dias</option>
+<option value="3">3 dias</option>
+<option value="4">4 dias</option>
+<option value="5">5 dias ou mais</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Musculação</label>
+
+<select name="musculacao">
+
+<option>Não faço</option>
+<option>1–2 vezes por semana</option>
+<option>3–4 vezes por semana</option>
+<option>5 vezes ou mais</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Como considera sua alimentação?</label>
+
+<select name="alimentacao">
+
+<option>Precisa melhorar</option>
+<option>Regular</option>
+<option>Boa</option>
+<option>Acompanho nutricionista</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Hidratação</label>
+
+<select name="hidratacao">
+
+<option>Baixa</option>
+<option>Regular</option>
+<option>Boa</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="field">
+
+<label>Qual sua maior dificuldade?</label>
+
+<select name="dificuldade">
+
+<option>Corrida</option>
+<option>Barra fixa</option>
+<option>Abdominal</option>
+<option>Flexão</option>
+<option>Natação</option>
+<option>Salto</option>
+<option>Condicionamento geral</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Conte um pouco mais</label>
+
+<textarea name="descricao"
+placeholder="Descreva suas dificuldades, rotina e objetivo."></textarea>
+
+</div>
+
+</div>
+
+<!-- ETAPA 4 -->
+
+<div class="step">
+
+<h3>Seu edital</h3>
+
+<div class="notice">
+
+Envie seu edital para que os índices oficiais
+possam ser comparados com seus resultados atuais.
+
+</div>
+
+<br>
+
+<div class="field">
+
+<label>Selecionar edital</label>
+
+<input id="edital"
+type="file"
+accept=".pdf,.doc,.docx">
+
+</div>
+
+<p class="small">
+
+Nesta versão de demonstração,
+o navegador registra apenas o nome do arquivo.
+Na versão com banco de dados,
+o edital será armazenado de forma segura.
+
+</p>
+
+<h3>Declaração</h3>
+
+<label>
+
+<input type="checkbox"
+name="declaracao"
+value="Aceito">
+
+Declaro que, conforme meu conhecimento atual,
+estou em condições de participar das atividades propostas
+e informarei previamente qualquer limitação,
+lesão, dor ou condição relevante.
+
+</label>
+
+<p class="small">
+
+Esta declaração não substitui avaliação,
+atestado ou liberação médica quando necessária.
+
+</p>
+
+</div>
+
+<!-- ETAPA 5 -->
+
+<div class="step">
+
+<h3>Seu diagnóstico inicial</h3>
+
+<div id="diagnostico"></div>
+
+</div>
+
+</form>
+
+<div class="actions">
+
+<button class="btn"
+id="prevA"
+type="button">
+Voltar
+</button>
+
+<button class="btn primary"
+id="nextA"
+type="button">
+Continuar
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SIMULADO -->
+
+<section id="simulado" class="view">
+
+<div class="sectionTitle">
+
+<div>
+
+<div class="eyebrow">SIMULADO</div>
+
+<h2>Agendar avaliação presencial</h2>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="formgrid">
+
+<div class="field">
+
+<label>Data</label>
+
+<input id="dataSim"
+type="date">
+
+</div>
+
+<div class="field">
+
+<label>Horário</label>
+
+<select id="horaSim">
+
+<option>07:00</option>
+<option>08:00</option>
+<option>16:00</option>
+<option>19:00</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Tipo de simulado</label>
+
+<select id="tipoSim">
+
+<option>TAF completo</option>
+<option>Corrida 2.400 m</option>
+<option>Barra + abdominal + flexão</option>
+<option>Avaliação inicial</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card"
+style="margin-top:14px">
+
+<h3>Confirmação</h3>
+
+<p id="simResumo"
+class="muted">
+
+Preencha os campos acima.
+
+</p>
+
+<button class="btn primary"
+onclick="agendar()">
+
+Solicitar agendamento
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ALUNO -->
+
+<section id="alunos" class="view">
+
+<div class="sectionTitle">
+
+<div>
+
+<div class="eyebrow">
+ÁREA DO ALUNO
+</div>
+
+<h2>Minha evolução</h2>
+
+</div>
+
+</div>
+
+<div id="alunoArea"></div>
+
+</section>
+
+<!-- AGENDA -->
+
+<section id="agenda" class="view">
+
+<div class="sectionTitle">
+
+<div>
+
+<div class="eyebrow">
+AGENDA
+</div>
+
+<h2>Próximos horários</h2>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="calendarGrid"
+id="slots">
+</div>
+
+</div>
+
+</section>
+
+<!-- ADMIN -->
+
+<section id="admin" class="view">
+
+<div class="sectionTitle">
+
+<div>
+
+<div class="eyebrow">
+ADMINISTRAÇÃO
+</div>
+
+<h2>Painel do treinador</h2>
+
+</div>
+
+<button class="btn danger"
+onclick="limparDados()">
+
+Limpar demonstração
+
+</button>
+
+</div>
+
+<div class="kpi">
+
+<div class="card">
+
+<span class="muted">
+Leads
+</span>
+
+<div class="stat"
+id="aLeads">
+0
+</div>
+
+</div>
+
+<div class="card">
+
+<span class="muted">
+Agendamentos
+</span>
+
+<div class="stat"
+id="aSim">
+0
+</div>
+
+</div>
+
+<div class="card">
+
+<span class="muted">
+Editais enviados
+</span>
+
+<div class="stat"
+id="aEditais">
+0
+</div>
+
+</div>
+
+<div class="card">
+
+<span class="muted">
+Média dos scores
+</span>
+
+<div class="stat"
+id="aAvg">
+—
+</div>
+
+</div>
+
+</div>
+
+<div class="card"
+style="margin-top:14px">
+
+<div class="field">
+
+<label>Buscar candidato</label>
+
+<input id="search"
+placeholder="Nome, WhatsApp ou concurso">
+
+</div>
+
+<button class="btn"
+onclick="renderAdmin()">
+Buscar
+</button>
+
+<div id="adminList"
+style="margin-top:15px">
+</div>
+
+</div>
+
+</section>
+
+<!-- TERMO -->
+
+<section id="termo"
+class="view">
+
+<div class="sectionTitle">
+
+<h2>
+Termo de participação
+</h2>
+
+<button class="btn"
+onclick="window.print()">
+
+Imprimir / salvar PDF
+
+</button>
+
+</div>
+
+<div class="contract"
+id="contract">
+</div>
+
+</section>
+
+</main>
+
+<div class="footer">
+
+TAF DOS CAMPEÕES • V4<br>
+
+Preparação para Teste de Aptidão Física<br>
+
+@tafdoscampeoes
+
+<br><br>
+
+<span class="small">
+
+Versão demonstrativa.
+Para operação comercial,
+implementar autenticação,
+banco de dados seguro,
+armazenamento dos editais
+e adequação à LGPD.
+
+</span>
+
+</div>
+
+</div>
+
+<div class="toast"
+id="toast">
+</div>
+
+<script>
+
+/* BANCO LOCAL */
+
+const KEY='tafCampeoesV4';
+
+let db=JSON.parse(
+localStorage.getItem(KEY) ||
+'{"leads":[],"agendamentos":[]}'
+);
+
+let aStep=1;
+const totalA=5;
+
+const $=s=>document.querySelector(s);
+
+/* SALVAR */
+
+function save(){
+
+localStorage.setItem(
+KEY,
+JSON.stringify(db)
+);
+
+}
+
+/* MENSAGEM */
+
+function toast(t){
+
+let x=$('#toast');
+
+x.textContent=t;
+
+x.style.display='block';
+
+setTimeout(()=>{
+x.style.display='none';
+},2500);
+
+}
+
+/* NAVEGAÇÃO */
+
+function go(id){
+
+document
+.querySelectorAll('.view')
+.forEach(x=>
+x.classList.remove('active')
+);
+
+$('#'+id)
+.classList.add('active');
+
+document
+.querySelectorAll('#nav button')
+.forEach(x=>
+x.classList.toggle(
+'active',
+x.dataset.view===id
+)
+);
+
+if(id==='alunos')
+renderAluno();
+
+if(id==='admin')
+renderAdmin();
+
+if(id==='agenda')
+renderSlots();
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+}
+
+document
+.querySelectorAll('#nav button')
+.forEach(b=>
+b.onclick=()=>go(b.dataset.view)
+);
+
+/* PROGRESSO */
+
+function initProg(){
+
+let p=$('#prog');
+
+p.innerHTML='';
+
+for(let i=1;i<=totalA;i++){
+
+let d=document.createElement('div');
+
+d.className='p';
+
+p.appendChild(d);
+
+}
+
+}
+
+/* ETAPAS */
+
+function renderA(){
+
+document
+.querySelectorAll('#avaliacao .step')
+.forEach((x,i)=>
+x.classList.toggle(
+'active',
+i===aStep-1
+)
+);
+
+[...$('#prog').children]
+.forEach((x,i)=>
+x.classList.toggle(
+'on',
+i<aStep
+)
+);
+
+$('#stepLabel')
+.textContent=
+`Etapa ${aStep} de ${totalA}`;
+
+$('#prevA')
+.style.visibility=
+aStep===1
+?'hidden'
+:'visible';
+
+$('#nextA')
+.textContent=
+aStep===totalA
+?'Salvar avaliação'
+:'Continuar';
+
+if(aStep===5)
+makeDiag();
+
+}
+
+/* FORMULÁRIO */
+
+function formObj(){
+
+return Object.fromEntries(
+new FormData(
+$('#leadForm')
+).entries()
+);
+
+}
+
+/* SCORE */
+
+function score(d){
+
+let s=30;
+
+if(d.corre!=='Não')
+s+=12;
+
+if(+d.barra>=5)
+s+=15;
+else if(+d.barra>0)
+s+=8;
+
+if(+d.abdominal>=30)
+s+=15;
+else if(+d.abdominal>0)
+s+=8;
+
+if(+d.flexao>=20)
+s+=8;
+else if(+d.flexao>0)
+s+=4;
+
+if(+d.dias>=3)
+s+=10;
+
+if(
+['Boa','Acompanho nutricionista']
+.includes(d.alimentacao)
+)
+s+=5;
+
+if(d.hidratacao==='Boa')
+s+=5;
+
+return Math.min(100,s);
+
+}
+
+/* DIAGNÓSTICO */
+
+function makeDiag(){
+
+let d=formObj();
+
+let s=score(d);
+
+let level=
+s>=80
+?'Avançado'
+:s>=60
+?'Intermediário'
+:'Base em construção';
+
+let cls=
+s>=80
+?'green'
+:s>=60
+?'gold'
+:'red';
+
+let bmi=
+d.peso && d.altura
+?
+(
++d.peso /
+(+d.altura * +d.altura)
+).toFixed(1)
+:
+'—';
+
+$('#diagnostico').innerHTML=`
+
+<div class="score">
+${s}/100
+</div>
+
+<p>
+<span class="tag ${cls}">
+${level}
+</span>
+</p>
+
+<div class="metric">
+
+<span>Corrida</span>
+
+<strong>
+${d.corre||'—'}
+</strong>
+
+</div>
+
+<div class="metric">
+
+<span>Barra</span>
+
+<strong>
+${d.barra||0} rep.
+</strong>
+
+</div>
+
+<div class="metric">
+
+<span>Abdominal</span>
+
+<strong>
+${d.abdominal||0} rep.
+</strong>
+
+</div>
+
+<div class="metric">
+
+<span>IMC (referência)</span>
+
+<strong>
+${bmi}
+</strong>
+
+</div>
+
+<p class="small">
+
+A pontuação é apenas uma triagem orientativa
+e não determina aprovação em concurso.
+
+Os índices oficiais devem ser
+comparados com o edital correspondente.
+
+</p>
+
+`;
+
+}
+
+/* BOTÕES */
+
+$('#nextA').onclick=()=>{
+
+if(aStep<totalA){
+
+aStep++;
+
+renderA();
+
+}else{
+
+saveLead();
+
+}
+
+};
+
+$('#prevA').onclick=()=>{
+
+if(aStep>1){
+
+aStep--;
+
+renderA();
+
+}
+
+};
+
+/* SALVAR ALUNO */
+
+function saveLead(){
+
+let d=formObj();
+
+if(
+!d.nome ||
+!d.whatsapp ||
+!d.idade ||
+!d.declaracao
+){
+
+alert(
+'Preencha os campos obrigatórios e aceite a declaração.'
+);
+
+return;
+
+}
+
+let f=$('#edital').files[0];
+
+let rec={
+
+id:Date.now(),
+
+...d,
+
+score:score(d),
+
+edital:
+f ? f.name : '',
+
+created:
+new Date()
+.toLocaleString('pt-BR')
+
+};
+
+db.leads.push(rec);
+
+save();
+
+makeContract(rec);
+
+go('termo');
+
+toast(
+'Avaliação registrada!'
+);
+
+}
+
+/* TERMO */
+
+function makeContract(d){
+
+$('#contract').innerHTML=`
+
+<h3>
+TERMO DE DECLARAÇÃO DE CONDIÇÕES
+PARA PARTICIPAÇÃO EM SIMULADO AVALIATIVO
+</h3>
+
+<p>
+<b>Participante:</b>
+${esc(d.nome)}
+</p>
+
+<p>
+<b>WhatsApp:</b>
+${esc(d.whatsapp)}
+</p>
+
+<p>
+<b>Concurso:</b>
+${esc(d.concurso||'Não informado')}
+</p>
+
+<p>
+
+Declaro, sob minha responsabilidade,
+que as informações fornecidas são verdadeiras
+e que, conforme meu conhecimento atual,
+estou em condições de participar de atividade física
+compatível com o simulado.
+
+Comprometo-me a informar à equipe qualquer
+dor, mal-estar, tontura, falta de ar incomum,
+lesão, limitação ou outra alteração relevante
+antes ou durante a atividade.
+
+</p>
+
+<p>
+
+Reconheço que esta declaração
+não substitui atestado,
+avaliação ou liberação médica.
+
+Caso exista dúvida sobre minha aptidão,
+devo buscar avaliação de profissional habilitado
+antes da realização do esforço físico.
+
+</p>
+
+<p>
+
+<b>Declaração de aceite:</b>
+registrada eletronicamente em
+${esc(d.created)}.
+
+</p>
+
+<p>
+Nome:
+${esc(d.nome)}
+</p>
+
+<p>
+Assinatura:
+__________________________________________
+</p>
+
+`;
+
+}
+
+/* PROTEÇÃO DE TEXTO */
+
+function esc(s){
+
+return String(s??'')
+.replace(
+/[&<>"]/g,
+c=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;'
+}[c])
+);
+
+}
+
+/* AGENDAMENTO */
+
+function agendar(){
+
+let data=
+$('#dataSim').value;
+
+let hora=
+$('#horaSim').value;
+
+let tipo=
+$('#tipoSim').value;
+
+if(!data){
+
+alert(
+'Escolha uma data.'
+);
+
+return;
+
+}
+
+let lead=
+db.leads.at(-1);
+
+db.agendamentos.push({
+
+id:Date.now(),
+
+nome:
+lead?.nome ||
+'Novo interessado',
+
+whatsapp:
+lead?.whatsapp ||
+'',
+
+data,
+
+hora,
+
+tipo,
+
+status:
+'Aguardando confirmação'
+
+});
+
+save();
+
+$('#simResumo')
+.textContent=
+`Solicitação registrada para ${data} às ${hora} — ${tipo}.`;
+
+toast(
+'Agendamento solicitado!'
+);
+
+renderSlots();
+
+}
+
+/* AGENDA */
+
+function renderSlots(){
+
+let e=$('#slots');
+
+e.innerHTML='';
+
+let now=new Date();
+
+for(let i=1;i<=9;i++){
+
+let d=new Date(now);
+
+d.setDate(
+now.getDate()+i
+);
+
+let ds=
+d.toISOString()
+.slice(0,10);
+
+[
+'07:00',
+'08:00',
+'16:00'
+]
+.forEach(h=>{
+
+let used=
+db.agendamentos
+.some(a=>
+a.data===ds &&
+a.hora===h
+);
+
+let b=
+document.createElement(
+'button'
+);
+
+b.className='slot';
+
+b.disabled=used;
+
+b.textContent=
+`${d.toLocaleDateString('pt-BR')} • ${h}${used?' • reservado':''}`;
+
+b.onclick=()=>{
+
+$('#dataSim').value=ds;
+
+$('#horaSim').value=h;
+
+go('simulado');
+
+};
+
+e.appendChild(b);
+
+});
+
+}
+
+}
+
+/* ÁREA DO ALUNO */
+
+function renderAluno(){
+
+let d=db.leads.at(-1);
+
+let e=$('#alunoArea');
+
+if(!d){
+
+e.innerHTML=`
+
+<div class="empty">
+
+Faça sua pré-avaliação
+para visualizar sua evolução.
+
+</div>
+
+`;
+
+return;
+
+}
+
+let s=d.score;
+
+e.innerHTML=`
+
+<div class="grid">
+
+<div class="card">
+
+<span class="muted">
+Score atual
+</span>
+
+<div class="score">
+${s}/100
+</div>
+
+</div>
+
+<div class="card">
+
+<span class="muted">
+Concurso
+</span>
+
+<h3>
+${esc(d.concurso||'Não informado')}
+</h3>
+
+<p>
+${esc(d.nome)}
+</p>
+
+</div>
+
+<div class="card">
+
+<span class="muted">
+Maior dificuldade
+</span>
+
+<h3>
+${esc(d.dificuldade||'—')}
+</h3>
+
+</div>
+
+</div>
+
+<div class="card"
+style="margin-top:14px">
+
+<h3>
+Resultados informados
+</h3>
+
+<table class="table">
+
+<tr>
+<th>Prova</th>
+<th>Atual</th>
+</tr>
+
+<tr>
+<td>2.400 m</td>
+<td>${esc(d.tempo2400||'—')}</td>
+</tr>
+
+<tr>
+<td>Barra</td>
+<td>${esc(d.barra||0)} rep.</td>
+</tr>
+
+<tr>
+<td>Abdominal</td>
+<td>${esc(d.abdominal||0)} rep.</td>
+</tr>
+
+<tr>
+<td>Flexão</td>
+<td>${esc(d.flexao||0)} rep.</td>
+</tr>
+
+</table>
+
+</div>
+
+`;
+
+}
+
+/* PAINEL */
+
+function renderAdmin(){
+
+let q=
+($('#search')?.value||'')
+.toLowerCase();
+
+let arr=
+db.leads.filter(
+x=>
+(
+x.nome+
+' '+
+x.whatsapp+
+' '+
+(x.concurso||'')
+)
+.toLowerCase()
+.includes(q)
+);
+
+$('#adminList').innerHTML=
+arr.length
+?
+arr
+.slice()
+.reverse()
+.map(x=>`
+
+<div class="client">
+
+<strong>
+${esc(x.nome)}
+</strong>
+
+<span class="muted">
+
+${esc(
+x.concurso ||
+'Concurso não informado'
+)}
+
+•
+
+${esc(x.whatsapp)}
+
+</span>
+
+<div class="pillrow">
+
+<span class="tag gold">
+Score ${x.score}
+</span>
+
+<span class="tag">
+${esc(x.dificuldade||'—')}
+</span>
+
+${
+x.edital
+?
+`
+<span class="tag green">
+Edital: ${esc(x.edital)}
+</span>
+`
+:
+''
+}
+
+</div>
+
+<div class="small"
+style="margin-top:8px">
+
+${esc(x.created)}
+
+</div>
+
+</div>
+
+`).join('')
+
+:
+
+`
+
+<div class="empty">
+
+Nenhum candidato encontrado.
+
+</div>
+
+`;
+
+}
+
+/* LIMPAR */
+
+function limparDados(){
+
+if(
+confirm(
+'Apagar os dados da demonstração deste navegador?'
+)
+){
+
+db={
+leads:[],
+agendamentos:[]
+};
+
+save();
+
+renderAdmin();
+
+renderAluno();
+
+toast(
+'Dados limpos.'
+);
+
+}
+
+}
+
+/* INICIAR */
+
+initProg();
+
+renderA();
+
+renderSlots();
+
+</script>
+
+</body>
+</html>
