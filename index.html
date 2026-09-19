@@ -205,3 +205,84 @@ async function loadAdmin(){if(!session){$('#adminGate').textContent='Entre com u
 function renderAdminList(){let q=($('#adminSearch')?.value||'').toLowerCase();let arr=adminCache.filter(x=>(`${x.nome} ${x.whatsapp} ${x.concurso||''}`).toLowerCase().includes(q));$('#adminList').innerHTML=arr.length?arr.map(x=>`<div class="item"><div class="itemTop"><b>${esc(x.nome)}</b><span class="tag gold">${esc(x.concurso||'Sem concurso')}</span></div><div class="small">${esc(x.whatsapp)} • ${esc(x.email||'')} • ${esc(x.cidade||'')} ${esc(x.estado||'')}</div></div>`).join(''):'<div class="muted">Nenhum aluno encontrado.</div>'}
 init();
 </script></body></html>
+async function analyzeLatestEdital() {
+  const btn = document.getElementById('btnAnalyze');
+
+  try {
+    if (!session) {
+      const { data, error } = await sb.auth.getSession();
+
+      if (error) throw error;
+
+      session = data.session;
+    }
+
+    if (!session?.access_token) {
+      toast('Sua sessão expirou. Entre novamente na sua conta.');
+      go('auth');
+      return;
+    }
+
+    const aluno = await ensureStudent();
+
+    if (!aluno) {
+      toast('Não foi possível localizar seu cadastro.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Analisando edital...';
+
+    const { data: editais, error: editalError } = await sb
+      .from('editais')
+      .select('*')
+      .eq('aluno_id', aluno.id)
+      .order('criado_em', { ascending: false })
+      .limit(1);
+
+    if (editalError) throw editalError;
+
+    const edital = editais?.[0];
+
+    if (!edital) {
+      toast('Nenhum edital foi encontrado. Envie o PDF na avaliação.');
+      return;
+    }
+
+    const { data, error } = await sb.functions.invoke(
+      'analisar-edital',
+      {
+        body: {
+          edital_id: edital.id
+        },
+        headers: {
+          Authorization: `Bearer ${session.access_token}`
+        }
+      }
+    );
+
+    if (error) {
+      console.error('Erro analisar-edital:', error);
+      throw error;
+    }
+
+    console.log('Análise do edital:', data);
+
+    toast('Edital analisado com sucesso!');
+
+    await loadStudentArea();
+
+  } catch (error) {
+    console.error('analisar-edital:', error);
+
+    toast(
+      'Não foi possível analisar o edital: ' +
+      (error?.message || 'erro desconhecido')
+    );
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Analisar meu edital';
+    }
+  }
+}
