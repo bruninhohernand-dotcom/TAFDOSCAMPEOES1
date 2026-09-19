@@ -119,7 +119,7 @@
 <section id="admin" class="view"><div class="section"><div class="sectionTitle"><div><div class="eyebrow">TREINADOR / ADMIN</div><h1>Painel de acompanhamento</h1><p>Disponível somente para perfis autorizados como treinador ou admin.</p></div></div><div id="adminGate" class="notice">Entre com uma conta de treinador/admin.</div><div id="adminBody" style="display:none"><div class="dash"><div class="card"><div class="muted">Alunos</div><div class="stat" id="aStudents">0</div></div><div class="card"><div class="muted">Avaliações</div><div class="stat" id="aEvals">0</div></div><div class="card"><div class="muted">Agendamentos</div><div class="stat" id="aSched">0</div></div><div class="card"><div class="muted">Editais</div><div class="stat" id="aFiles">0</div></div></div><br><div class="card"><div class="field"><label>Buscar aluno</label><input id="adminSearch" placeholder="Nome, WhatsApp ou concurso" oninput="renderAdminList()"></div><br><div id="adminList" class="list"></div></div></div></div></section>
 <section id="termo" class="view"><div class="section"><div class="sectionTitle noPrint"><div><div class="eyebrow">TERMO</div><h1>Participação no simulado</h1></div><button class="btn" onclick="window.print()">Imprimir / salvar PDF</button></div><div class="contract" id="contract"></div></div></section>
 </main></div>
-<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.4</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
+<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.5</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
 <script>
 const SUPABASE_URL='https://niuwscihdpflodhwwdqr.supabase.co';
 const SUPABASE_KEY='sb_publishable_8IF0ZFxtxExIVyZMkyONFA_DIZ5xSjP';
@@ -202,23 +202,28 @@ async function scheduleSim(){
 function normProofName(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
 function parseRunSeconds(v){if(!v)return null;let s=String(v).trim();let m=s.match(/^(\d{1,2})[:'m]\s*(\d{1,2})/i);if(m)return (+m[1]*60)+(+m[2]);let n=Number(s.replace(',','.'));return Number.isFinite(n)?n:null}
 function studentResultFor(req,av){
- let n=normProofName(req.nome_prova);
- if(n.includes('barra'))return {value:Number(av?.barra||0),unit:'rep.',kind:'higher'};
- if(n.includes('abdominal'))return {value:Number(av?.abdominal||0),unit:'rep.',kind:'higher'};
- if(n.includes('flex'))return {value:Number(av?.flexao||0),unit:'rep.',kind:'higher'};
- if(n.includes('corrida')&&(Number(req.distancia_metros||0)===2400||n.includes('2400'))){let sec=parseRunSeconds(av?.corrida_2400);return {value:sec,unit:'s',kind:'lower',display:av?.corrida_2400||null}}
- return {value:null,unit:'',kind:null}
+ let n=normProofName(req.nome_prova),target=requirementTarget(req),dist=Number(req.distancia_metros||0);
+ // Barra isométrica é medida em tempo. Nunca comparar com repetições da barra dinâmica.
+ if(n.includes('barra')&&(n.includes('isometr')||target.unit==='s'))return {value:null,unit:'s',kind:'higher',reason:'A avaliação atual não registra o tempo de isometria na barra.'};
+ // Barra dinâmica: só comparar quando o edital exigir repetições.
+ if(n.includes('barra')&&target.unit==='rep.')return {value:Number(av?.barra||0),unit:'rep.',kind:'higher'};
+ if(n.includes('abdominal')&&target.unit==='rep.')return {value:Number(av?.abdominal||0),unit:'rep.',kind:'higher'};
+ if(n.includes('flex')&&target.unit==='rep.')return {value:Number(av?.flexao||0),unit:'rep.',kind:'higher'};
+ // O formulário atual registra especificamente corrida de 2.400 m.
+ if(n.includes('corrida')&&(dist===2400||n.includes('2400'))){let sec=parseRunSeconds(av?.corrida_2400);return {value:sec,unit:'s',kind:'lower',display:av?.corrida_2400||null}}
+ if(n.includes('corrida')&&dist&&dist!==2400)return {value:null,unit:'s',kind:'lower',reason:`A avaliação atual registra corrida de 2.400 m, não ${dist} m.`};
+ return {value:null,unit:'',kind:null,reason:'Esta prova ainda não possui um campo de resultado compatível na avaliação.'}
 }
 function requirementTarget(req){
  if(req.repeticoes_minimas!=null)return {value:Number(req.repeticoes_minimas),unit:'rep.',kind:'higher',display:`${req.repeticoes_minimas} rep.`};
- if(req.tempo_limite_segundos!=null)return {value:Number(req.tempo_limite_segundos),unit:'s',kind:'lower',display:formatSeconds(req.tempo_limite_segundos)};
+ if(req.tempo_limite_segundos!=null){let n=normProofName(req.nome_prova),isometria=n.includes('isometr');return {value:Number(req.tempo_limite_segundos),unit:'s',kind:isometria?'higher':'lower',display:formatSeconds(req.tempo_limite_segundos)}};
  if(req.marca_minima!=null)return {value:Number(req.marca_minima),unit:req.unidade||'',kind:'higher',display:`${req.marca_minima} ${req.unidade||''}`.trim()};
  return {value:null,unit:req.unidade||'',kind:null,display:req.criterio||'Critério descrito no edital'}
 }
 function formatSeconds(v){v=Number(v);if(!Number.isFinite(v))return '—';let m=Math.floor(v/60),s=Math.round(v%60);return `${m}:${String(s).padStart(2,'0')}`}
 function compareReq(req,av){
  let me=studentResultFor(req,av),target=requirementTarget(req);
- if(me.value==null||target.value==null||!me.kind)return {cls:'statusWarn',text:'Comparação ainda não disponível'};
+ if(me.value==null||target.value==null||!me.kind)return {cls:'statusWarn',text:me.reason||'Comparação ainda não disponível'};
  let ok=me.kind==='lower'?me.value<=target.value:me.value>=target.value;
  let diff=Math.abs(me.value-target.value);
  let mine=me.display||(me.unit==='s'?formatSeconds(me.value):`${me.value} ${me.unit}`);
@@ -228,7 +233,7 @@ function compareReq(req,av){
 function situationFor(req,av){
  let me=studentResultFor(req,av),target=requirementTarget(req);
  let mine=me.value==null?'—':(me.display||(me.unit==='s'?formatSeconds(me.value):`${me.value} ${me.unit}`.trim()));
- if(me.value==null||target.value==null||!me.kind)return {state:'warn',status:'Comparação indisponível',priority:'Revisar',priorityCls:'priorityMedium',mine,target:target.display||'—',difference:'—'};
+ if(me.value==null||target.value==null||!me.kind)return {state:'warn',status:me.reason||'Comparação indisponível',priority:'Avaliar',priorityCls:'priorityMedium',mine,target:target.display||'—',difference:'—'};
  let ok=me.kind==='lower'?me.value<=target.value:me.value>=target.value;
  let signed=me.kind==='lower'?(target.value-me.value):(me.value-target.value);
  let abs=Math.abs(signed);
