@@ -86,7 +86,21 @@
 <section id="auth" class="view"><div class="authGrid"><div class="card"><div class="eyebrow">JÁ SOU ALUNO</div><h2>Entrar</h2><div class="field"><label>E-mail</label><input id="loginEmail" type="email"></div><br><div class="field"><label>Senha</label><input id="loginPass" type="password"></div><div class="actions"><button class="btn primary" onclick="login()">Entrar</button></div></div><div class="card"><div class="eyebrow">NOVO ALUNO</div><h2>Criar minha conta</h2><div class="formGrid"><div class="field full"><label>Nome completo</label><input id="regNome"></div><div class="field"><label>WhatsApp</label><input id="regWhats"></div><div class="field"><label>E-mail</label><input id="regEmail" type="email"></div><div class="field full"><label>Senha (mín. 6 caracteres)</label><input id="regPass" type="password"></div></div><div class="actions"><button class="btn primary" onclick="signup()">Criar conta</button></div><p class="small">Você receberá um e-mail para confirmar sua conta antes do primeiro acesso.</p></div></div></section>
 <section id="avaliacao" class="view"><div class="formWrap"><div class="formHead"><div class="eyebrow">PRÉ-AVALIAÇÃO</div><h1>Conheça seu ponto de partida</h1><p class="muted" id="stepLabel">Etapa 1 de 5</p><div class="progress" id="prog"></div></div><form id="evalForm" class="card" onsubmit="return false">
 <div class="step active"><h2>Dados e objetivo</h2><div class="formGrid"><div class="field full"><label>Nome *</label><input name="nome" required></div><div class="field"><label>WhatsApp *</label><input name="whatsapp" required></div><div class="field"><label>Idade *</label><input name="idade" type="number" min="14" max="90" required></div><div class="field"><label>Cidade</label><input name="cidade"></div><div class="field"><label>Estado</label><input name="estado" maxlength="2" placeholder="SP"></div><div class="field full"><label>Concurso / instituição</label><input name="concurso" placeholder="Ex.: PMESP, PMPE, GCM..."></div><div class="field full"><label>Edital em PDF (até 10 MB)</label><input name="edital" id="edital" type="file" accept="application/pdf"></div></div></div>
-<div class="step"><h2>Desempenho atual</h2><div class="formGrid"><div class="field"><label>Peso (kg)</label><input name="peso" type="number" step=".1"></div><div class="field"><label>Altura (m)</label><input name="altura" type="number" step=".01"></div><div class="field"><label>Tempo nos 2400m</label><input name="corrida_2400" placeholder="Ex.: 12:30"></div><div class="field"><label>Barra fixa (repetições)</label><input name="barra" type="number" min="0"></div><div class="field"><label>Abdominais</label><input name="abdominal" type="number" min="0"></div><div class="field"><label>Flexões</label><input name="flexao" type="number" min="0"></div><div class="field full"><label>Frequência de corrida</label><select name="frequencia_corrida"><option>Não corro atualmente</option><option>1 a 2 vezes por semana</option><option>3 a 4 vezes por semana</option><option>5 ou mais vezes por semana</option></select></div></div></div>
+<div class="step"><h2>Desempenho atual</h2><div class="formGrid">
+<div class="field"><label>Sexo para comparação do edital</label><select name="sexo_taf"><option value="">Selecione</option><option>Masculino</option><option>Feminino</option></select></div>
+<div class="field"><label>Peso (kg)</label><input name="peso" type="number" step=".1"></div>
+<div class="field"><label>Altura (m)</label><input name="altura" type="number" step=".01"></div>
+<div class="field"><label>Distância da corrida avaliada (m)</label><input name="corrida_distancia" type="number" min="1" placeholder="Ex.: 2400"></div>
+<div class="field"><label>Tempo da corrida</label><input name="corrida_tempo" placeholder="Ex.: 12:30"></div>
+<div class="field"><label>Barra fixa dinâmica (repetições)</label><input name="barra" type="number" min="0"></div>
+<div class="field"><label>Isometria na barra (segundos)</label><input name="barra_isometria_seg" type="number" min="0" step=".1" placeholder="Ex.: 15"></div>
+<div class="field"><label>Abdominais (repetições)</label><input name="abdominal" type="number" min="0"></div>
+<div class="field"><label>Flexões (repetições)</label><input name="flexao" type="number" min="0"></div>
+<div class="field"><label>Shuttle run — tempo (segundos)</label><input name="shuttle_seg" type="number" min="0" step=".01" placeholder="Ex.: 12.8"></div>
+<div class="field"><label>Natação — distância (m)</label><input name="natacao_distancia" type="number" min="1" placeholder="Ex.: 50"></div>
+<div class="field"><label>Natação — tempo</label><input name="natacao_tempo" placeholder="Ex.: 01:05"></div>
+<div class="field full"><label>Frequência de corrida</label><select name="frequencia_corrida"><option>Não corro atualmente</option><option>1 a 2 vezes por semana</option><option>3 a 4 vezes por semana</option><option>5 ou mais vezes por semana</option></select></div>
+</div></div>
 <div class="step"><h2>Treino e alimentação</h2><div class="formGrid"><div class="field"><label>Dias de treino por semana</label><input name="dias_treino" type="number" min="0" max="7"></div><div class="field"><label>Musculação</label><select name="musculacao"><option>Não faço</option><option>1-2x/semana</option><option>3-4x/semana</option><option>5+x/semana</option></select></div><div class="field"><label>Alimentação</label><select name="alimentacao"><option>Precisa melhorar</option><option>Regular</option><option>Boa</option><option>Acompanho nutricionista</option></select></div><div class="field"><label>Hidratação</label><select name="hidratacao"><option>Baixa</option><option>Regular</option><option>Boa</option></select></div><div class="field full"><label>Principal dificuldade</label><input name="dificuldade" placeholder="Ex.: corrida, barra, constância..."></div><div class="field full"><label>Conte um pouco mais</label><textarea name="observacoes" rows="4"></textarea></div></div></div>
 <div class="step"><h2>Segurança para atividade física</h2><div class="notice">Esta etapa é uma autodeclaração e não substitui avaliação, liberação ou atestado médico.</div><br><label><input type="checkbox" name="declaracao" value="sim" required> Declaro que, conforme meu conhecimento atual, estou em condições de participar de atividade física compatível com o simulado e informarei dor, mal-estar, tontura, falta de ar incomum, lesão ou limitação à equipe.</label></div>
 <div class="step"><h2>Diagnóstico inicial</h2><div id="diag"></div><p class="small">O diagnóstico é uma triagem orientativa. A aprovação depende dos índices e regras do edital específico.</p></div>
@@ -138,7 +152,7 @@ function initProg(){for(let i=1;i<=totalA;i++)$('#prog').insertAdjacentHTML('bef
 function renderA(){document.querySelectorAll('#avaliacao .step').forEach((x,i)=>x.classList.toggle('active',i===aStep-1));[...$('#prog').children].forEach((x,i)=>x.classList.toggle('on',i<aStep));$('#stepLabel').textContent=`Etapa ${aStep} de ${totalA}`;$('#prevA').style.visibility=aStep===1?'hidden':'visible';$('#nextA').textContent=aStep===totalA?'Salvar avaliação':'Continuar';if(aStep===5)makeDiag()}
 function evalObj(){return Object.fromEntries(new FormData($('#evalForm')).entries())}
 function score(d){let s=30;if(d.corrida_2400)s+=12;if(+d.barra>=5)s+=15;else if(+d.barra>0)s+=8;if(+d.abdominal>=30)s+=15;else if(+d.abdominal>0)s+=8;if(+d.flexao>=20)s+=8;else if(+d.flexao>0)s+=4;if(+d.dias_treino>=3)s+=10;if(['Boa','Acompanho nutricionista'].includes(d.alimentacao))s+=5;if(d.hidratacao==='Boa')s+=5;return Math.min(100,s)}
-function makeDiag(){let d=evalObj(),s=score(d),level=s>=80?'Avançado':s>=60?'Intermediário':'Base em construção';$('#diag').innerHTML=`<div class="score">${s}/100</div><span class="tag gold">${level}</span><div class="metric"><span>Corrida 2400m</span><b>${d.corrida_2400||'—'}</b></div><div class="metric"><span>Barra</span><b>${d.barra||0} rep.</b></div><div class="metric"><span>Abdominal</span><b>${d.abdominal||0} rep.</b></div><div class="metric"><span>Flexões</span><b>${d.flexao||0} rep.</b></div>`}
+function makeDiag(){let d=evalObj(),s=score(d),level=s>=80?'Avançado':s>=60?'Intermediário':'Base em construção';$('#diag').innerHTML=`<div class="score">${s}/100</div><span class="tag gold">${level}</span><div class="metric"><span>Corrida 2400m</span><b>${d.corrida_tempo?`${d.corrida_distancia||'?'} m • ${d.corrida_tempo}`:(d.corrida_2400||'—')}</b></div><div class="metric"><span>Barra</span><b>${d.barra||0} rep.</b></div><div class="metric"><span>Abdominal</span><b>${d.abdominal||0} rep.</b></div><div class="metric"><span>Flexões</span><b>${d.flexao||0} rep.</b></div>`}
 $('#nextA').onclick=()=>{if(aStep<totalA){aStep++;renderA()}else saveEvaluation()};$('#prevA').onclick=()=>{if(aStep>1){aStep--;renderA()}};
 async function saveEvaluation(){
  if(savingEvaluation)return;
@@ -151,7 +165,10 @@ async function saveEvaluation(){
   let {error:alunoErr}=await sb.from('alunos').update({nome:d.nome,whatsapp:d.whatsapp,idade:+d.idade||null,cidade:d.cidade||null,estado:(d.estado||'').toUpperCase()||null,concurso:d.concurso||null,peso:+d.peso||null,altura:+d.altura||null}).eq('id',aluno.id);
   if(alunoErr)throw alunoErr;
   let sc=score(d);
-  let {error}=await sb.from('avaliacoes').insert({aluno_id:aluno.id,corrida_2400:d.corrida_2400||null,barra:+d.barra||0,abdominal:+d.abdominal||0,flexao:+d.flexao||0,frequencia_corrida:d.frequencia_corrida||null,dias_treino:+d.dias_treino||0,musculacao:d.musculacao||null,alimentacao:d.alimentacao||null,hidratacao:d.hidratacao||null,dificuldade:d.dificuldade||null,observacoes:d.observacoes||null,score:sc});
+  let meta={sexo_taf:d.sexo_taf||'',corrida_distancia:+d.corrida_distancia||null,corrida_tempo:d.corrida_tempo||'',barra_isometria_seg:d.barra_isometria_seg!==''?Number(d.barra_isometria_seg):null,shuttle_seg:d.shuttle_seg!==''?Number(d.shuttle_seg):null,natacao_distancia:+d.natacao_distancia||null,natacao_tempo:d.natacao_tempo||''};
+  let obs=`TAF_META:${JSON.stringify(meta)}\n${d.observacoes||''}`;
+  let corrida2400=(Number(d.corrida_distancia)===2400?d.corrida_tempo:null);
+  let {error}=await sb.from('avaliacoes').insert({aluno_id:aluno.id,corrida_2400:corrida2400||null,barra:+d.barra||0,abdominal:+d.abdominal||0,flexao:+d.flexao||0,frequencia_corrida:d.frequencia_corrida||null,dias_treino:+d.dias_treino||0,musculacao:d.musculacao||null,alimentacao:d.alimentacao||null,hidratacao:d.hidratacao||null,dificuldade:d.dificuldade||null,observacoes:obs,score:sc});
   if(error)throw new Error('Erro ao salvar avaliação: '+error.message);
   let editalId=null,f=$('#edital').files[0];
   if(f){
@@ -200,19 +217,23 @@ async function scheduleSim(){
  finally{savingSchedule=false}
 }
 function normProofName(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
-function parseRunSeconds(v){if(!v)return null;let s=String(v).trim();let m=s.match(/^(\d{1,2})[:'m]\s*(\d{1,2})/i);if(m)return (+m[1]*60)+(+m[2]);let n=Number(s.replace(',','.'));return Number.isFinite(n)?n:null}
-function studentResultFor(req,av){
- let n=normProofName(req.nome_prova),target=requirementTarget(req),dist=Number(req.distancia_metros||0);
- // Barra isométrica é medida em tempo. Nunca comparar com repetições da barra dinâmica.
- if(n.includes('barra')&&(n.includes('isometr')||target.unit==='s'))return {value:null,unit:'s',kind:'higher',reason:'A avaliação atual não registra o tempo de isometria na barra.'};
- // Barra dinâmica: só comparar quando o edital exigir repetições.
- if(n.includes('barra')&&target.unit==='rep.')return {value:Number(av?.barra||0),unit:'rep.',kind:'higher'};
- if(n.includes('abdominal')&&target.unit==='rep.')return {value:Number(av?.abdominal||0),unit:'rep.',kind:'higher'};
- if(n.includes('flex')&&target.unit==='rep.')return {value:Number(av?.flexao||0),unit:'rep.',kind:'higher'};
- // O formulário atual registra especificamente corrida de 2.400 m.
- if(n.includes('corrida')&&(dist===2400||n.includes('2400'))){let sec=parseRunSeconds(av?.corrida_2400);return {value:sec,unit:'s',kind:'lower',display:av?.corrida_2400||null}}
- if(n.includes('corrida')&&dist&&dist!==2400)return {value:null,unit:'s',kind:'lower',reason:`A avaliação atual registra corrida de 2.400 m, não ${dist} m.`};
- return {value:null,unit:'',kind:null,reason:'Esta prova ainda não possui um campo de resultado compatível na avaliação.'}
+function parseRunSeconds(v){if(!v)return null;let s=String(v).trim();let m=s.match(/^(\d{1,2})[:'m]\s*(\d{1,2})(?:[.,](\d+))?/i);if(m)return (+m[1]*60)+(+m[2])+(m[3]?Number("0."+m[3]):0);let n=Number(s.replace(',','.'));return Number.isFinite(n)?n:null}
+function tafMeta(av){
+ let raw=String(av?.observacoes||'');
+ let m=raw.match(/^TAF_META:(\{.*\})(?:\n|$)/);
+ if(!m)return {};
+ try{return JSON.parse(m[1])||{}}catch{return {}}
+}
+function normSex(v){
+ let s=normProofName(v);
+ if(s.includes('mascul'))return 'masculino';
+ if(s.includes('feminin'))return 'feminino';
+ return '';
+}
+function reqAppliesToSex(req,sex){
+ let rs=normSex(req?.sexo),us=normSex(sex);
+ if(!us||!rs)return true;
+ return rs===us;
 }
 function requirementTarget(req){
  if(req.repeticoes_minimas!=null)return {value:Number(req.repeticoes_minimas),unit:'rep.',kind:'higher',display:`${req.repeticoes_minimas} rep.`};
@@ -220,10 +241,42 @@ function requirementTarget(req){
  if(req.marca_minima!=null)return {value:Number(req.marca_minima),unit:req.unidade||'',kind:'higher',display:`${req.marca_minima} ${req.unidade||''}`.trim()};
  return {value:null,unit:req.unidade||'',kind:null,display:req.criterio||'Critério descrito no edital'}
 }
-function formatSeconds(v){v=Number(v);if(!Number.isFinite(v))return '—';let m=Math.floor(v/60),s=Math.round(v%60);return `${m}:${String(s).padStart(2,'0')}`}
+function studentResultFor(req,av){
+ let n=normProofName(req.nome_prova),target=requirementTarget(req),dist=Number(req.distancia_metros||0),m=tafMeta(av);
+
+ if(n.includes('barra')&&n.includes('isometr')){
+   let v=m.barra_isometria_seg;
+   return v!=null&&v!==''?{value:Number(v),unit:'s',kind:'higher'}:{value:null,unit:'s',kind:'higher',reason:'Ainda não avaliado: registre o tempo de isometria na barra.'};
+ }
+ if(n.includes('barra')&&target.unit==='rep.')return {value:Number(av?.barra||0),unit:'rep.',kind:'higher'};
+ if(n.includes('abdominal')&&target.unit==='rep.')return {value:Number(av?.abdominal||0),unit:'rep.',kind:'higher'};
+ if(n.includes('flex')&&target.unit==='rep.')return {value:Number(av?.flexao||0),unit:'rep.',kind:'higher'};
+
+ if(n.includes('shuttle')||n.includes('ir e vir')){
+   let v=m.shuttle_seg;
+   return v!=null&&v!==''?{value:Number(v),unit:'s',kind:'lower'}:{value:null,unit:'s',kind:'lower',reason:'Ainda não avaliado: registre o tempo do shuttle run.'};
+ }
+
+ if(n.includes('natac')){
+   let reqDist=dist||Number(req.distancia_metros||0),myDist=Number(m.natacao_distancia||0),sec=parseRunSeconds(m.natacao_tempo);
+   if(reqDist&&myDist&&reqDist!==myDist)return {value:null,unit:'s',kind:'lower',reason:`Ainda não avaliado nesta distância: o edital exige ${reqDist} m e o resultado registrado é de ${myDist} m.`};
+   return sec!=null?{value:sec,unit:'s',kind:'lower',display:m.natacao_tempo}:{value:null,unit:'s',kind:'lower',reason:'Ainda não avaliado: registre o tempo da natação.'};
+ }
+
+ if(n.includes('corrida')){
+   let myDist=Number(m.corrida_distancia||0),myTime=m.corrida_tempo||'';
+   if(!myDist&&av?.corrida_2400){myDist=2400;myTime=av.corrida_2400}
+   if(dist&&myDist&&dist!==myDist)return {value:null,unit:'s',kind:'lower',reason:`Ainda não avaliado nesta distância: o edital exige ${dist} m e o resultado registrado é de ${myDist} m.`};
+   if(dist&&!myDist)return {value:null,unit:'s',kind:'lower',reason:`Ainda não avaliado: registre uma corrida de ${dist} m.`};
+   let sec=parseRunSeconds(myTime);
+   return sec!=null?{value:sec,unit:'s',kind:'lower',display:myTime}:{value:null,unit:'s',kind:'lower',reason:'Ainda não avaliado: registre distância e tempo da corrida.'};
+ }
+ return {value:null,unit:'',kind:null,reason:'Ainda não avaliado: esta prova não possui resultado compatível registrado.'}
+}
+function formatSeconds(v){v=Number(v);if(!Number.isFinite(v))return '—';let m=Math.floor(v/60),s=v%60;let ss=(Math.round(s*100)/100).toFixed(s%1?2:0);if(s<10)ss='0'+ss;return `${m}:${ss}`}
 function compareReq(req,av){
  let me=studentResultFor(req,av),target=requirementTarget(req);
- if(me.value==null||target.value==null||!me.kind)return {cls:'statusWarn',text:me.reason||'Comparação ainda não disponível'};
+ if(me.value==null||target.value==null||!me.kind)return {cls:'statusWarn',text:me.reason||'Ainda não avaliado'};
  let ok=me.kind==='lower'?me.value<=target.value:me.value>=target.value;
  let diff=Math.abs(me.value-target.value);
  let mine=me.display||(me.unit==='s'?formatSeconds(me.value):`${me.value} ${me.unit}`);
@@ -233,7 +286,7 @@ function compareReq(req,av){
 function situationFor(req,av){
  let me=studentResultFor(req,av),target=requirementTarget(req);
  let mine=me.value==null?'—':(me.display||(me.unit==='s'?formatSeconds(me.value):`${me.value} ${me.unit}`.trim()));
- if(me.value==null||target.value==null||!me.kind)return {state:'warn',status:me.reason||'Comparação indisponível',priority:'Avaliar',priorityCls:'priorityMedium',mine,target:target.display||'—',difference:'—'};
+ if(me.value==null||target.value==null||!me.kind)return {state:'warn',status:me.reason||'Ainda não avaliado',priority:'Realizar avaliação',priorityCls:'priorityMedium',mine,target:target.display||'—',difference:'—'};
  let ok=me.kind==='lower'?me.value<=target.value:me.value>=target.value;
  let signed=me.kind==='lower'?(target.value-me.value):(me.value-target.value);
  let abs=Math.abs(signed);
@@ -242,22 +295,26 @@ function situationFor(req,av){
  let ratio=target.value?abs/Math.abs(target.value):1;
  let priority=ratio>=.2?'Alta':ratio>=.08?'Média':'Baixa';
  let priorityCls=priority==='Alta'?'priorityHigh':priority==='Média'?'priorityMedium':'priorityLow';
- return {state:'bad',status:'Abaixo do índice',priority,priorityCls,mine,target:target.display,difference:me.unit==='s'?`Reduzir ${difference}`:`Faltam ${difference}`};
+ return {state:'bad',status:'Abaixo do índice',priority,priorityCls,mine,target:target.display,difference:me.unit==='s'?`Diferença: ${difference}`:`Faltam ${difference}`};
+}
+function filteredReqs(reqs,av){
+ let sex=tafMeta(av).sexo_taf||'';
+ return sex?reqs.filter(r=>reqAppliesToSex(r,sex)):reqs;
 }
 function renderSituation(reqs,av){
  let grid=$('#situationGrid'),summary=$('#situationSummary'),status=$('#situationStatus');if(!grid||!summary||!status)return;
  if(!reqs?.length){grid.innerHTML='<div class="muted">Analise o edital para gerar a comparação por prova.</div>';summary.textContent='Ainda não há requisitos do edital disponíveis para comparação.';status.textContent='Aguardando edital';return}
  if(!av){grid.innerHTML='<div class="muted">Registre uma avaliação para comparar seu desempenho com o edital.</div>';summary.textContent='O edital já possui requisitos, mas falta uma avaliação física registrada.';status.textContent='Aguardando avaliação';return}
- let comparable=0,achieved=0;
- grid.innerHTML=reqs.map(r=>{let x=situationFor(r,av);if(x.state!=='warn'){comparable++;if(x.state==='ok')achieved++}return `<div class="situationCard"><h4>${esc(r.nome_prova||'Prova física')}</h4><div class="situationLine"><span>Exigência</span><span class="situationValue">${esc(x.target)}</span></div><div class="situationLine"><span>Seu resultado</span><span class="situationValue">${esc(x.mine)}</span></div><div class="situationLine"><span>Diferença</span><span class="situationValue">${esc(x.difference)}</span></div><div class="situationLine"><span>Situação</span><span class="situationValue ${x.state==='ok'?'statusOk':x.state==='bad'?'statusBad':'statusWarn'}">${esc(x.status)}</span></div><div class="situationLine"><span>Prioridade</span><span class="situationValue ${x.priorityCls}">${esc(x.priority)}</span></div></div>`}).join('');
- status.textContent=comparable?`${achieved}/${comparable} índices atingidos`:'Revisão necessária';
- summary.textContent=comparable?`Comparação da sua avaliação mais recente com ${comparable} requisito(s) compatível(is) do edital.`:'Os requisitos foram encontrados, mas ainda não foi possível cruzá-los automaticamente com os campos da avaliação.';
+ let shown=filteredReqs(reqs,av),sex=tafMeta(av).sexo_taf||'',comparable=0,achieved=0;
+ grid.innerHTML=shown.map(r=>{let x=situationFor(r,av);if(x.state!=='warn'){comparable++;if(x.state==='ok')achieved++}return `<div class="situationCard"><h4>${esc(r.nome_prova||'Prova física')}</h4><div class="situationLine"><span>Exigência</span><span class="situationValue">${esc(x.target)}</span></div><div class="situationLine"><span>Seu resultado</span><span class="situationValue">${esc(x.mine)}</span></div><div class="situationLine"><span>Diferença</span><span class="situationValue">${esc(x.difference)}</span></div><div class="situationLine"><span>Situação</span><span class="situationValue ${x.state==='ok'?'statusOk':x.state==='bad'?'statusBad':'statusWarn'}">${esc(x.status)}</span></div><div class="situationLine"><span>Prioridade</span><span class="situationValue ${x.priorityCls}">${esc(x.priority)}</span></div></div>`}).join('');
+ status.textContent=comparable?`${achieved}/${comparable} índices atingidos`:'Avaliações pendentes';
+ summary.textContent=`${sex?`Requisitos aplicáveis a ${sex}. `:''}${comparable?`Comparação com ${comparable} prova(s) que possuem medição compatível.`:'Ainda não há medições compatíveis suficientes para calcular índices.'}`;
 }
-
 function renderRequirements(reqs,av){
  let box=$('#tafRequirements');if(!box)return;
  if(!reqs?.length){box.innerHTML='<div class="muted">Nenhum requisito estruturado foi encontrado até o momento.</div>';return}
- box.innerHTML=reqs.map(r=>{let c=compareReq(r,av),target=requirementTarget(r);return `<div class="reqCard"><h4>${esc(r.nome_prova||'Prova física')}</h4><div class="reqMeta">${r.sexo?`<span class="tag">${esc(r.sexo)}</span>`:''}${r.faixa_etaria?`<span class="tag gold">${esc(r.faixa_etaria)}</span>`:''}${r.categoria?`<span class="tag gold">${esc(r.categoria)}</span>`:''}</div><div class="metric"><span>Exigência</span><b>${esc(target.display)}</b></div>${r.distancia_metros?`<div class="metric"><span>Distância</span><b>${esc(r.distancia_metros)} m</b></div>`:''}<div class="compare ${c.cls}">${esc(c.text)}</div>${r.pagina_edital?`<div class="small">Página do edital: ${esc(r.pagina_edital)}</div>`:''}${r.trecho_edital?`<div class="sourceQuote">${esc(r.trecho_edital)}</div>`:''}</div>`}).join('')
+ let shown=av?filteredReqs(reqs,av):reqs;
+ box.innerHTML=shown.map(r=>{let c=compareReq(r,av),target=requirementTarget(r);return `<div class="reqCard"><h4>${esc(r.nome_prova||'Prova física')}</h4><div class="reqMeta">${r.sexo?`<span class="tag">${esc(r.sexo)}</span>`:''}${r.faixa_etaria?`<span class="tag gold">${esc(r.faixa_etaria)}</span>`:''}${r.categoria?`<span class="tag gold">${esc(r.categoria)}</span>`:''}</div><div class="metric"><span>Exigência</span><b>${esc(target.display)}</b></div>${r.distancia_metros?`<div class="metric"><span>Distância</span><b>${esc(r.distancia_metros)} m</b></div>`:''}<div class="compare ${c.cls}">${esc(c.text)}</div>${r.pagina_edital?`<div class="small">Página do edital: ${esc(r.pagina_edital)}</div>`:''}${r.trecho_edital?`<div class="sourceQuote">${esc(r.trecho_edital)}</div>`:''}</div>`}).join('')
 }
 async function analyzeEdital(editalId,silent=false){
  if(analyzingEdital)return;
