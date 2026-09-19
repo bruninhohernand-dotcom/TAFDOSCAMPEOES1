@@ -61,6 +61,17 @@
     justify-content:center;
   }
 }
+
+/* V5.4 - MINHA SITUACAO NO TAF */
+.tafSituation{margin-top:16px}
+.situationGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.situationCard{border:1px solid #303440;background:#0b0d13;border-radius:16px;padding:16px}
+.situationCard h4{margin:0 0 10px;color:var(--gold2)}
+.situationLine{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #252832}
+.situationLine:last-child{border-bottom:0}
+.situationValue{font-weight:900;text-align:right}
+.priorityHigh{color:var(--red);font-weight:900}.priorityMedium{color:var(--gold2);font-weight:900}.priorityLow{color:var(--green);font-weight:900}
+@media(max-width:700px){.situationGrid{grid-template-columns:1fr}}
 </style>
 </head><body>
 <header class="top"><div class="topin"><div class="brand"><div class="logo">TC</div><div><b>TAF DOS CAMPEÕES</b><small>DISCIPLINA • FOCO • RESULTADO</small></div></div><nav class="nav" id="nav"><button data-view="home" class="active">Início</button><button data-view="avaliacao">Avaliação</button><button data-view="simulado">Simulado</button><button data-view="area">Área do aluno</button><button data-view="admin">Painel</button></nav><div class="authMini"><button class="btn ghost" onclick="go('auth')" id="loginBtn">Entrar</button><button class="btn primary" onclick="go('auth')" id="accountBtn">Criar conta</button><button class="btn danger" onclick="logout()" id="logoutBtn" style="display:none">Sair</button></div></div></header>
@@ -93,13 +104,22 @@
   <div class="analysisActions"><button class="btn primary" id="btnAnalyze" onclick="analyzeLatestEdital()">Analisar meu edital</button></div>
   <div id="tafRequirements" class="reqGrid"></div>
 </div>
+
+<div class="card tafSituation">
+  <div class="analysisHead">
+    <div><div class="eyebrow">MINHA SITUAÇÃO NO TAF</div><h3>Edital x desempenho atual</h3><p class="muted" id="situationSummary">A comparação será exibida após a análise do edital e uma avaliação registrada.</p></div>
+    <span class="tag gold" id="situationStatus">Aguardando dados</span>
+  </div>
+  <div id="situationGrid" class="situationGrid"></div>
+  <p class="small">Comparação orientativa baseada nos requisitos estruturados pela análise automática do edital. Confira sempre o texto oficial do edital, especialmente quando houver faixa etária, sexo, categoria ou regra específica.</p>
+</div>
 <br>
 <div class="grid"><div class="card" style="grid-column:span 2"><h3>Minhas avaliações</h3><div id="myEvalList" class="list"></div></div><div class="card"><h3>Meus agendamentos</h3><div id="mySchedList" class="list"></div></div></div>
 </div></section>
 <section id="admin" class="view"><div class="section"><div class="sectionTitle"><div><div class="eyebrow">TREINADOR / ADMIN</div><h1>Painel de acompanhamento</h1><p>Disponível somente para perfis autorizados como treinador ou admin.</p></div></div><div id="adminGate" class="notice">Entre com uma conta de treinador/admin.</div><div id="adminBody" style="display:none"><div class="dash"><div class="card"><div class="muted">Alunos</div><div class="stat" id="aStudents">0</div></div><div class="card"><div class="muted">Avaliações</div><div class="stat" id="aEvals">0</div></div><div class="card"><div class="muted">Agendamentos</div><div class="stat" id="aSched">0</div></div><div class="card"><div class="muted">Editais</div><div class="stat" id="aFiles">0</div></div></div><br><div class="card"><div class="field"><label>Buscar aluno</label><input id="adminSearch" placeholder="Nome, WhatsApp ou concurso" oninput="renderAdminList()"></div><br><div id="adminList" class="list"></div></div></div></div></section>
 <section id="termo" class="view"><div class="section"><div class="sectionTitle noPrint"><div><div class="eyebrow">TERMO</div><h1>Participação no simulado</h1></div><button class="btn" onclick="window.print()">Imprimir / salvar PDF</button></div><div class="contract" id="contract"></div></div></section>
 </main></div>
-<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.3</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
+<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.4</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
 <script>
 const SUPABASE_URL='https://niuwscihdpflodhwwdqr.supabase.co';
 const SUPABASE_KEY='sb_publishable_8IF0ZFxtxExIVyZMkyONFA_DIZ5xSjP';
@@ -205,6 +225,30 @@ function compareReq(req,av){
  let gap=me.unit==='s'?formatSeconds(diff):`${diff} ${me.unit}`;
  return ok?{cls:'statusOk',text:`Índice alcançado • Seu resultado: ${mine}`}:{cls:'statusBad',text:`Falta ${gap} para o índice • Seu resultado: ${mine}`}
 }
+function situationFor(req,av){
+ let me=studentResultFor(req,av),target=requirementTarget(req);
+ let mine=me.value==null?'—':(me.display||(me.unit==='s'?formatSeconds(me.value):`${me.value} ${me.unit}`.trim()));
+ if(me.value==null||target.value==null||!me.kind)return {state:'warn',status:'Comparação indisponível',priority:'Revisar',priorityCls:'priorityMedium',mine,target:target.display||'—',difference:'—'};
+ let ok=me.kind==='lower'?me.value<=target.value:me.value>=target.value;
+ let signed=me.kind==='lower'?(target.value-me.value):(me.value-target.value);
+ let abs=Math.abs(signed);
+ let difference=me.unit==='s'?formatSeconds(abs):`${abs} ${me.unit}`.trim();
+ if(ok)return {state:'ok',status:'Índice atingido',priority:'Manutenção',priorityCls:'priorityLow',mine,target:target.display,difference:`Margem: ${difference}`};
+ let ratio=target.value?abs/Math.abs(target.value):1;
+ let priority=ratio>=.2?'Alta':ratio>=.08?'Média':'Baixa';
+ let priorityCls=priority==='Alta'?'priorityHigh':priority==='Média'?'priorityMedium':'priorityLow';
+ return {state:'bad',status:'Abaixo do índice',priority,priorityCls,mine,target:target.display,difference:me.unit==='s'?`Reduzir ${difference}`:`Faltam ${difference}`};
+}
+function renderSituation(reqs,av){
+ let grid=$('#situationGrid'),summary=$('#situationSummary'),status=$('#situationStatus');if(!grid||!summary||!status)return;
+ if(!reqs?.length){grid.innerHTML='<div class="muted">Analise o edital para gerar a comparação por prova.</div>';summary.textContent='Ainda não há requisitos do edital disponíveis para comparação.';status.textContent='Aguardando edital';return}
+ if(!av){grid.innerHTML='<div class="muted">Registre uma avaliação para comparar seu desempenho com o edital.</div>';summary.textContent='O edital já possui requisitos, mas falta uma avaliação física registrada.';status.textContent='Aguardando avaliação';return}
+ let comparable=0,achieved=0;
+ grid.innerHTML=reqs.map(r=>{let x=situationFor(r,av);if(x.state!=='warn'){comparable++;if(x.state==='ok')achieved++}return `<div class="situationCard"><h4>${esc(r.nome_prova||'Prova física')}</h4><div class="situationLine"><span>Exigência</span><span class="situationValue">${esc(x.target)}</span></div><div class="situationLine"><span>Seu resultado</span><span class="situationValue">${esc(x.mine)}</span></div><div class="situationLine"><span>Diferença</span><span class="situationValue">${esc(x.difference)}</span></div><div class="situationLine"><span>Situação</span><span class="situationValue ${x.state==='ok'?'statusOk':x.state==='bad'?'statusBad':'statusWarn'}">${esc(x.status)}</span></div><div class="situationLine"><span>Prioridade</span><span class="situationValue ${x.priorityCls}">${esc(x.priority)}</span></div></div>`}).join('');
+ status.textContent=comparable?`${achieved}/${comparable} índices atingidos`:'Revisão necessária';
+ summary.textContent=comparable?`Comparação da sua avaliação mais recente com ${comparable} requisito(s) compatível(is) do edital.`:'Os requisitos foram encontrados, mas ainda não foi possível cruzá-los automaticamente com os campos da avaliação.';
+}
+
 function renderRequirements(reqs,av){
  let box=$('#tafRequirements');if(!box)return;
  if(!reqs?.length){box.innerHTML='<div class="muted">Nenhum requisito estruturado foi encontrado até o momento.</div>';return}
@@ -245,95 +289,15 @@ async function loadArea(){
  $('#myEvalList').innerHTML=e.length?e.map(x=>`<div class="item"><b>Score ${x.score}/100</b><div class="small">${new Date(x.criado_em).toLocaleString('pt-BR')} • Barra ${x.barra||0} • Abdominal ${x.abdominal||0} • Flexões ${x.flexao||0}</div></div>`).join(''):'<div class="muted">Nenhuma avaliação registrada.</div>';
  $('#mySchedList').innerHTML=a.length?a.map(x=>`<div class="item"><b>${esc(x.tipo||'Simulado')}</b><div class="small">${x.data_simulado} ${x.hora_simulado||''} • ${x.status}</div></div>`).join(''):'<div class="muted">Nenhum agendamento.</div>';
  if(edErr){$('#editalResumo').textContent='Não foi possível carregar o edital.';return}
- if(!edital){$('#editalStatus').textContent='Sem edital';$('#editalResumo').textContent='Envie um edital em PDF na avaliação para iniciar a análise.';renderRequirements([],e[0]);return}
+ if(!edital){$('#editalStatus').textContent='Sem edital';$('#editalResumo').textContent='Envie um edital em PDF na avaliação para iniciar a análise.';renderRequirements([],e[0]);renderSituation([],e[0]);return}
  let status=edital.status_analise||'pendente';$('#editalStatus').textContent=status.replaceAll('_',' ');
  $('#editalResumo').textContent=edital.resumo_taf||`${edital.nome_arquivo||'Edital enviado'} • ${status==='pendente'?'Aguardando análise.':'Análise registrada.'}`;
  let {data:reqs,error:reqErr}=await sb.from('requisitos_taf').select('*').eq('edital_id',edital.id).order('nome_prova');
- if(reqErr){$('#tafRequirements').innerHTML=`<div class="muted">Não foi possível carregar os requisitos: ${esc(reqErr.message)}</div>`;return}
+ if(reqErr){$('#tafRequirements').innerHTML=`<div class="muted">Não foi possível carregar os requisitos: ${esc(reqErr.message)}</div>`;renderSituation([],e[0]);return}
  renderRequirements(reqs||[],e[0]);
+ renderSituation(reqs||[],e[0]);
 }
 async function loadAdmin(){if(!session){$('#adminGate').textContent='Entre com uma conta autorizada para acessar o painel.';return}let {data:p}=await sb.from('perfis').select('tipo').eq('id',session.user.id).maybeSingle();let ok=['admin','treinador'].includes(p?.tipo);$('#adminGate').style.display=ok?'none':'block';$('#adminBody').style.display=ok?'block':'none';if(!ok){$('#adminGate').textContent='Sua conta ainda não possui permissão de treinador/admin.';return}let [{data:alunos},{data:evals},{data:sched},{data:files}]=await Promise.all([sb.from('alunos').select('*').order('criado_em',{ascending:false}),sb.from('avaliacoes').select('*').order('criado_em',{ascending:false}),sb.from('agendamentos').select('*').order('criado_em',{ascending:false}),sb.from('editais').select('*')]);adminCache=alunos||[];$('#aStudents').textContent=adminCache.length;$('#aEvals').textContent=(evals||[]).length;$('#aSched').textContent=(sched||[]).length;$('#aFiles').textContent=(files||[]).length;renderAdminList()}
 function renderAdminList(){let q=($('#adminSearch')?.value||'').toLowerCase();let arr=adminCache.filter(x=>(`${x.nome} ${x.whatsapp} ${x.concurso||''}`).toLowerCase().includes(q));$('#adminList').innerHTML=arr.length?arr.map(x=>`<div class="item"><div class="itemTop"><b>${esc(x.nome)}</b><span class="tag gold">${esc(x.concurso||'Sem concurso')}</span></div><div class="small">${esc(x.whatsapp)} • ${esc(x.email||'')} • ${esc(x.cidade||'')} ${esc(x.estado||'')}</div></div>`).join(''):'<div class="muted">Nenhum aluno encontrado.</div>'}
 init();
 </script></body></html>
-async function analyzeLatestEdital() {
-  const btn = document.getElementById('btnAnalyze');
-
-  try {
-    if (!session) {
-      const { data, error } = await sb.auth.getSession();
-
-      if (error) throw error;
-
-      session = data.session;
-    }
-
-    if (!session?.access_token) {
-      toast('Sua sessão expirou. Entre novamente na sua conta.');
-      go('auth');
-      return;
-    }
-
-    const aluno = await ensureStudent();
-
-    if (!aluno) {
-      toast('Não foi possível localizar seu cadastro.');
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = 'Analisando edital...';
-
-    const { data: editais, error: editalError } = await sb
-      .from('editais')
-      .select('*')
-      .eq('aluno_id', aluno.id)
-      .order('criado_em', { ascending: false })
-      .limit(1);
-
-    if (editalError) throw editalError;
-
-    const edital = editais?.[0];
-
-    if (!edital) {
-      toast('Nenhum edital foi encontrado. Envie o PDF na avaliação.');
-      return;
-    }
-
-    const { data, error } = await sb.functions.invoke(
-      'analisar-edital',
-      {
-        body: {
-          edital_id: edital.id
-        },
-        headers: {
-          Authorization: `Bearer ${session.access_token}`
-        }
-      }
-    );
-
-    if (error) {
-      console.error('Erro analisar-edital:', error);
-      throw error;
-    }
-
-    console.log('Análise do edital:', data);
-
-    toast('Edital analisado com sucesso!');
-
-    await loadStudentArea();
-
-  } catch (error) {
-    console.error('analisar-edital:', error);
-
-    toast(
-      'Não foi possível analisar o edital: ' +
-      (error?.message || 'erro desconhecido')
-    );
-  } finally {
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = 'Analisar meu edital';
-    }
-  }
-}
