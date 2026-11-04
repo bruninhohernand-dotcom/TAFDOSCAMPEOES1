@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090b">
-<title>TAF dos Campeões | Preparação para o TAF</title>
+<title>TAF dos Campeões | Plataforma e Painel do Professor</title>
 <meta name="description" content="Preparação para Teste de Aptidão Física com pré-avaliação, análise de edital, simulados e acompanhamento.">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -90,9 +90,27 @@
 
 /* V5.7.2 - INTELIGÊNCIA ADAPTATIVA */
 .adaptiveGrid{display:grid;grid-template-columns:1fr 1.25fr;gap:14px;margin:16px 0}.readyScore{font-size:44px;font-weight:1000;color:var(--gold2);line-height:1}.readyBadge{display:inline-block;margin-top:6px;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:950;text-transform:uppercase}.readyBadge.verde,.mapDot.verde{background:#123521;color:#73e6a3}.readyBadge.amarelo,.mapDot.amarelo{background:#46370d;color:#ffd967}.readyBadge.vermelho,.mapDot.vermelho{background:#471a20;color:#ff9aa6}.readyBadge.cinza,.mapDot.cinza{background:#292c35;color:#c5c6ce}.readyForm{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:14px}.readyForm .field input,.readyForm .field select{padding:10px}.mapSummary{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.mapSummary span{border:1px solid #303440;border-radius:999px;padding:7px 9px;font-size:11px;font-weight:850}.approvalMap{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.mapItem{border:1px solid #2d303b;background:#0b0d13;border-radius:14px;padding:13px}.mapItemTop{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.mapDot{border-radius:999px;padding:4px 8px;font-size:10px;font-weight:950;text-transform:uppercase}.mapValues{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}.mapValues div{background:#11141a;border-radius:9px;padding:8px}.trendUp{color:var(--green);font-weight:900}.trendFlat{color:var(--gold2);font-weight:900}.trendDown{color:var(--red);font-weight:900}.adaptiveAlert{border:1px solid #57411d;background:#1a160d;border-radius:13px;padding:12px;margin-top:9px}.adaptiveAlert.high{border-color:#6f2830;background:#241014}.adaptiveAlert .itemTop{align-items:center}.profAdaptive{border:1px solid #3a3347;background:#121018;border-radius:14px;padding:14px;margin:12px 0}.profAdaptiveGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.profAdaptiveGrid>div{border:1px solid #302a39;border-radius:11px;padding:10px;background:#0c0c11}.alertQueue{display:grid;gap:9px}.alertSeverity{font-size:10px;font-weight:950;text-transform:uppercase;border-radius:999px;padding:5px 8px}.alertSeverity.alta{background:#471a20;color:#ff9aa6}.alertSeverity.media{background:#46370d;color:#ffd967}.alertSeverity.baixa{background:#123521;color:#73e6a3}@media(max-width:800px){.adaptiveGrid{grid-template-columns:1fr}.approvalMap{grid-template-columns:1fr}.profAdaptiveGrid{grid-template-columns:1fr}.readyForm{grid-template-columns:1fr 1fr}}@media(max-width:480px){.readyForm{grid-template-columns:1fr}}
+
+/* V5.7.3 — PAINEL DO PROFESSOR */
+.nav button[hidden]{display:none!important}
+body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
+#admin .profShell{padding-top:28px;max-width:1440px;margin:0 auto}
+.profHero{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:20px;padding:32px;border-radius:26px;background:radial-gradient(circle at 91% 11%,rgba(238,12,180,.15),transparent 44%),linear-gradient(112deg,#181a21,#0d0e14 64%);border:1px solid #3a3440}
+.profHero h1{font-size:clamp(29px,3.3vw,46px);margin:9px 0 8px;line-height:1.15}
+.profHero p{color:var(--muted);font-size:15px;line-height:1.55;margin:0 0 16px}.profHeroActions{display:flex;align-items:flex-end;flex-direction:column;gap:8px;flex-shrink:0}
+.profHeroTags{display:flex;gap:8px;flex-wrap:wrap}.profHeroTags span{border:1px solid #39313d;background:#0e0f15;border-radius:99px;padding:7px 10px;font-size:11px;color:#d8d5dd}
+.profStats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:19px}.profStat{min-width:0;background:linear-gradient(160deg,#181b23,#0d0f14);border:1px solid #30343f;border-radius:18px;padding:17px;display:flex;flex-direction:column;gap:6px}.profStat span{font-size:12px;color:#c9cbd1;font-weight:700}.profStat strong{font-size:34px;line-height:1.2;color:#fff;font-variant-numeric:tabular-nums}.profStat small{font-size:11px;color:#989aa4}.profStatAttention{border-color:#796029;background:linear-gradient(150deg,#241b0f,#121117)}.profStatAttention strong{color:var(--gold2)}
+.profTabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 20px;padding:6px;border:1px solid #30343c;background:#101219;border-radius:16px}.profTabs button{border:0;border-radius:10px;padding:11px 14px;font-size:13px;font-weight:850;color:#b8b9c0;background:transparent}.profTabs button.active{background:linear-gradient(100deg,#79204d,#a83260);color:white}.profTabs button:hover:not(.active){background:#242631}
+.profPane{display:none}.profPane.active{display:block}.profTwoCols{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:16px}.profPanel{padding:23px}.profPanel h2{margin:8px 0 12px;font-size:24px}.profPanelHead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.profStudentList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.profStudentList .item{min-width:0;padding:19px}.profStudentList .actions .btn{font-size:12px;padding:9px 10px}
+.profSteps{display:grid;gap:12px;margin:18px 0}.profSteps div{display:flex;gap:12px;align-items:center;border:1px solid #30343f;border-radius:12px;padding:12px;background:#0f1117}.profSteps span{font-weight:950;color:var(--gold2)}
+.profChooser{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0}.profChooser select,#profReportStudent,#profAltStudent{background:#0c0e14;border:1px solid #454957;border-radius:10px;color:white;padding:11px;min-width:200px}.profMapSummary{display:flex;gap:12px;flex-wrap:wrap;margin:15px 0}.profMapSummary>div{padding:12px;border:1px solid #313543;border-radius:12px;background:#11141b}.profMapGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.profMapGrid .mapItem{padding:17px}.profCalendar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.profCalEntry{border:1px solid #313642;background:#0c0e14;border-radius:14px;padding:14px}.profCalEntry strong{color:var(--gold2)}.profCalEntry .small{margin-top:8px}.profFeatureGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.profFeatureGrid .card{min-width:0}.profFeatureGrid .field{margin-top:14px}.roleBadge{padding:7px 10px;border:1px solid #886c29;color:var(--gold2);background:#2c240e;font-size:11px;font-weight:900;border-radius:99px}.roleBadge[hidden]{display:none}.menuToggle{display:none}
+@media(max-width:1240px){.profStats{grid-template-columns:repeat(3,minmax(0,1fr))}.profMapGrid,.profFeatureGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.topin{flex-wrap:wrap}.menuToggle{display:inline-block;order:2}.nav{display:none;width:100%;order:5;flex-direction:column;padding:10px 0}.nav.mobileOpen{display:flex}.nav button{width:100%;text-align:left}.profHero{flex-direction:column;align-items:flex-start}.profHeroActions{align-items:flex-start}.profTwoCols{grid-template-columns:1fr}.profCalendar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:670px){.profHero{padding:22px}.profStats,.profStudentList,.profFeatureGrid,.profMapGrid,.profCalendar{grid-template-columns:1fr 1fr}.profStat{padding:13px}.profStat strong{font-size:27px}.profTabs{flex-wrap:nowrap;overflow-x:auto}.profTabs button{white-space:nowrap}.profPanel{padding:17px}.roleBadge{max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+@media(max-width:520px){.profStats,.profStudentList,.profFeatureGrid,.profMapGrid,.profCalendar{grid-template-columns:1fr}.profHeroTags span{font-size:10px}.roleBadge{display:none}.profHero h1{font-size:28px}.profPanel h2{font-size:21px}}
 </style>
 </head><body>
-<header class="top"><div class="topin"><div class="brand"><div class="logo">TC</div><div><b>TAF DOS CAMPEÕES</b><small>DISCIPLINA • FOCO • RESULTADO</small></div></div><nav class="nav" id="nav"><button data-view="home" class="active">Início</button><button data-view="planos">Planos</button><button data-view="avaliacao">Avaliação</button><button data-view="simulado">Simulado</button><button data-view="area">Área do aluno</button><button data-view="admin">Painel</button></nav><div class="authMini"><button class="btn ghost" onclick="go('auth')" id="loginBtn">Entrar</button><button class="btn primary" onclick="go('auth')" id="accountBtn">Criar conta</button><button class="btn danger" onclick="logout()" id="logoutBtn" style="display:none">Sair</button></div></div></header>
+<header class="top"><div class="topin"><div class="brand"><div class="logo">TC</div><div><b>TAF DOS CAMPEÕES</b><small>DISCIPLINA • FOCO • RESULTADO</small></div></div><button class="btn menuToggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" onclick="toggleMobileNav()">☰ Menu</button><nav class="nav" id="nav" aria-label="Navegação principal"><button data-view="home" class="active">Início</button><button data-view="planos">Planos</button><button data-view="avaliacao">Avaliação</button><button data-view="simulado">Simulado</button><button data-view="area">Área do aluno</button><button data-view="admin">Painel do professor</button></nav><div class="authMini"><span id="roleBadge" class="roleBadge" hidden></span><button class="btn ghost" onclick="go('auth')" id="loginBtn">Entrar</button><button class="btn primary" onclick="go('auth')" id="accountBtn">Criar conta</button><button class="btn danger" onclick="logout()" id="logoutBtn" style="display:none">Sair</button></div></div></header>
 <div class="wrap"><main>
 <section id="home" class="view active">
 <div class="hero"><div class="heroContent"><div class="eyebrow">PREPARAÇÃO COMPLETA PARA O SEU TAF</div><h1>TAF DOS <em>CAMPEÕES</em></h1><p>Treino direcionado, análise do edital, pré-avaliação e simulados para transformar preparação em desempenho.</p><div class="actions"><button class="btn primary" onclick="startProtected('avaliacao')">COMEÇAR MINHA AVALIAÇÃO →</button><button class="btn gold" onclick="startProtected('simulado')">AGENDAR SIMULADO</button></div><div class="trust"><span>✓ Acompanhamento personalizado</span><span>✓ Edital em PDF</span><span>✓ Diagnóstico inicial</span><span>✓ Evolução registrada</span></div></div></div>
@@ -199,30 +217,162 @@
 <br>
 <div class="grid"><div class="card" style="grid-column:span 2"><h3>Minhas avaliações</h3><div id="myEvalList" class="list"></div></div><div class="card"><h3>Meus agendamentos</h3><div id="mySchedList" class="list"></div></div></div>
 </div></section>
-<section id="admin" class="view"><div class="section"><div class="sectionTitle"><div><div class="eyebrow">TREINADOR / ADMIN</div><h1>Painel de acompanhamento</h1><p>Gere rascunhos científicos, revise e só então publique para o aluno.</p></div></div><div id="adminGate" class="notice">Entre com uma conta de treinador/admin.</div><div id="adminBody" style="display:none">
-<div class="dash"><div class="card"><div class="muted">Alunos</div><div class="stat" id="aStudents">0</div></div><div class="card"><div class="muted">Avaliações</div><div class="stat" id="aEvals">0</div></div><div class="card"><div class="muted">Treinos IA</div><div class="stat" id="aAITrainings">0</div></div><div class="card"><div class="muted">Aguardando revisão</div><div class="stat" id="aAIWaiting">0</div></div><div class="card"><div class="muted">Alertas adaptativos</div><div class="stat" id="aAdaptiveAlerts">0</div></div></div><br>
-<div class="aiGrid"><div class="card"><div class="eyebrow">GERAÇÃO CIENTÍFICA</div><h3>Alunos</h3><div class="field"><label>Buscar aluno</label><input id="adminSearch" placeholder="Nome, WhatsApp ou concurso" oninput="renderAdminList()"></div><br><div id="adminList" class="list"></div></div>
-<div class="card"><div class="eyebrow">FILA DO PROFESSOR</div><h3>Rascunhos aguardando revisão</h3><div id="aiTrainingQueue" class="aiQueue"><div class="muted">Carregando...</div></div></div></div>
-<div class="card" style="margin-top:14px"><div class="analysisHead"><div><div class="eyebrow">INTELIGÊNCIA ADAPTATIVA</div><h3>Alertas que pedem revisão</h3><p class="muted">Platô, prontidão baixa ou dor/limitação relatada. A IA sinaliza; o professor decide.</p></div><span class="tag gold" id="adaptiveAlertTag">0 abertos</span></div><div id="adaptiveAlertsQueue" class="alertQueue"><div class="muted">Carregando...</div></div></div>
-<div id="aiReview" class="card aiReview"><div class="analysisHead"><div><div class="eyebrow">REVISÃO PROFISSIONAL OBRIGATÓRIA</div><h3 id="aiReviewTitle">Treino IA</h3><p class="muted" id="aiReviewMeta"></p></div><span class="tag gold" id="aiReviewStatus">—</span></div><div id="aiReviewContent"></div><div class="actions"><button class="btn primary" onclick="approvePublishAITraining()">✅ APROVAR E PUBLICAR</button><button class="btn" onclick="regenerateAITraining()">🔄 REGERAR COM AJUSTE</button><button class="btn danger" onclick="rejectAITraining()">REJEITAR</button></div></div>
-</div></div></section>
+<section id="admin" class="view" aria-label="Painel do professor">
+<div class="section profShell">
+  <div class="profHero">
+    <div><div class="eyebrow">CENTRAL DO PROFESSOR • V5.7.3</div><h1 id="profWelcome">Seu painel de acompanhamento</h1><p>Planejamento científico, aprovação humana e evolução em cada prova do TAF.</p><div class="profHeroTags"><span>🔒 Alunos vinculados</span><span>🧠 IA sob revisão</span><span>📋 Fontes exclusivas do professor</span></div></div>
+    <div class="profHeroActions"><button class="btn gold" onclick="loadAdmin()">↻ Atualizar dados</button><span id="profLastUpdated" class="small">—</span></div>
+  </div>
+  <div id="adminGate" class="notice">Verificando acesso profissional…</div>
+  <div id="adminBody" style="display:none">
+    <div class="profStats">
+      <div class="profStat"><span>👥 Alunos vinculados</span><strong id="aStudents">—</strong><small>Seu acompanhamento</small></div>
+      <div class="profStat"><span>🗂 Avaliações</span><strong id="aEvals">—</strong><small>Histórico disponível</small></div>
+      <div class="profStat"><span>🧠 Treinos IA</span><strong id="aAITrainings">—</strong><small>Rascunhos e planos</small></div>
+      <div class="profStat profStatAttention"><span>⏳ Revisões pendentes</span><strong id="aAIWaiting">—</strong><small>Aprovação obrigatória</small></div>
+      <div class="profStat"><span>⚡ Alertas adaptativos</span><strong id="aAdaptiveAlerts">—</strong><small>Recuperação e platô</small></div>
+      <div class="profStat"><span>🎬 Vídeos em revisão</span><strong id="aVideosPending">—</strong><small id="videoCounterCaption">Integração pendente</small></div>
+    </div>
+    <div class="profTabs" role="tablist" aria-label="Seções do painel">
+      <button type="button" role="tab" class="active" data-prof-tab="visao" onclick="showProfTab('visao')">Visão geral</button>
+      <button type="button" role="tab" data-prof-tab="alunos" onclick="showProfTab('alunos')">Alunos</button>
+      <button type="button" role="tab" data-prof-tab="treinos" onclick="showProfTab('treinos')">Treinos IA</button>
+      <button type="button" role="tab" data-prof-tab="resultados" onclick="showProfTab('resultados')">Mapa de aprovação</button>
+      <button type="button" role="tab" data-prof-tab="agenda" onclick="showProfTab('agenda')">Calendário</button>
+      <button type="button" role="tab" data-prof-tab="videos" onclick="showProfTab('videos')">Vídeos</button>
+      <button type="button" role="tab" data-prof-tab="ferramentas" onclick="showProfTab('ferramentas')">Ferramentas</button>
+    </div>
+    <div class="profPane active" id="prof-tab-visao" role="tabpanel">
+      <div class="profTwoCols">
+       <div class="card profPanel"><div class="profPanelHead"><div><div class="eyebrow">PRIORIDADES DO DIA</div><h2>Seu próximo passo</h2></div><span class="tag gold">Acompanhamento</span></div><div id="profQuickQueue" class="list"><div class="muted">Consultando pendências…</div></div><div class="actions"><button class="btn primary" onclick="showProfTab('treinos')">Ver fila de treinos</button><button class="btn" onclick="showProfTab('alunos')">Meus alunos</button></div></div>
+       <div class="card profPanel"><div class="eyebrow">CENTRAL DE AVISOS</div><h2>Notificações internas</h2><p class="small">Treinos para revisar e alertas de recuperação. Avisos dentro da plataforma; não são notificações push.</p><div id="profNotifications" class="list"><div class="muted">Consultando avisos…</div></div></div>
+      </div>
+      <div class="card profPanel" style="margin-top:16px"><div class="profPanelHead"><div><div class="eyebrow">INTELIGÊNCIA ADAPTATIVA</div><h2>Alertas que exigem atenção</h2><p class="small">Platô, prontidão baixa ou dor relatada não são diagnóstico. A decisão de ajuste é do professor.</p></div><span class="tag gold" id="adaptiveAlertTag">—</span></div><div id="adaptiveAlertsQueue" class="list"><div class="muted">Carregando alertas…</div></div></div>
+    </div>
+    <div class="profPane" id="prof-tab-alunos" role="tabpanel">
+      <div class="card profPanel"><div class="profPanelHead"><div><div class="eyebrow">CARTEIRA DE ALUNOS</div><h2>Alunos sob sua responsabilidade</h2><p class="small">Acesso restrito aos vínculos ativos do professor.</p></div><span id="profStudentCount" class="tag gold">—</span></div>
+        <div class="field"><label for="adminSearch">Pesquisar por nome ou concurso</label><input id="adminSearch" type="search" placeholder="Nome do aluno ou concurso" oninput="renderAdminList()"></div><div id="adminList" class="profStudentList"><div class="muted">Carregando alunos…</div></div>
+      </div>
+    </div>
+    <div class="profPane" id="prof-tab-treinos" role="tabpanel">
+       <div class="profTwoCols">
+       <div class="card profPanel"><div class="eyebrow">FILA DE PRESCRIÇÃO</div><h2>Treinos aguardando revisão</h2><p class="small">Apenas após aprovação do professor o plano poderá ser exibido ao aluno.</p><div id="aiTrainingQueue" class="aiQueue"><div class="muted">Carregando rascunhos…</div></div></div>
+       <div class="card profPanel"><div class="eyebrow">REVISÃO PROFISSIONAL</div><h2>Como funciona</h2><div class="profSteps"><div><span>01</span> IA considera edital, avaliação, prontidão e disponibilidade.</div><div><span>02</span> Professor recebe plano e fontes científicas.</div><div><span>03</span> Professor edita ou regenera, aprova e publica.</div></div><div class="notice">Referências científicas e análises técnicas não aparecem no painel do aluno.</div></div>
+       </div>
+       <div id="aiReview" class="card aiReview"><div class="analysisHead"><div><div class="eyebrow">REVISÃO PROFISSIONAL OBRIGATÓRIA</div><h3 id="aiReviewTitle">Treino IA</h3><p class="muted" id="aiReviewMeta"></p></div><span class="tag gold" id="aiReviewStatus">—</span></div><div id="aiReviewContent"></div><div class="actions"><button class="btn primary" onclick="approvePublishAITraining()">✅ APROVAR E PUBLICAR</button><button class="btn" onclick="regenerateAITraining()">🔄 REGERAR COM AJUSTE</button><button class="btn danger" onclick="rejectAITraining()">REJEITAR</button></div></div>
+    </div>
+    <div class="profPane" id="prof-tab-resultados" role="tabpanel">
+       <div class="card profPanel"><div class="eyebrow">MAPA DE APROVAÇÃO • EVIDÊNCIAS E EVOLUÇÃO</div><h2>Resultado por prova do edital</h2><p class="small">Comparações somente quando exercício, unidade e modalidade forem compatíveis. Estimativas não garantem aprovação.</p><div class="profChooser"><label for="profMapStudent">Selecionar aluno</label><select id="profMapStudent" onchange="loadProfessorMap(this.value)"><option value="">Selecione um aluno</option></select></div><div id="profMapSummary" class="profMapSummary"><div class="muted">Escolha um aluno para consultar o mapa.</div></div><div id="profMapItems" class="profMapGrid"></div></div>
+    </div>
+    <div class="profPane" id="prof-tab-agenda" role="tabpanel"><div class="card profPanel"><div class="profPanelHead"><div><div class="eyebrow">CALENDÁRIO DE TREINOS</div><h2>Planejamento semanal</h2><p class="small">Sessões dos treinos já publicados. O professor aprova alterações antes da próxima versão.</p></div><span class="tag">Programação aprovada</span></div><div id="profCalendar" class="profCalendar"><div class="muted">Carregando o calendário…</div></div></div></div>
+    <div class="profPane" id="prof-tab-videos" role="tabpanel"><div class="card profPanel"><div class="profPanelHead"><div><div class="eyebrow">ANÁLISE TÉCNICA EM VÍDEO</div><h2>Execução dos exercícios</h2><p class="small">Os vídeos individuais deverão ficar em armazenamento privado, com acesso restrito ao aluno e professor responsável.</p></div><span class="tag gold" id="profVideoState">Integração pendente</span></div><div id="profVideoList" class="list"><div class="notice">A fila privada de vídeos ainda não foi conectada a este painel. Os vídeos públicos do site são materiais de divulgação e não serão utilizados para avaliação individual.</div></div></div></div>
+    <div class="profPane" id="prof-tab-ferramentas" role="tabpanel">
+      <div class="profFeatureGrid">
+        <div class="card"><div class="eyebrow">RELATÓRIO DO ALUNO</div><h3>Relatório mensal em PDF</h3><p class="small">Emita, sob demanda, o resumo das avaliações e treinos do mês escolhido, com o mapa atual do TAF.</p><div class="field"><label for="profReportStudent">Aluno</label><select id="profReportStudent"><option value="">Selecione</option></select></div><div class="field"><label for="profReportMonth">Mês de referência</label><input id="profReportMonth" type="month"></div><div class="actions"><button class="btn gold" onclick="printProfessorReport()">Gerar relatório em PDF</button></div></div>
+        <div class="card"><div class="eyebrow">ALTERNATIVA DE TREINO</div><h3>Plano B com revisão</h3><p class="small">Peça à IA uma alternativa para viagem, falta de equipamento ou mudança de rotina. A nova versão não é publicada automaticamente.</p><div class="field"><label for="profAltStudent">Aluno</label><select id="profAltStudent"><option value="">Selecione</option></select></div><div class="actions"><button class="btn primary" onclick="requestAlternativeTraining()">Gerar rascunho alternativo</button></div></div>
+        <div class="card"><div class="eyebrow">COMUNICAÇÃO</div><h3>Notificações de acompanhamento</h3><p class="small">Avisos internos sobre rascunhos, alertas e revisões; envio de push, e-mail e WhatsApp depende de integração adicional.</p><button class="btn" onclick="showProfTab('visao')">Abrir central de avisos</button></div>
+        <div class="card"><div class="eyebrow">GESTÃO COMERCIAL</div><h3>Planos e assinaturas</h3><p class="small">Online R$ 99,90 e Full R$ 169,90. A sincronização automática do Mercado Pago e o controle de cobranças ainda exigem integração por webhook.</p><span class="tag gold">Somente administração</span></div>
+        <div class="card"><div class="eyebrow">APRENDIZAGEM</div><h3>Biblioteca técnica por prova</h3><p class="small">Estrutura prevista para instruções de barra, corrida, abdominal, shuttle, natação e saltos, incluindo critérios de execução do edital.</p><span class="tag">Próxima integração</span></div>
+        <div class="card"><div class="eyebrow">DOCUMENTAÇÃO</div><h3>Checklist pré-TAF</h3><p class="small">Documentos, horário, aquecimento, transporte e preparação final. Será personalizado conforme a data e regras do edital.</p><span class="tag">Próxima integração</span></div>
+      </div>
+    </div>
+  </div>
+ </div>
+</section>
 <section id="termo" class="view"><div class="section"><div class="sectionTitle noPrint"><div><div class="eyebrow">TERMO</div><h1>Participação no simulado</h1></div><button class="btn" onclick="window.print()">Imprimir / salvar PDF</button></div><div class="contract" id="contract"></div></div></section>
 </main></div>
-<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.7.2</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
+<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.7.3</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
 <script>
 const SUPABASE_URL='https://niuwscihdpflodhwwdqr.supabase.co';
 const SUPABASE_KEY='sb_publishable_8IF0ZFxtxExIVyZMkyONFA_DIZ5xSjP';
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let session=null,currentAluno=null,aStep=1,totalA=5,adminCache=[],savingEvaluation=false,savingSchedule=false,analyzingEdital=false,currentPlanData=null,currentProfessor=null,currentAITrainingId=null;const $=s=>document.querySelector(s);
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let session=null,currentAluno=null,aStep=1,totalA=5,adminCache=[],adminAllowedAlunoIds=[],appRole='visitante',appProfile=null,authRouteVersion=0,professorMeta=null,selectedProfessorStudentId=null,savingEvaluation=false,savingSchedule=false,analyzingEdital=false,currentPlanData=null,currentProfessor=null,currentAITrainingId=null;const $=s=>document.querySelector(s);
 function toast(t){let e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',3200)}
-function go(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));$('#'+id)?.classList.add('active');document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===id));if(id==='area')loadArea();if(id==='admin')loadAdmin();scrollTo({top:0,behavior:'smooth'})}
+function isStaff(){return appRole==='admin'||appRole==='treinador'}
+function toggleMobileNav(){const nav=$('#nav'),btn=$('#menuToggle');const open=nav.classList.toggle('mobileOpen');btn.setAttribute('aria-expanded',String(open))}
+function go(id){
+ if(id==='area'&&isStaff())id='admin';
+ if(['avaliacao','simulado'].includes(id)&&isStaff()){toast('A avaliação e o simulado são exclusivos de alunos.');id='admin'}
+ if(id==='admin'&&!isStaff()){if(!session){id='auth'}else{id='area'} }
+ document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+ $('#'+id)?.classList.add('active');
+ document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===id));
+ $('#nav')?.classList.remove('mobileOpen');$('#menuToggle')?.setAttribute('aria-expanded','false');
+ if(id==='area')loadArea();if(id==='admin')loadAdmin();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));
 function startProtected(v){if(!session){go('auth');toast('Crie sua conta ou entre para continuar.');return}go(v)}
-function setAuthUI(){let on=!!session;$('#loginBtn').style.display=on?'none':'';$('#accountBtn').style.display=on?'none':'';$('#logoutBtn').style.display=on?'':'none'}
-async function signup(){let nome=$('#regNome').value.trim(),whatsapp=$('#regWhats').value.trim(),email=$('#regEmail').value.trim(),password=$('#regPass').value;if(!nome||!whatsapp||!email||password.length<6)return toast('Preencha os dados e use uma senha com pelo menos 6 caracteres.');let {error}=await sb.auth.signUp({email,password,options:{emailRedirectTo:'https://bruninhohernand-dotcom.github.io/TAFDOSCAMPEOES1/',data:{nome,whatsapp}}});if(error)return toast('Cadastro: '+error.message);toast('Conta criada! Confira seu e-mail para confirmar o cadastro.');}
-async function login(){let email=$('#loginEmail').value.trim(),password=$('#loginPass').value;let {data,error}=await sb.auth.signInWithPassword({email,password});if(error)return toast('Não foi possível entrar: '+error.message);session=data.session;setAuthUI();const {data:perfil,error:perfilErro}=await sb.from('perfis').select('tipo').eq('id',session.user.id).maybeSingle();if(perfilErro){console.error(perfilErro);return toast('Não foi possível verificar seu perfil de acesso.')}if(['admin','treinador'].includes(perfil?.tipo)){currentAluno=null;go('admin');toast('Bem-vindo ao Painel do Professor!');return}await ensureStudent();go('area');toast('Bem-vindo ao TAF dos Campeões!')}
-async function logout(){await sb.auth.signOut();session=null;currentAluno=null;setAuthUI();go('home');toast('Sessão encerrada.')}
-async function ensureStudent(){if(!session)return null;let u=session.user,m=u.user_metadata||{};let {data:p,error:pErr}=await sb.from('perfis').select('*').eq('id',u.id).maybeSingle();if(pErr){console.error('Erro ao verificar perfil:',pErr);return null}if(['admin','treinador'].includes(p?.tipo)){currentAluno=null;return null}if(!p){let {error:novoPerfilErro}=await sb.from('perfis').insert({id:u.id,nome:m.nome||u.email,whatsapp:m.whatsapp||'',tipo:'aluno'});if(novoPerfilErro){console.error('Erro ao cadastrar perfil:',novoPerfilErro);return null}}let {data:a,error:aErr}=await sb.from('alunos').select('*').eq('user_id',u.id).maybeSingle();if(aErr){console.error('Erro ao buscar aluno:',aErr);return null}if(!a){let {data:newA,error}=await sb.from('alunos').insert({user_id:u.id,nome:m.nome||u.email,whatsapp:m.whatsapp||'',email:u.email}).select().single();if(error){console.error(error);return null}a=newA}currentAluno=a;return a}
-async function init(){for(let i=1;i<=10;i++)$('#proofs').insertAdjacentHTML('beforeend',`<div class="proof"><img loading="lazy" src="assets/aprovado-${String(i).padStart(2,'0')}.png" alt="Aluno aprovado no TAF"></div>`);initProg();let {data}=await sb.auth.getSession();session=data.session;setAuthUI();if(session){const {data:perfil,error:erroPerfil}=await sb.from('perfis').select('tipo').eq('id',session.user.id).maybeSingle();if(erroPerfil){console.warn('Perfil não carregado ao abrir o site:',erroPerfil)}else if(['admin','treinador'].includes(perfil?.tipo)){currentAluno=null;go('admin')}else{await ensureStudent()}}sb.auth.onAuthStateChange(async(_,s)=>{session=s;setAuthUI();if(s)await ensureStudent();else currentAluno=null})}
+function setAuthUI(){
+ const on=!!session;
+ $('#loginBtn').style.display=on?'none':'';$('#accountBtn').style.display=on?'none':'';$('#logoutBtn').style.display=on?'':'none';
+ document.body.classList.toggle('staff-mode',isStaff());
+ const badge=$('#roleBadge');badge.hidden=!on||!['admin','treinador','aluno'].includes(appRole);badge.textContent=appRole==='treinador'?'PROFESSOR':appRole==='admin'?'ADMIN':'ALUNO';
+ document.querySelectorAll('#nav button').forEach(b=>{
+   let id=b.dataset.view;
+   b.hidden=(id==='admin'&&!isStaff())||(isStaff()&&['area','avaliacao','simulado'].includes(id));
+ });
+ const admBtn=document.querySelector('#nav button[data-view="admin"]');if(admBtn)admBtn.textContent=appRole==='admin'?'Painel admin':'Painel do professor';
+}
+async function resolveAppRole(allowStudentCreation=false){
+ if(!session){appRole='visitante';appProfile=null;setAuthUI();return appRole}
+ const u=session.user;
+ const {data:p,error:e}=await sb.from('perfis').select('id,nome,tipo').eq('id',u.id).maybeSingle();
+ if(e){appRole='pendente';appProfile=null;setAuthUI();throw new Error('Não foi possível ler seu perfil: '+e.message)}
+ if(p?.tipo==='treinador'||p?.tipo==='admin'||p?.tipo==='aluno'){appRole=p.tipo;appProfile=p;setAuthUI();return appRole}
+ // Contas criadas diretamente no Auth não viram alunos por ausência de perfil.
+ // Somente cadastros originados pelo formulário de aluno podem criar o perfil aluno.
+ if(!p && allowStudentCreation && u.user_metadata?.nome && u.user_metadata?.whatsapp){
+   const {data:prof,error:profErr}=await sb.from('professores').select('id').eq('user_id',u.id).maybeSingle();
+   if(profErr){appRole='pendente';setAuthUI();throw new Error('Não foi possível verificar vínculo de professor. '+profErr.message)}
+   if(prof){appRole='pendente';setAuthUI();return appRole}
+   const {error:insErr}=await sb.from('perfis').insert({id:u.id,nome:u.user_metadata.nome,whatsapp:u.user_metadata.whatsapp,tipo:'aluno'});
+   if(insErr){appRole='pendente';setAuthUI();throw new Error('Perfil de aluno ainda não disponível: '+insErr.message)}
+   appRole='aluno';appProfile={id:u.id,nome:u.user_metadata.nome,tipo:'aluno'};setAuthUI();return appRole;
+ }
+ appRole='pendente';appProfile=p;setAuthUI();return appRole;
+}
+async function routeByRole(allowStudentCreation=false){
+ const ticket=++authRouteVersion;
+ try{
+  const role=await resolveAppRole(allowStudentCreation);
+  if(ticket!==authRouteVersion)return;
+  if(role==='treinador'||role==='admin'){currentAluno=null;go('admin');return}
+  if(role==='aluno'){const a=await ensureStudent();if(!a){go('auth');toast('Não foi possível carregar seu cadastro de aluno.');return}go('area');return}
+  go('auth');toast('Conta sem perfil liberado. Verifique o cadastro em perfis no Supabase.');
+ }catch(err){console.error('Falha no redirecionamento por perfil',err);go('auth');toast(err.message||'Não foi possível confirmar as permissões.');}
+}
+async function login(){
+ const email=$('#loginEmail').value.trim(),password=$('#loginPass').value;
+ if(!email||!password)return toast('Informe e-mail e senha.');
+ const {data,error}=await sb.auth.signInWithPassword({email,password});
+ if(error)return toast('Não foi possível entrar: '+error.message);
+ session=data.session;await routeByRole(true);
+}
+async function logout(){authRouteVersion++;await sb.auth.signOut();session=null;appRole='visitante';appProfile=null;currentAluno=null;adminCache=[];adminAllowedAlunoIds=[];setAuthUI();go('home');toast('Sessão encerrada.')}
+async function ensureStudent(){
+ if(!session||appRole!=='aluno')return null;
+ const u=session.user,m=u.user_metadata||{};
+ const {data:a,error:aErr}=await sb.from('alunos').select('*').eq('user_id',u.id).maybeSingle();
+ if(aErr){console.error('Erro ao buscar aluno:',aErr);return null}
+ if(a){currentAluno=a;return a}
+ const {data:newA,error}=await sb.from('alunos').insert({user_id:u.id,nome:appProfile?.nome||m.nome||u.email,whatsapp:m.whatsapp||'',email:u.email}).select().single();
+ if(error){console.error('Erro ao criar aluno:',error);return null}
+ currentAluno=newA;return newA;
+}
+async function init(){
+ for(let i=1;i<=10;i++)$('#proofs').insertAdjacentHTML('beforeend',`<div class="proof"><img loading="lazy" src="assets/aprovado-${String(i).padStart(2,'0')}.png" alt="Aluno aprovado no TAF"></div>`);
+ initProg();
+ const {data,error}=await sb.auth.getSession();if(error)console.warn('Sessão não encontrada',error);
+ session=data?.session||null;
+ if(session)await routeByRole(true);else{appRole='visitante';setAuthUI()}
+ sb.auth.onAuthStateChange((event,s)=>{
+   // Evita chamadas ao Supabase diretamente dentro do callback de mudança de autenticação.
+   if(event==='SIGNED_OUT'){authRouteVersion++;session=null;appRole='visitante';appProfile=null;currentAluno=null;setAuthUI();go('home');return}
+   if(event==='SIGNED_IN' && s && (!session||session.user.id!==s.user.id)){
+     session=s;setTimeout(()=>routeByRole(true),0);
+   }
+ });
+}
 function initProg(){for(let i=1;i<=totalA;i++)$('#prog').insertAdjacentHTML('beforeend','<div class="p"></div>');renderA()}
 function renderA(){document.querySelectorAll('#avaliacao .step').forEach((x,i)=>x.classList.toggle('active',i===aStep-1));[...$('#prog').children].forEach((x,i)=>x.classList.toggle('on',i<aStep));$('#stepLabel').textContent=`Etapa ${aStep} de ${totalA}`;$('#prevA').style.visibility=aStep===1?'hidden':'visible';$('#nextA').textContent=aStep===totalA?'Salvar avaliação':'Continuar';if(aStep===5)makeDiag()}
 function evalObj(){return Object.fromEntries(new FormData($('#evalForm')).entries())}
@@ -460,13 +610,37 @@ async function loadPublishedTraining(aluno){
 }
 function openWeeklyTraining(){if(!hasPaidPlan())return planLockedMessage();let box=$('#studentTrainingBox');box.classList.toggle('show');if(box.classList.contains('show'))box.scrollIntoView({behavior:'smooth',block:'start'})}
 async function generateAITraining(alunoId,baseId=null,obs=''){
- if(!session)return;toast('Gerando rascunho científico...');
- try{let {data,error}=await sb.functions.invoke('gerar-treino-ia',{body:{aluno_id:alunoId,treino_id_base:baseId,observacao_professor:obs}});if(error)throw error;if(!data?.ok)throw new Error(data?.error||'Falha na geração.');toast(`Rascunho V${data.versao} gerado. Revisão obrigatória.`);await loadAIQueue();await openAITrainingReview(data.treino_id)}catch(e){console.error(e);toast('Treino IA: '+(e?.message||e))}
+ if(!session||!isStaff()||!adminAllowedAlunoIds.includes(alunoId))return toast('Aluno sem vínculo autorizado.');
+ toast('Preparando rascunho científico…');
+ try{
+  const {data:editais,error:edErr}=await sb.from('editais').select('id,criado_em,status_analise,taf_encontrado').eq('aluno_id',alunoId).eq('status_analise','concluida').eq('taf_encontrado',true).order('criado_em',{ascending:false}).limit(5);
+  if(edErr)throw new Error('Edital: '+edErr.message);
+  if(!editais?.length)throw new Error('Este aluno ainda não possui edital com TAF analisado e concluído.');
+  // Prefere edital com provas extraídas, sem confundir com o upload pendente.
+  let editalId=null;
+  for(const ed of editais){const {count,error:countErr}=await sb.from('requisitos_taf').select('id',{count:'exact',head:true}).eq('edital_id',ed.id);if(countErr)throw countErr;if(count>0){editalId=ed.id;break}}
+  if(!editalId)throw new Error('Nenhuma prova estruturada foi localizada nos editais concluídos.');
+  const {data,error}=await sb.functions.invoke('gerar-treino-ia',{body:{aluno_id:alunoId,edital_id:editalId,treino_id_base:baseId,observacao_professor:obs}});
+  if(error)throw error;if(!data?.ok)throw new Error(data?.error||'Falha na geração.');
+  toast('Rascunho gerado. Revisão obrigatória antes da publicação.');
+  await loadAIQueue();showProfTab('treinos');await openAITrainingReview(data.treino_id);
+ }catch(e){console.error('Treino IA',e);toast('Treino IA: '+(e?.message||e))}
 }
 async function loadAIQueue(){
- try{let {data}=await sb.from('treinos_semanais').select('id,aluno_id,titulo,status,versao,gerado_em,alunos(nome,concurso)').eq('origem','ia_cientifica').in('status',['aguardando_professor','aprovado']).order('gerado_em',{ascending:false});let arr=data||[];$('#aAIWaiting').textContent=arr.filter(x=>x.status==='aguardando_professor').length;$('#aiTrainingQueue').innerHTML=arr.length?arr.map(t=>`<div class="aiQueueItem"><div class="itemTop"><b>${esc(t.alunos?.nome||'Aluno')}</b><span class="tag gold">V${t.versao}</span></div><div>${esc(t.titulo||'Treino IA')}</div><div class="small">${esc(t.alunos?.concurso||'')} • ${esc(t.status)}</div><div class="actions"><button class="btn" onclick="openAITrainingReview('${t.id}')">REVISAR</button></div></div>`).join(''):'<div class="muted">Nenhum rascunho aguardando revisão.</div>'}catch(e){console.warn(e)}
+ const box=$('#aiTrainingQueue');if(!adminAllowedAlunoIds.length){box.innerHTML='<div class="muted">Nenhum aluno vinculado para revisão.</div>';$('#aAIWaiting').textContent='0';return}
+ try{
+  const {data,error}=await sb.from('treinos_semanais').select('id,aluno_id,titulo,status,versao,gerado_em,alunos(nome,concurso)').in('aluno_id',adminAllowedAlunoIds).eq('origem','ia_cientifica').in('status',['aguardando_professor','aprovado']).order('gerado_em',{ascending:false});
+  if(error)throw error;const arr=data||[];
+  const pendentes=arr.filter(x=>x.status==='aguardando_professor');$('#aAIWaiting').textContent=String(pendentes.length);
+  box.innerHTML=arr.length?arr.map(t=>`<div class="aiQueueItem"><div class="itemTop"><b>${esc(t.alunos?.nome||'Aluno')}</b><span class="tag gold">V${Number(t.versao)||1}</span></div><div>${esc(t.titulo||'Treino IA')}</div><div class="small">${esc(t.alunos?.concurso||'')} • ${esc(t.status)}</div><div class="actions"><button class="btn" onclick="openAITrainingReview('${t.id}')">REVISAR</button></div></div>`).join(''):'<div class="muted">Nenhum rascunho aguardando revisão.</div>';
+  $('#profQuickQueue').innerHTML=pendentes.length?pendentes.slice(0,4).map(t=>`<div class="item"><b>${esc(t.alunos?.nome||'Aluno')}</b><div class="small">${esc(t.titulo||'Treino IA')} • V${Number(t.versao)||1}</div><button class="btn" style="margin-top:10px" onclick="showProfTab('treinos');openAITrainingReview('${t.id}')">Revisar treino</button></div>`).join(''):'<div class="muted">Nenhum treino aguardando aprovação.</div>';
+  renderProfessorNotifications();
+ }catch(e){box.innerHTML=`<div class="notice">Falha ao ler rascunhos: ${esc(e.message||e)}</div>`;console.warn(e)}
 }
 async function openAITrainingReview(id){
+ if(!isStaff()||!session)return toast('Acesso profissional necessário.');
+ const {data:allowedTrain,error:allowErr}=await sb.from('treinos_semanais').select('aluno_id').eq('id',id).maybeSingle();
+ if(allowErr||!allowedTrain||!adminAllowedAlunoIds.includes(allowedTrain.aluno_id))return toast('Treino fora da sua carteira autorizada.');
  currentAITrainingId=id;let box=$('#aiReview');box.classList.add('show');box.scrollIntoView({behavior:'smooth',block:'start'});
  try{
   let [{data:t},{data:p},{data:sessions},{data:exs},{data:fund},{data:sources}]=await Promise.all([sb.from('treinos_semanais').select('*,alunos(nome,concurso)').eq('id',id).single(),sb.from('treino_ia_professor').select('*').eq('treino_id',id).single(),sb.from('treino_sessoes').select('*').eq('treino_id',id).order('ordem'),sb.from('treino_exercicios').select('*').eq('treino_id',id).order('ordem'),sb.from('treino_exercicio_fundamentacao').select('*'),sb.from('treino_ia_fontes').select('*').eq('treino_id',id)]);
@@ -481,7 +655,7 @@ async function openAITrainingReview(id){
   $('#aiReviewContent').innerHTML=`${adaptiveCtx}<div class="scienceBox"><b>Fundamentação geral — somente professor</b><div>${esc(p.fundamentacao_geral||'')}</div></div>${(p.alertas_professor||[]).length?`<div class="notice"><b>Alertas ao professor:</b><br>${(p.alertas_professor||[]).map(esc).join('<br>')}</div>`:''}<h4>Diagnóstico por prova</h4>${diag}<h4>Sessões propostas</h4>${ses}<h4>Fontes científicas — somente professor</h4><div class="sourceList">${src||'<div class="muted">Sem fontes registradas.</div>'}</div>`;
  }catch(e){console.error(e);toast('Não foi possível abrir a revisão: '+(e?.message||e))}
 }
-async function manageAITraining(action,obs=''){if(!currentAITrainingId)return;try{let {data,error}=await sb.functions.invoke('gerenciar-treino-ia',{body:{treino_id:currentAITrainingId,acao:action,observacao:obs}});if(error)throw error;if(!data?.ok)throw new Error(data?.error||'Falha');toast(action==='aprovar_publicar'?'Treino aprovado e publicado para o aluno.':'Status atualizado.');$('#aiReview').classList.remove('show');currentAITrainingId=null;await loadAdmin()}catch(e){toast('Revisão: '+(e?.message||e))}}
+async function manageAITraining(action,obs=''){if(!currentAITrainingId||!isStaff())return;try{let {data,error}=await sb.functions.invoke('gerenciar-treino-ia',{body:{treino_id:currentAITrainingId,acao:action,observacao:obs}});if(error)throw error;if(!data?.ok)throw new Error(data?.error||'Falha');toast(action==='aprovar_publicar'?'Treino aprovado e publicado para o aluno.':'Status atualizado.');$('#aiReview').classList.remove('show');currentAITrainingId=null;await loadAdmin()}catch(e){toast('Revisão: '+(e?.message||e))}}
 function approvePublishAITraining(){if(confirm('Aprovar este plano e torná-lo visível ao aluno?'))manageAITraining('aprovar_publicar')}
 function rejectAITraining(){let obs=prompt('Motivo da rejeição (opcional):')||'';manageAITraining('rejeitar',obs)}
 async function regenerateAITraining(){if(!currentAITrainingId)return;let obs=prompt('O que a IA deve ajustar nesta nova versão?','Ex.: reduzir volume de corrida e aumentar especificidade da barra.')||'';if(!obs)return;let {data:t}=await sb.from('treinos_semanais').select('aluno_id').eq('id',currentAITrainingId).single();if(t)generateAITraining(t.aluno_id,currentAITrainingId,obs)}
@@ -512,13 +686,20 @@ async function loadAdaptiveIntelligence(aluno){
  }catch(e){console.warn('Inteligência adaptativa indisponível',e)}
 }
 async function loadAdaptiveAlerts(){
- try{let {data}=await sb.from('alertas_treinamento').select('id,aluno_id,tipo,severidade,titulo,mensagem_professor,detectado_em,alunos(nome,concurso)').eq('status','aberto').order('detectado_em',{ascending:false}).limit(50);let arr=data||[];$('#aAdaptiveAlerts').textContent=arr.length;$('#adaptiveAlertTag').textContent=`${arr.length} abertos`;$('#adaptiveAlertsQueue').innerHTML=arr.length?arr.map(a=>`<div class="item"><div class="itemTop"><div><b>${esc(a.alunos?.nome||'Aluno')}</b><div class="small">${esc(a.alunos?.concurso||'')} • ${esc(a.titulo)}</div></div><span class="alertSeverity ${esc(a.severidade)}">${esc(a.severidade)}</span></div><div style="margin-top:7px">${esc(a.mensagem_professor)}</div><div class="actions"><button class="btn" onclick="refreshStudentMapAdmin('${a.aluno_id}')">🧭 RECALCULAR</button><button class="btn gold" onclick="reviewAdaptiveAlert('${a.id}')">MARCAR REVISADO</button></div></div>`).join(''):'<div class="muted">Nenhum alerta adaptativo aberto.</div>'}catch(e){console.warn(e)}
+ const box=$('#adaptiveAlertsQueue');if(!adminAllowedAlunoIds.length){$('#aAdaptiveAlerts').textContent='0';$('#adaptiveAlertTag').textContent='0 abertos';box.innerHTML='<div class="muted">Nenhum alerta pendente.</div>';renderProfessorNotifications();return}
+ try{
+  const {data,error}=await sb.from('alertas_treinamento').select('id,aluno_id,tipo,severidade,titulo,mensagem_professor,detectado_em,alunos(nome,concurso)').in('aluno_id',adminAllowedAlunoIds).eq('status','aberto').order('detectado_em',{ascending:false}).limit(50);
+  if(error)throw error;const arr=data||[];$('#aAdaptiveAlerts').textContent=arr.length;$('#adaptiveAlertTag').textContent=`${arr.length} abertos`;
+  box.innerHTML=arr.length?arr.map(a=>`<div class="item"><div class="itemTop"><div><b>${esc(a.alunos?.nome||'Aluno')}</b><div class="small">${esc(a.alunos?.concurso||'')} • ${esc(a.titulo)}</div></div><span class="alertSeverity ${esc(a.severidade)}">${esc(a.severidade)}</span></div><div style="margin-top:8px">${esc(a.mensagem_professor||'')}</div><div class="actions"><button class="btn" onclick="refreshStudentMapAdmin('${a.aluno_id}')">Recalcular mapa</button><button class="btn gold" onclick="reviewAdaptiveAlert('${a.id}')">Marcar revisado</button></div></div>`).join(''):'<div class="muted">Nenhum alerta adaptativo aberto.</div>';
+  renderProfessorNotifications(arr);
+ }catch(e){box.innerHTML=`<div class="notice">Não foi possível consultar os alertas: ${esc(e.message||e)}</div>`;console.warn(e)}
 }
-async function reviewAdaptiveAlert(id){try{let {error}=await sb.from('alertas_treinamento').update({status:'revisado',revisado_em:new Date().toISOString(),revisado_por:session.user.id}).eq('id',id);if(error)throw error;toast('Alerta marcado como revisado.');await loadAdaptiveAlerts()}catch(e){toast('Alerta: '+(e?.message||e))}}
-async function refreshStudentMapAdmin(id){let r=await refreshAdaptiveIntelligence(id,true);if(r)toast('Mapa do aluno recalculado.');await loadAdaptiveAlerts()}
+async function reviewAdaptiveAlert(id){if(!isStaff())return;try{let {error}=await sb.from('alertas_treinamento').update({status:'revisado',revisado_em:new Date().toISOString(),revisado_por:session.user.id}).eq('id',id);if(error)throw error;toast('Alerta marcado como revisado.');await loadAdaptiveAlerts()}catch(e){toast('Alerta: '+(e?.message||e))}}
+async function refreshStudentMapAdmin(id){if(!isStaff()||!adminAllowedAlunoIds.includes(id))return toast('Aluno não autorizado.');let r=await refreshAdaptiveIntelligence(id,true);if(r)toast('Mapa do aluno recalculado.');await loadAdaptiveAlerts()}
 
 async function loadArea(){
  if(!session){go('auth');return}
+ if(isStaff()){go('admin');return}
  let aluno=await ensureStudent();if(!aluno)return;
  $('#hello').textContent=`Olá, ${aluno.nome?.split(' ')[0]||'Campeão'}!`;await loadV57Student(aluno);await loadTrainingReality(aluno);await loadPublishedTraining(aluno);await loadAdaptiveIntelligence(aluno);
  let [{data:e},{data:a},{data:edital,error:edErr}]=await Promise.all([
@@ -539,11 +720,135 @@ async function loadArea(){
  renderRequirements(reqs||[],e[0]);
  renderSituation(reqs||[],e[0]);
 }
-async function loadAdmin(){
- if(!session){$('#adminGate').textContent='Entre com uma conta autorizada para acessar o painel.';return}
- let {data:p}=await sb.from('perfis').select('tipo').eq('id',session.user.id).maybeSingle();let ok=['admin','treinador'].includes(p?.tipo);$('#adminGate').style.display=ok?'none':'block';$('#adminBody').style.display=ok?'block':'none';if(!ok){$('#adminGate').textContent='Sua conta ainda não possui permissão de treinador/admin.';return}
- let [{data:alunos},{data:evals},{data:trainings}]=await Promise.all([sb.from('alunos').select('*').order('criado_em',{ascending:false}),sb.from('avaliacoes').select('id').order('criado_em',{ascending:false}),sb.from('treinos_semanais').select('id,status').eq('origem','ia_cientifica')]);adminCache=alunos||[];$('#aStudents').textContent=adminCache.length;$('#aEvals').textContent=(evals||[]).length;$('#aAITrainings').textContent=(trainings||[]).length;$('#aAIWaiting').textContent=(trainings||[]).filter(x=>x.status==='aguardando_professor').length;renderAdminList();await loadAIQueue();await loadAdaptiveAlerts()
+function showProfTab(tab){
+ const allowed=['visao','alunos','treinos','resultados','agenda','videos','ferramentas'];
+ const chosen=allowed.includes(tab)?tab:'visao';
+ document.querySelectorAll('.profPane').forEach(e=>e.classList.toggle('active',e.id==='prof-tab-'+chosen));
+ document.querySelectorAll('[data-prof-tab]').forEach(e=>{const active=e.dataset.profTab===chosen;e.classList.toggle('active',active);e.setAttribute('aria-selected',String(active))});
+ if(chosen==='agenda')loadProfessorCalendar();
+ if(chosen==='videos')loadProfessorVideos();
 }
-function renderAdminList(){let q=($('#adminSearch')?.value||'').toLowerCase();let arr=adminCache.filter(x=>(`${x.nome} ${x.whatsapp} ${x.concurso||''}`).toLowerCase().includes(q));$('#adminList').innerHTML=arr.length?arr.map(x=>`<div class="item"><div class="itemTop"><b>${esc(x.nome)}</b><span class="tag gold">${esc(x.concurso||'Sem concurso')}</span></div><div class="small">${esc(x.cidade||'')} ${esc(x.estado||'')}</div><div class="actions"><button class="btn primary" onclick="generateAITraining('${x.id}')">✨ GERAR TREINO IA</button><button class="btn" onclick="refreshStudentMapAdmin('${x.id}')">🧭 MAPA</button></div></div>`).join(''):'<div class="muted">Nenhum aluno encontrado.</div>'}
+function fillProfessorSelects(){
+ const selects=['#profMapStudent','#profReportStudent','#profAltStudent'];
+ for(const selector of selects){const el=$(selector),old=el.value;el.innerHTML='<option value="">Selecione o aluno</option>'+adminCache.map(a=>`<option value="${a.id}">${esc(a.nome||'Aluno')} • ${esc(a.concurso||'TAF')}</option>`).join('');if(adminAllowedAlunoIds.includes(old))el.value=old}
+}
+function renderProfessorNotifications(alerts){
+ const notices=[];
+ const pending=Number($('#aAIWaiting').textContent||0);
+ if(pending>0)notices.push({icon:'🧠',title:`${pending} treino(s) aguardando revisão`,message:'Somente aprovação humana permite publicar.'});
+ const num=Number($('#aAdaptiveAlerts').textContent||0);if(num>0)notices.push({icon:'⚡',title:`${num} alerta(s) adaptativos`,message:'Confira prontidão, platô e alterações de desempenho.'});
+ if(!notices.length)notices.push({icon:'✅',title:'Nenhuma pendência interna',message:'As novas atividades aparecerão aqui quando forem registradas.'});
+ $('#profNotifications').innerHTML=notices.map(x=>`<div class="item"><b>${x.icon} ${esc(x.title)}</b><div class="small">${esc(x.message)}</div></div>`).join('');
+}
+async function loadAdmin(){
+ if(!session){$('#adminGate').textContent='Entre com uma conta de professor ou administrador.';$('#adminBody').style.display='none';return}
+ if(!isStaff()){
+  try{await resolveAppRole(false)}catch(e){console.warn(e)}
+  if(!isStaff()){$('#adminGate').style.display='block';$('#adminGate').textContent='Esta conta não possui permissão de professor/admin. Confira public.perfis.tipo.';$('#adminBody').style.display='none';return}
+ }
+ $('#adminGate').style.display='block';$('#adminGate').textContent='Carregando alunos vinculados e tarefas…';$('#adminBody').style.display='none';
+ adminCache=[];adminAllowedAlunoIds=[];professorMeta=null;
+ try{
+  let alunos=[];
+  if(appRole==='treinador'){
+   const {data:prof,error:profErr}=await sb.from('professores').select('id,nome,ativo').eq('user_id',session.user.id).maybeSingle();
+   if(profErr)throw new Error('Leitura do registro do professor: '+profErr.message);
+   if(!prof||!prof.ativo)throw new Error('Cadastro do professor não localizado ou inativo. Verifique a política SELECT da tabela professores.');
+   professorMeta=prof;
+   const {data:links,error:linkErr}=await sb.from('professor_aluno').select('aluno_id').eq('professor_id',prof.id).eq('ativo',true);
+   if(linkErr)throw new Error('Leitura dos vínculos: '+linkErr.message);
+   const ids=[...new Set((links||[]).map(x=>x.aluno_id))];
+   if(ids.length){const {data,error}=await sb.from('alunos').select('id,nome,concurso,cidade,estado,whatsapp').in('id',ids).order('nome');if(error)throw error;alunos=data||[];}
+   // Não mostrar nem contar alunos fora dos vínculos ativos.
+  }else{
+   const {data,error}=await sb.from('alunos').select('id,nome,concurso,cidade,estado,whatsapp').order('nome').limit(1000);if(error)throw error;alunos=data||[];
+  }
+  adminCache=alunos;adminAllowedAlunoIds=alunos.map(a=>a.id);
+  $('#adminGate').style.display='none';$('#adminBody').style.display='block';
+  $('#profWelcome').textContent='Bem-vindo, '+(professorMeta?.nome?.trim()||appProfile?.nome?.trim()||'Professor')+'!';
+  $('#profLastUpdated').textContent='Atualizado às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  $('#aStudents').textContent=String(alunos.length);$('#profStudentCount').textContent=`${alunos.length} aluno(s)`;
+  fillProfessorSelects();if(!$('#profReportMonth').value)$('#profReportMonth').value=localYMD().slice(0,7);renderAdminList();
+  if(!adminAllowedAlunoIds.length){$('#aEvals').textContent='0';$('#aAITrainings').textContent='0';$('#aAIWaiting').textContent='0';$('#aAdaptiveAlerts').textContent='0';$('#aVideosPending').textContent='—';$('#profQuickQueue').innerHTML='<div class="muted">Vincule alunos para começar.</div>';$('#profNotifications').innerHTML='<div class="muted">Nenhuma atividade disponível.</div>';$('#profCalendar').innerHTML='<div class="muted">Sem treinos publicados.</div>';return}
+  const ids=adminAllowedAlunoIds;
+  const [evalRes,trainRes]=await Promise.all([
+   sb.from('avaliacoes').select('id',{count:'exact',head:true}).in('aluno_id',ids),
+   sb.from('treinos_semanais').select('id,status').in('aluno_id',ids).eq('origem','ia_cientifica')
+  ]);
+  if(evalRes.error)console.warn('Contagem avaliações',evalRes.error);
+  if(trainRes.error)console.warn('Contagem treinos IA',trainRes.error);
+  $('#aEvals').textContent=evalRes.error?'—':String(evalRes.count||0);
+  $('#aAITrainings').textContent=trainRes.error?'—':String(trainRes.data?.length||0);
+  $('#aAIWaiting').textContent=trainRes.error?'—':String((trainRes.data||[]).filter(x=>x.status==='aguardando_professor').length);
+  $('#aVideosPending').textContent='—';$('#videoCounterCaption').textContent='Aguardando módulo privado';
+  await Promise.all([loadAIQueue(),loadAdaptiveAlerts()]);
+  renderProfessorNotifications();
+ }catch(e){console.error('Erro no painel do professor',e);$('#adminGate').style.display='block';$('#adminBody').style.display='none';$('#adminGate').textContent='Não foi possível carregar o Painel do Professor. '+(e.message||e)+' Confira as permissões da tabela professores e os vínculos.'}
+}
+function renderAdminList(){
+ const q=($('#adminSearch')?.value||'').toLocaleLowerCase('pt-BR');
+ const arr=adminCache.filter(x=>`${x.nome||''} ${x.concurso||''}`.toLocaleLowerCase('pt-BR').includes(q));
+ $('#adminList').innerHTML=arr.length?arr.map(x=>`<div class="item"><div class="itemTop"><b>${esc(x.nome||'Aluno')}</b><span class="tag gold">${esc(x.concurso||'Sem concurso')}</span></div><div class="small" style="margin-top:7px">${esc([x.cidade,x.estado].filter(Boolean).join(' • ')||'Local não informado')}</div><div class="actions"><button class="btn primary" onclick="generateAITraining('${x.id}')">✨ Gerar treino IA</button><button class="btn" onclick="showProfTab('resultados');$('#profMapStudent').value='${x.id}';loadProfessorMap('${x.id}')">🧭 Mapa</button><button class="btn" onclick="$('#profReportStudent').value='${x.id}';showProfTab('ferramentas')">📄 Relatório</button></div></div>`).join(''):'<div class="muted">Nenhum aluno correspondente encontrado.</div>';
+}
+async function loadProfessorMap(id){
+ const sum=$('#profMapSummary'),grid=$('#profMapItems');grid.innerHTML='';
+ if(!id){sum.innerHTML='<div class="muted">Selecione um aluno para visualizar o mapa.</div>';return}
+ if(!adminAllowedAlunoIds.includes(id))return toast('Aluno sem vínculo autorizado.');
+ sum.innerHTML='<div class="muted">Consultando índices…</div>';
+ try{
+  const {data:m,error}=await sb.from('mapa_aprovacao').select('*').eq('aluno_id',id).order('calculado_em',{ascending:false}).limit(1).maybeSingle();
+  if(error)throw error;if(!m){sum.innerHTML='<div class="muted">Sem mapa calculado. Utilize o botão Mapa na ficha do aluno para recalcular.</div>';return}
+  sum.innerHTML=`<div><b>${Math.round(Number(m.percentual_indices_atingidos||0))}%</b><br><span class="small">índices atingidos</span></div><div>🟢 ${m.provas_verdes||0} atingidos</div><div>🟡 ${m.provas_amarelas||0} próximos</div><div>🔴 ${m.provas_vermelhas||0} prioridades</div><div>⚪ ${m.provas_sem_medicao||0} sem avaliação</div>`;
+  const {data:items,error:itemsErr}=await sb.from('mapa_aprovacao_itens').select('nome_prova,status,atual_exibicao,alvo_exibicao,tendencia,observacao').eq('mapa_id',m.id).order('nome_prova');if(itemsErr)throw itemsErr;
+  grid.innerHTML=(items||[]).map(x=>`<div class="mapItem"><div class="mapItemTop"><b>${esc(x.nome_prova)}</b><span class="mapDot ${esc(x.status)}">${esc(x.status)}</span></div><div class="mapValues"><div><span class="small">Atual</span><br><b>${esc(x.atual_exibicao||'—')}</b></div><div><span class="small">Índice do edital</span><br><b>${esc(x.alvo_exibicao||'—')}</b></div></div><div class="small" style="margin-top:12px">${trendHtml(x.tendencia)}</div>${x.observacao?`<div class="small">${esc(x.observacao)}</div>`:''}</div>`).join('')||'<div class="muted">Nenhum requisito compatível para exibir.</div>';
+ }catch(e){sum.innerHTML=`<div class="notice">Falha ao carregar mapa: ${esc(e.message||e)}</div>`}
+}
+async function loadProfessorCalendar(){
+ const box=$('#profCalendar');if(!adminAllowedAlunoIds.length){box.innerHTML='<div class="muted">Sem alunos vinculados.</div>';return}
+ try{
+  const {data:ts,error}=await sb.from('treinos_semanais').select('id,aluno_id,titulo,semana_inicio,semana_fim,alunos(nome)').in('aluno_id',adminAllowedAlunoIds).in('status',['publicado','concluido']).order('semana_inicio',{ascending:false}).limit(12);
+  if(error)throw error;if(!ts?.length){box.innerHTML='<div class="muted">Nenhum treino publicado para montar a agenda.</div>';return}
+  const ids=ts.map(t=>t.id);
+  const {data:s,error:se}=await sb.from('treino_sessoes').select('treino_id,dia_semana,titulo,duracao_min,ordem').in('treino_id',ids).order('ordem');if(se)throw se;
+  box.innerHTML=(s||[]).map(x=>{let t=ts.find(t=>t.id===x.treino_id);return `<div class="profCalEntry"><strong>${esc(x.dia_semana||'Dia a definir')}</strong><h3>${esc(x.titulo||'Sessão de treino')}</h3><div class="small">${esc(t?.alunos?.nome||'Aluno')} • ${esc(t?.titulo||'Treino')}</div><div class="small">${Number(x.duracao_min)||'—'} min • semana ${esc(t?.semana_inicio||'—')}</div></div>`}).join('')||'<div class="muted">Nenhuma sessão cadastrada para os treinos publicados.</div>';
+ }catch(e){box.innerHTML=`<div class="notice">Falha ao carregar agenda: ${esc(e.message||e)}</div>`}
+}
+function loadProfessorVideos(){
+ $('#aVideosPending').textContent='—';
+ $('#profVideoState').textContent='Aguardando backend privado';
+ $('#profVideoList').innerHTML='<div class="notice">O módulo de análise individual de vídeos ainda precisa de uma tabela de envios, armazenamento privado e políticas RLS próprias. Os vídeos públicos de divulgação não são evidência de execução do aluno.</div>';
+}
+async function printProfessorReport(){
+ const id=$('#profReportStudent').value;if(!adminAllowedAlunoIds.includes(id))return toast('Selecione um aluno vinculado.');
+ const windowRef=window.open('','_blank');if(!windowRef)return toast('Permita pop-ups para abrir o relatório.');
+ windowRef.document.write('<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Relatório TAF</title><body style="font:16px Arial;padding:32px">Carregando relatório…</body></html>');
+ try{
+  const student=adminCache.find(a=>a.id===id);
+  const month=$('#profReportMonth').value||localYMD().slice(0,7);
+  if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(month))throw new Error('Mês inválido.');
+  const [yyyy,mm]=month.split('-').map(Number);
+  const start=month+'-01',end=new Date(Date.UTC(yyyy,mm,1)).toISOString().slice(0,10);
+  const [ev,maps,treinos]=await Promise.all([
+   sb.from('avaliacoes').select('criado_em,barra,abdominal,flexao,corrida_2400,score').eq('aluno_id',id).gte('criado_em',start).lt('criado_em',end).order('criado_em',{ascending:false}),
+   sb.from('mapa_aprovacao').select('id,percentual_indices_atingidos,calculado_em,provas_verdes,provas_amarelas,provas_vermelhas,provas_sem_medicao').eq('aluno_id',id).order('calculado_em',{ascending:false}).limit(1).maybeSingle(),
+   sb.from('treinos_semanais').select('titulo,status,semana_inicio,versao').eq('aluno_id',id).in('status',['publicado','concluido']).gte('semana_inicio',start).lt('semana_inicio',end).order('semana_inicio',{ascending:false})
+  ]);
+  for(const r of [ev,maps,treinos])if(r.error)throw r.error;
+  let itemRows=[];if(maps.data?.id){const {data,error}=await sb.from('mapa_aprovacao_itens').select('nome_prova,status,atual_exibicao,alvo_exibicao,tendencia').eq('mapa_id',maps.data.id);if(error)throw error;itemRows=data||[]}
+  const fmt=d=>d?new Date(d).toLocaleDateString('pt-BR'):'—';
+  const cell=(v)=>esc(v??'—');
+  const content=`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Relatório • ${cell(student?.nome)}</title><style>body{font:14px Arial;color:#1b1b20;max-width:900px;margin:35px auto;padding:0 24px}h1{border-bottom:3px solid #b58a22;padding-bottom:10px}h2{margin-top:28px}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #ddd;padding:9px;text-align:left}th{background:#f7f4eb}.small{color:#555;font-size:12px}@media print{button{display:none}}</style></head><body><h1>TAF DOS CAMPEÕES</h1><h2>Relatório de acompanhamento • ${cell(month)}</h2><p><b>Aluno:</b> ${cell(student?.nome)}<br><b>Concurso:</b> ${cell(student?.concurso)}<br><b>Emitido em:</b> ${new Date().toLocaleDateString('pt-BR')}<br><b>Professor:</b> ${cell(professorMeta?.nome||appProfile?.nome||'Equipe técnica')}</p><h2>Mapa de aprovação</h2><p>${maps.data?Math.round(Number(maps.data.percentual_indices_atingidos||0))+'% dos índices atingidos (último cálculo: '+fmt(maps.data.calculado_em)+')':'Sem mapa calculado'}</p><table><tr><th>Prova</th><th>Atual</th><th>Índice</th><th>Situação</th></tr>${itemRows.map(i=>`<tr><td>${cell(i.nome_prova)}</td><td>${cell(i.atual_exibicao)}</td><td>${cell(i.alvo_exibicao)}</td><td>${cell(i.status)}</td></tr>`).join('')}</table><h2>Avaliações recentes</h2><table><tr><th>Data</th><th>Barra</th><th>Abdominal</th><th>Flexão</th><th>Corrida 2400 m</th></tr>${(ev.data||[]).map(v=>`<tr><td>${fmt(v.criado_em)}</td><td>${cell(v.barra)}</td><td>${cell(v.abdominal)}</td><td>${cell(v.flexao)}</td><td>${cell(v.corrida_2400)}</td></tr>`).join('')}</table><h2>Treinos aprovados</h2><table><tr><th>Semana</th><th>Título</th><th>Versão</th></tr>${(treinos.data||[]).map(t=>`<tr><td>${cell(t.semana_inicio)}</td><td>${cell(t.titulo)}</td><td>V${Number(t.versao)||1}</td></tr>`).join('')}</table><p class="small">Documento de acompanhamento orientativo. As metas e projeções não garantem aprovação. Utilizar apenas dados registrados e verificados pelo profissional.</p><button onclick="window.print()">Imprimir / Salvar como PDF</button></body></html>`;
+  windowRef.document.open();windowRef.document.write(content);windowRef.document.close();
+ }catch(e){windowRef.document.body.textContent='Não foi possível gerar relatório: '+(e.message||e);toast('Relatório: '+(e.message||e))}
+}
+async function requestAlternativeTraining(){
+ const id=$('#profAltStudent').value;if(!adminAllowedAlunoIds.includes(id))return toast('Selecione um aluno vinculado.');
+ const reason=prompt('Descreva o problema real para o Plano B (ex.: viagem, falta de academia, turno noturno):');if(!reason?.trim())return;
+ const {data:t,error}=await sb.from('treinos_semanais').select('id').eq('aluno_id',id).order('criado_em',{ascending:false}).limit(1).maybeSingle();
+ if(error)return toast('Não foi possível localizar plano base: '+error.message);
+ if(!t)return toast('O aluno precisa ter um primeiro plano antes da alternativa.');
+ if(!confirm('Gerar uma NOVA VERSÃO em rascunho para revisão? O treino atual permanecerá sem alteração.'))return;
+ generateAITraining(id,t.id,'PLANO B: '+reason.trim());
+}
 init();
 </script></body></html>
