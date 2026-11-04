@@ -220,7 +220,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 <section id="admin" class="view" aria-label="Painel do professor">
 <div class="section profShell">
   <div class="profHero">
-    <div><div class="eyebrow">CENTRAL DO PROFESSOR • V5.7.3</div><h1 id="profWelcome">Seu painel de acompanhamento</h1><p>Planejamento científico, aprovação humana e evolução em cada prova do TAF.</p><div class="profHeroTags"><span>🔒 Alunos vinculados</span><span>🧠 IA sob revisão</span><span>📋 Fontes exclusivas do professor</span></div></div>
+    <div><div class="eyebrow">CENTRAL DO PROFESSOR • V5.7.3.1</div><h1 id="profWelcome">Seu painel de acompanhamento</h1><p>Planejamento científico, aprovação humana e evolução em cada prova do TAF.</p><div class="profHeroTags"><span>🔒 Alunos vinculados</span><span>🧠 IA sob revisão</span><span>📋 Fontes exclusivas do professor</span></div></div>
     <div class="profHeroActions"><button class="btn gold" onclick="loadAdmin()">↻ Atualizar dados</button><span id="profLastUpdated" class="small">—</span></div>
   </div>
   <div id="adminGate" class="notice">Verificando acesso profissional…</div>
@@ -281,7 +281,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 </section>
 <section id="termo" class="view"><div class="section"><div class="sectionTitle noPrint"><div><div class="eyebrow">TERMO</div><h1>Participação no simulado</h1></div><button class="btn" onclick="window.print()">Imprimir / salvar PDF</button></div><div class="contract" id="contract"></div></div></section>
 </main></div>
-<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.7.3</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
+<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.7.3.1</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
 <script>
 const SUPABASE_URL='https://niuwscihdpflodhwwdqr.supabase.co';
 const SUPABASE_KEY='sb_publishable_8IF0ZFxtxExIVyZMkyONFA_DIZ5xSjP';
@@ -755,10 +755,11 @@ async function loadAdmin(){
    if(profErr)throw new Error('Leitura do registro do professor: '+profErr.message);
    if(!prof||!prof.ativo)throw new Error('Cadastro do professor não localizado ou inativo. Verifique a política SELECT da tabela professores.');
    professorMeta=prof;
-   const {data:links,error:linkErr}=await sb.from('professor_aluno').select('aluno_id').eq('professor_id',prof.id).eq('ativo',true);
-   if(linkErr)throw new Error('Leitura dos vínculos: '+linkErr.message);
-   const ids=[...new Set((links||[]).map(x=>x.aluno_id))];
-   if(ids.length){const {data,error}=await sb.from('alunos').select('id,nome,concurso,cidade,estado,whatsapp').in('id',ids).order('nome');if(error)throw error;alunos=data||[];}
+   // A função SQL valida auth.uid(), perfil treinador e vínculos ativos no servidor.
+   // Evita que uma diferença de RLS entre tabelas esconda alunos já vinculados.
+   const {data:vinculados,error:vincErr}=await sb.rpc('alunos_vinculados_professor_taf');
+   if(vincErr)throw new Error('Consulta de alunos vinculados: '+vincErr.message+' (execute o SQL 06)');
+   alunos=vinculados||[];
    // Não mostrar nem contar alunos fora dos vínculos ativos.
   }else{
    const {data,error}=await sb.from('alunos').select('id,nome,concurso,cidade,estado,whatsapp').order('nome').limit(1000);if(error)throw error;alunos=data||[];
