@@ -119,6 +119,12 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 @media(max-width:600px){.v574Session{padding:12px}.v574Exercise{padding:12px}.v574SessionTop h4{font-size:18px}.v574Overview h4{font-size:18px}.v574SessionFoot .btn{width:100%}.v574ExerciseButtons button{flex:1 1 auto}}
 
 
+/* V5.7.4.3 - Associacao privada por exercicio */
+.tafLinkGrid{display:grid;gap:10px;margin-top:12px}
+.tafLinkChoice{border:1px solid #373943;background:#0d1017;padding:12px;border-radius:13px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tafLinkChoice strong{font-size:14px}.tafLinkChoice .small{margin-top:4px}
+.tafLinkActions{display:flex;gap:7px;flex-wrap:wrap}
+.tafLinkInfo{border:1px solid #584622;border-radius:10px;padding:10px;color:#f9dca0;margin:12px 0;font-size:12px}
 /* V5.7.4.2 - Biblioteca de demonstracoes do professor */
 .tafVidForm{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
 .tafVidForm .field{min-width:0}.tafVidForm .field textarea{resize:vertical;min-height:85px}
@@ -243,7 +249,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 <section id="admin" class="view" aria-label="Painel do professor">
 <div class="section profShell">
   <div class="profHero">
-    <div><div class="eyebrow">CENTRAL DO PROFESSOR • V5.7.4.2</div><h1 id="profWelcome">Seu painel de acompanhamento</h1><p>Planejamento científico, aprovação humana e evolução em cada prova do TAF.</p><div class="profHeroTags"><span>🔒 Alunos vinculados</span><span>🧠 IA sob revisão</span><span>📋 Fontes exclusivas do professor</span></div></div>
+    <div><div class="eyebrow">CENTRAL DO PROFESSOR • V5.7.4.3</div><h1 id="profWelcome">Seu painel de acompanhamento</h1><p>Planejamento científico, aprovação humana e evolução em cada prova do TAF.</p><div class="profHeroTags"><span>🔒 Alunos vinculados</span><span>🧠 IA sob revisão</span><span>📋 Fontes exclusivas do professor</span></div></div>
     <div class="profHeroActions"><button class="btn gold" onclick="loadAdmin()">↻ Atualizar dados</button><span id="profLastUpdated" class="small">—</span></div>
   </div>
   <div id="adminGate" class="notice">Verificando acesso profissional…</div>
@@ -290,7 +296,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
     <div class="profPane" id="prof-tab-agenda" role="tabpanel"><div class="card profPanel"><div class="profPanelHead"><div><div class="eyebrow">CALENDÁRIO DE TREINOS</div><h2>Planejamento semanal</h2><p class="small">Sessões dos treinos já publicados. O professor aprova alterações antes da próxima versão.</p></div><span class="tag">Programação aprovada</span></div><div id="profCalendar" class="profCalendar"><div class="muted">Carregando o calendário…</div></div></div></div>
     <div class="profPane" id="prof-tab-videos" role="tabpanel">
   <div class="card profPanel">
-   <div class="profPanelHead"><div><div class="eyebrow">BIBLIOTECA DO PROFESSOR • V5.7.4.2</div><h2>Grave uma vez. Use em vários treinos.</h2><p class="small">Envie seu MP4 pelo celular ou computador. Assista e aprove a demonstração antes de vinculá-la a qualquer prescrição.</p></div><span class="tag gold" id="profVideoState">Biblioteca privada</span></div>
+   <div class="profPanelHead"><div><div class="eyebrow">BIBLIOTECA DO PROFESSOR • V5.7.4.3</div><h2>Grave uma vez. Use em vários treinos.</h2><p class="small">Envie seu MP4 pelo celular ou computador. Assista e aprove a demonstração antes de vinculá-la a qualquer prescrição.</p></div><span class="tag gold" id="profVideoState">Biblioteca privada</span></div>
    <div class="tafVidForm">
     <div class="field"><label for="tafVidTitle">Título da demonstração</label><input id="tafVidTitle" maxlength="120" placeholder="Ex.: Barra fixa dinâmica — pegada pronada" autocomplete="off"></div>
     <div class="field"><label for="tafVidType">Modalidade</label><select id="tafVidType"><option value="">Selecione</option><option>Barra fixa dinâmica</option><option>Isometria na barra</option><option>Abdominal supra</option><option>Abdominal remador</option><option>Flexão de braços</option><option>Corrida</option><option>Shuttle run</option><option>Natação</option><option>Mobilidade</option><option>Aquecimento</option><option>Outro</option></select></div>
@@ -301,7 +307,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
    <div class="actions"><button class="btn gold" type="button" id="tafVidUploadBtn" onclick="tafVideoUpload()">⬆ Enviar demonstração</button><button class="btn" type="button" onclick="loadProfessorVideos()">↻ Atualizar biblioteca</button></div>
    <div id="tafVidInfo" class="small" role="status" aria-live="polite"></div>
   </div>
-  <div class="card profPanel" style="margin-top:14px"><div class="profPanelHead"><div><div class="eyebrow">MINHAS GRAVAÇÕES</div><h2>Vídeos cadastrados</h2><p class="small">Para aprovar, reproduza o vídeo e confira a técnica. A associação aos exercícios dos alunos será habilitada no próximo passo.</p></div></div><div id="tafVidList" class="tafVidList"><div class="muted">Abra esta aba para carregar as demonstrações.</div></div></div>
+  <div class="card profPanel" style="margin-top:14px"><div class="profPanelHead"><div><div class="eyebrow">MINHAS GRAVAÇÕES</div><h2>Vídeos cadastrados</h2><p class="small">Para aprovar, reproduza o vídeo e confira a técnica. Para vincular vídeos aprovados, abra Treinos IA → Revisar → Escolher vídeo da biblioteca.</p></div></div><div id="tafVidList" class="tafVidList"><div class="muted">Abra esta aba para carregar as demonstrações.</div></div></div>
   <div class="card profPanel" style="margin-top:14px"><div class="eyebrow">ANÁLISE DOS VÍDEOS ENVIADOS PELOS ALUNOS</div><h2>Correção individual</h2><div id="profVideoList" class="notice">Esta é uma funcionalidade separada, ainda não integrada. Não confundir os vídeos demonstrativos do professor com os vídeos de alunos.</div></div>
  </div>
     <div class="profPane" id="prof-tab-ferramentas" role="tabpanel">
@@ -319,7 +325,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 </section>
 <section id="termo" class="view"><div class="section"><div class="sectionTitle noPrint"><div><div class="eyebrow">TERMO</div><h1>Participação no simulado</h1></div><button class="btn" onclick="window.print()">Imprimir / salvar PDF</button></div><div class="contract" id="contract"></div></div></section>
 </main></div>
-<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.7.4.2</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
+<footer class="footer"><div class="wrap footerIn"><div><b style="color:var(--gold2)">TAF DOS CAMPEÕES • V5.7.4.3</b><div class="small">Disciplina hoje. Resultados sempre.</div></div><div><a style="color:#ff65d0" href="https://www.instagram.com/tafdoscampeoes/" target="_blank" rel="noopener">@tafdoscampeoes ↗</a><div class="small">Preparação para Teste de Aptidão Física</div></div></div></footer><div class="toast" id="toast"></div>
 
 <dialog id="v574NotesDialog" class="v574Modal" aria-labelledby="v574NoteTitle">
  <span class="eyebrow">MEU REGISTRO</span><h3 id="v574NoteTitle">Como foi o exercício?</h3>
@@ -340,7 +346,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 </dialog>
 <dialog id="v574VideoDialog" class="v574Modal" aria-labelledby="v574VideoTitle">
  <span class="eyebrow">DEMONSTRAÇÃO REVISADA PELO PROFESSOR</span><h3 id="v574VideoTitle">Como executar</h3>
- <video id="v574Player" class="v574VideoMedia" controls playsinline preload="metadata" hidden></video>
+ <video id="v574Player" class="v574VideoMedia" controls playsinline preload="metadata" hidden></video><p id="tafVideoStudentOrientacoes"></p>
  <iframe id="v574Embed" class="v574VideoMedia" referrerpolicy="strict-origin-when-cross-origin" allow="picture-in-picture; fullscreen" allowfullscreen title="Vídeo demonstrativo" hidden></iframe>
  <p>O vídeo é uma referência geral. Siga as adaptações e orientações específicas do seu professor e as regras do edital.</p>
  <div class="actions"><button type="button" class="btn gold" onclick="closeV574Video()">Fechar vídeo</button></div>
@@ -698,17 +704,17 @@ async function openAITrainingReview(id){
  if(allowErr||!allowedTrain||!adminAllowedAlunoIds.includes(allowedTrain.aluno_id))return toast('Treino fora da sua carteira autorizada.');
  currentAITrainingId=id;let box=$('#aiReview');box.classList.add('show');box.scrollIntoView({behavior:'smooth',block:'start'});
  try{
-  let [{data:t},{data:p},{data:sessions},{data:exs},{data:fund},{data:sources},{data:demoVideos}]=await Promise.all([sb.from('treinos_semanais').select('*,alunos(nome,concurso)').eq('id',id).single(),sb.from('treino_ia_professor').select('*').eq('treino_id',id).single(),sb.from('treino_sessoes').select('*').eq('treino_id',id).order('ordem'),sb.from('treino_exercicios').select('*').eq('treino_id',id).order('ordem'),sb.from('treino_exercicio_fundamentacao').select('*'),sb.from('treino_ia_fontes').select('*').eq('treino_id',id),sb.from('treino_demo_videos').select('exercicio_id,titulo,video_url,aprovado_professor')]);
+  let [{data:t},{data:p},{data:sessions},{data:exs},{data:fund},{data:sources},{data:demoVideos}]=await Promise.all([sb.from('treinos_semanais').select('*,alunos(nome,concurso)').eq('id',id).single(),sb.from('treino_ia_professor').select('*').eq('treino_id',id).single(),sb.from('treino_sessoes').select('*').eq('treino_id',id).order('ordem'),sb.from('treino_exercicios').select('*').eq('treino_id',id).order('ordem'),sb.from('treino_exercicio_fundamentacao').select('*'),sb.from('treino_ia_fontes').select('*').eq('treino_id',id),sb.from('taf_video_exercicio_links').select('exercicio_id,video_id')]);
   let [{data:readyCtx},{data:mapCtx},{data:alertCtx}]=await Promise.all([sb.from('prontidao_checkins').select('data,score,classificacao,dor_ou_limitacao').eq('aluno_id',t.aluno_id).order('data',{ascending:false}).limit(1).maybeSingle(),sb.from('mapa_aprovacao').select('*').eq('aluno_id',t.aluno_id).order('calculado_em',{ascending:false}).limit(1).maybeSingle(),sb.from('alertas_treinamento').select('tipo,severidade,titulo,mensagem_professor').eq('aluno_id',t.aluno_id).eq('status','aberto').order('detectado_em',{ascending:false}).limit(8)]);
   let mapCtxItems=[];if(mapCtx?.id){let {data}=await sb.from('mapa_aprovacao_itens').select('nome_prova,status,tendencia,previsao_indice_em,progresso_percentual').eq('mapa_id',mapCtx.id).order('nome_prova');mapCtxItems=data||[];}
   $('#aiReviewTitle').textContent=`${t.alunos?.nome||'Aluno'} • ${t.titulo||'Treino IA'}`;$('#aiReviewMeta').textContent=`${t.alunos?.concurso||''} • versão ${t.versao} • ${t.semana_inicio} a ${t.semana_fim}`;$('#aiReviewStatus').textContent=t.status;
   let fMap=Object.fromEntries((fund||[]).map(x=>[x.exercicio_id,x]));
   let v574DemoMap=Object.fromEntries((demoVideos||[]).map(x=>[x.exercicio_id,x]));
   let diag=(p.diagnostico||[]).map(d=>`<div class="metric"><span>${esc(d.prova)} • ${esc(d.prioridade)}</span><b>${esc(d.situacao)}</b></div>`).join('');
-  let ses=(sessions||[]).map(s=>`<div class="sessionBox"><div class="itemTop"><b>${esc(s.dia_semana)} • ${esc(s.titulo)}</b><span class="tag">${s.duracao_min||'—'} min</span></div><div class="small">Aluno verá: ${esc(s.objetivo_aluno||'')}</div>${(exs||[]).filter(e=>e.sessao_id===s.id).map(e=>{let f=fMap[e.id]||{};return `<div class="exerciseRow"><b>${esc(e.nome_exercicio)}</b> <span class="priorityPill">${esc(e.prioridade||'')}</span><div class="small">${esc([e.series,e.repeticoes,e.carga,e.tempo,e.distancia,e.pace_alvo,e.descanso,e.rpe_alvo].filter(Boolean).join(' • '))}</div><div><b>Visão do aluno:</b> ${esc(e.orientacao||'')}</div><div class="v574ExerciseButtons"><button class="btn v574Small gold" type="button" onclick="setV574DemoVideo('${e.id}','${id}')">🎥 ${v574DemoMap[e.id]?.aprovado_professor?'Trocar vídeo aprovado':'Vincular vídeo demonstrativo'}</button></div><div class="scienceBox"><b>Somente professor • ${esc(f.nivel_evidencia||'não classificada')}</b><div>${esc(f.justificativa_professor||'')}</div><div class="small">Aplicação ao TAF: ${esc(f.aplicacao_ao_taf||'')}</div></div></div>`}).join('')}</div>`).join('');
+  let ses=(sessions||[]).map(s=>`<div class="sessionBox"><div class="itemTop"><b>${esc(s.dia_semana)} • ${esc(s.titulo)}</b><span class="tag">${s.duracao_min||'—'} min</span></div><div class="small">Aluno verá: ${esc(s.objetivo_aluno||'')}</div>${(exs||[]).filter(e=>e.sessao_id===s.id).map(e=>{let f=fMap[e.id]||{};return `<div class="exerciseRow"><b>${esc(e.nome_exercicio)}</b> <span class="priorityPill">${esc(e.prioridade||'')}</span><div class="small">${esc([e.series,e.repeticoes,e.carga,e.tempo,e.distancia,e.pace_alvo,e.descanso,e.rpe_alvo].filter(Boolean).join(' • '))}</div><div><b>Visão do aluno:</b> ${esc(e.orientacao||'')}</div><div class="v574ExerciseButtons"><button class="btn v574Small gold" type="button" onclick="setV574DemoVideo('${e.id}','${id}')">🎥 ${v574DemoMap[e.id]?'Trocar vídeo da biblioteca':'Escolher vídeo da biblioteca'}</button></div><div class="scienceBox"><b>Somente professor • ${esc(f.nivel_evidencia||'não classificada')}</b><div>${esc(f.justificativa_professor||'')}</div><div class="small">Aplicação ao TAF: ${esc(f.aplicacao_ao_taf||'')}</div></div></div>`}).join('')}</div>`).join('');
   let src=(sources||[]).map(x=>x.url?`<div><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.titulo)}</a></div>`:`<div>${esc(x.titulo)} <span class="tag">base interna</span></div>`).join('');
   let adaptiveCtx=`<div class="profAdaptive"><b>Contexto adaptativo — somente professor</b><div class="profAdaptiveGrid"><div><span class="small">Prontidão</span><br><b>${readyCtx?`${Math.round(Number(readyCtx.score||0))}/100 • ${esc(readyCtx.classificacao)}`:'Sem check-in'}</b>${readyCtx?.dor_ou_limitacao?'<div class="statusBad">Dor/limitação relatada</div>':''}</div><div><span class="small">Mapa</span><br><b>${mapCtx?`${Math.round(Number(mapCtx.percentual_indices_atingidos||0))}% índices atingidos`:'Sem mapa'}</b></div><div><span class="small">Alertas abertos</span><br><b>${(alertCtx||[]).length}</b></div></div>${mapCtxItems.length?`<div class="small" style="margin-top:9px">${mapCtxItems.map(x=>`${esc(x.nome_prova)}: ${esc(x.status)} / ${esc(x.tendencia)}${x.previsao_indice_em?` / estim. ${esc(x.previsao_indice_em)}`:''}`).join('<br>')}</div>`:''}${(alertCtx||[]).length?`<div class="notice" style="margin-top:9px"><b>Alertas adaptativos:</b><br>${alertCtx.map(a=>`${esc(a.titulo)} — ${esc(a.mensagem_professor)}`).join('<br><br>')}</div>`:''}</div>`;
-  $('#aiReviewContent').innerHTML=`${adaptiveCtx}<div class="scienceBox"><b>Fundamentação geral — somente professor</b><div>${esc(p.fundamentacao_geral||'')}</div></div>${(p.alertas_professor||[]).length?`<div class="notice"><b>Alertas ao professor:</b><br>${(p.alertas_professor||[]).map(esc).join('<br>')}</div>`:''}<h4>Diagnóstico por prova</h4>${diag}<h4>Sessões propostas</h4>${ses}<h4>Fontes científicas — somente professor</h4><div class="sourceList">${src||'<div class="muted">Sem fontes registradas.</div>'}</div>`;
+  $('#aiReviewContent').innerHTML=`${adaptiveCtx}<div class="scienceBox"><b>Fundamentação geral — somente professor</b><div>${esc(p.fundamentacao_geral||'')}</div></div>${(p.alertas_professor||[]).length?`<div class="notice"><b>Alertas ao professor:</b><br>${(p.alertas_professor||[]).map(esc).join('<br>')}</div>`:''}<h4>Diagnóstico por prova</h4>${diag}<h4>Sessões propostas</h4><div class="tafLinkInfo">🎥 Use vídeos gravados e aprovados pelo professor. <button type="button" class="btn gold v574Small" onclick="tafAutoLinkTraining()">Associar sugestões compatíveis</button> — só vincula exercícios com correspondência inequívoca. O aluno vê o vídeo somente após publicação do treino.</div>${ses}<h4>Fontes científicas — somente professor</h4><div class="sourceList">${src||'<div class="muted">Sem fontes registradas.</div>'}</div>`;
  }catch(e){console.error(e);toast('Não foi possível abrir a revisão: '+(e?.message||e))}
 }
 async function manageAITraining(action,obs=''){if(!currentAITrainingId||!isStaff())return;try{let {data,error}=await sb.functions.invoke('gerenciar-treino-ia',{body:{treino_id:currentAITrainingId,acao:action,observacao:obs}});if(error)throw error;if(!data?.ok)throw new Error(data?.error||'Falha');toast(action==='aprovar_publicar'?'Treino aprovado e publicado para o aluno.':'Status atualizado.');$('#aiReview').classList.remove('show');currentAITrainingId=null;await loadAdmin()}catch(e){toast('Revisão: '+(e?.message||e))}}
@@ -876,7 +882,7 @@ async function loadProfessorVideos(){
  const node=$('#tafVidList');if(!node||!session||!isStaff())return;
  node.innerHTML='<div class="muted">Carregando seus vídeos…</div>';
  const {data,error}=await sb.from('taf_biblioteca_videos').select('id,titulo,modalidade,variacao,orientacoes,caminho_storage,aprovado,criado_em').eq('autor_user_id',session.user.id).order('criado_em',{ascending:false}).limit(100);
- if(error){node.innerHTML=`<div class="notice">Não foi possível carregar a biblioteca. Execute o SQL da V5.7.4.2 e verifique suas permissões. ${esc(error.message)}</div>`;return}
+ if(error){node.innerHTML=`<div class="notice">Não foi possível carregar a biblioteca. Execute o SQL da V5.7.4.3 e verifique suas permissões. ${esc(error.message)}</div>`;return}
  tafVids.items=data||[];
  $('#profVideoState').textContent=`${tafVids.items.length} vídeo(s)`;
  node.innerHTML=tafVids.items.length?tafVids.items.map(v=>`<article class="tafVidItem"><div class="tafVidTop"><div class="tafVidTitle">${esc(v.titulo)}</div><span class="tafVidStatus ${v.aprovado?'aprovado':''}">${v.aprovado?'✓ Aprovado':'Aguardando revisão'}</span></div><div class="tafVidMeta">${esc(v.modalidade)}${v.variacao?' • '+esc(v.variacao):''} • ${new Date(v.criado_em).toLocaleDateString('pt-BR')}</div>${v.orientacoes?`<p class="small">${esc(v.orientacoes)}</p>`:''}<div class="actions"><button type="button" class="btn" onclick="tafVideoPreview('${v.id}')">▶ Assistir</button>${v.aprovado?'<span class="small">Disponível na biblioteca</span>':`<button type="button" class="btn gold" onclick="tafVideoApprove('${v.id}')">✓ Aprovar</button>`}</div></article>`).join(''):'<div class="notice">Nenhuma demonstração cadastrada. Grave seu primeiro vídeo e envie acima.</div>';
@@ -981,7 +987,7 @@ async function loadPublishedTrainingV574(aluno){
    sb.from('treino_exercicios').select('id,treino_id,sessao_id,ordem,nome_exercicio,series,repeticoes,carga,tempo,distancia,descanso,orientacao,prioridade,pace_alvo,rpe_alvo').eq('treino_id',t.id).order('ordem'),
    sb.from('treino_execucao_exercicios').select('exercicio_id,status,dificuldade,dor_reportada,observacao_aluno,atualizado_em').eq('aluno_id',aluno.id).eq('treino_id',t.id),
    sb.from('treino_feedback_sessao').select('sessao_id,concluido,rpe_percebido,dificuldade,dor_ou_limitacao,observacao').eq('aluno_id',aluno.id),
-   sb.from('treino_demo_videos').select('exercicio_id,titulo,video_url,aprovado_professor').eq('aprovado_professor',true)
+   Promise.resolve({data:[],error:null})
   ]);
   if(ss.error||ee.error)throw(ss.error||ee.error);
   v574.sessoes=ss.data||[];v574.exercicios=ee.data||[];
@@ -989,8 +995,13 @@ async function loadPublishedTrainingV574(aluno){
   else {v574.execucoes=new Map((xx.data||[]).map(x=>[x.exercicio_id,x]));v574.dadosProntos=true}
   if(ff.error)console.warn('Feedback da sessão',ff.error);
   else v574.feedbacks=new Map((ff.data||[]).map(x=>[x.sessao_id,x]));
-  if(vv.error)console.warn('Biblioteca demonstrativa ainda não configurada',vv.error);
-  else v574.videos=new Map((vv.data||[]).filter(x=>v574.exercicios.some(e=>e.id===x.exercicio_id)).map(x=>[x.exercicio_id,x]));
+  // Somente metadados de vínculo são consultados pelo aluno; sem URL privada ou caminho.
+  if(v574.exercicios.length){
+    const links=await sb.from('taf_video_exercicio_links').select('exercicio_id,video_id')
+      .in('exercicio_id',v574.exercicios.map(e=>e.id));
+    if(links.error)console.warn('Vínculos de vídeos ainda indisponíveis:',links.error.message);
+    else v574.videos=new Map((links.data||[]).map(x=>[x.exercicio_id,{vinculado:true}]));
+  }
   renderV574Week();
  }catch(e){console.error('V5.7.4',e);$('#studentTrainingSessions').innerHTML=`<div class="notice">Não foi possível carregar o treino publicado: ${v574Text(e.message||e)}</div>`}
 }
@@ -1061,32 +1072,109 @@ async function saveV574Finish(){if(!v574.alunoId)return;const dlg=$('#v574Finish
  if(row.dor_ou_limitacao)toast('Dor relatada: interrompa a atividade dolorosa e avise seu professor.');
  }catch(e){console.error(e);toast('Não foi possível finalizar a sessão: '+(e.message||e))}
 }
-function openV574Video(exId){const d=v574.videos.get(exId);if(!d)return toast('Demonstração ainda não aprovada pelo professor.');
- const src=v574SafeUrl(d.video_url);if(!src)return toast('Endereço de vídeo inválido.');
- const modal=$('#v574VideoDialog'),v=$('#v574Player'),frame=$('#v574Embed');
- $('#v574VideoTitle').textContent=d.titulo||'Demonstração do exercício';
- v.pause();v.removeAttribute('src');v.load();frame.removeAttribute('src');v.hidden=true;frame.hidden=true;
- let yt=null;try{let u=new URL(src);if(['youtube.com','www.youtube.com','m.youtube.com','youtube-nocookie.com'].includes(u.hostname))yt=u.searchParams.get('v')||u.pathname.split('/').filter(Boolean).pop();if(u.hostname==='youtu.be')yt=u.pathname.slice(1)}catch{}
- if(yt&&/^[a-zA-Z0-9_-]{11}$/.test(yt)){frame.src='https://www.youtube-nocookie.com/embed/'+yt;frame.hidden=false}
- else if(/\.(mp4|webm|ogg)(\?|$)/i.test(src)||src.includes('/storage/v1/object/')){v.src=src;v.hidden=false}
- else{window.open(src,'_blank','noopener,noreferrer');return}
- modal.showModal();
+async function openV574Video(exId){
+ if(!v574.videos.has(exId)||!v574.exercicios.some(e=>e.id===exId))return toast('Demonstração ainda não vinculada ao treino.');
+ try{
+   const {data,error}=await sb.functions.invoke('assistir-video-taf',{body:{exercicio_id:exId}});
+   if(error)throw error;
+   if(!data?.ok||!data.url)throw new Error(data?.error||'Vídeo não disponível');
+   const modal=$('#v574VideoDialog'),v=$('#v574Player'),frame=$('#v574Embed');
+   v.pause();v.removeAttribute('src');v.load();frame.removeAttribute('src');frame.hidden=true;v.hidden=false;
+   $('#v574VideoTitle').textContent=data.titulo||'Demonstração do professor';
+   $('#tafVideoStudentOrientacoes').textContent=data.orientacoes||'Confira a execução e siga as orientações do seu professor.';
+   v.src=data.url;modal.showModal();
+ }catch(err){console.error('Vídeo privado',err);toast('Não foi possível abrir. Confirme o vínculo, a publicação e a função assistir-video-taf.');}
 }
 function closeV574Video(){const dlg=$('#v574VideoDialog'),v=$('#v574Player'),f=$('#v574Embed');v.pause();v.removeAttribute('src');v.load();f.removeAttribute('src');dlg.close()}
 
-// O professor associa URLs de demonstrações revisadas, sem armazenar chave no navegador.
-async function setV574DemoVideo(exId,trainId){
- if(!isStaff()||!currentAITrainingId||currentAITrainingId!==trainId)return toast('Revise um treino autorizado.');
- const entered=prompt('URL HTTPS do vídeo demonstrativo (Supabase Storage público / YouTube / Vimeo). Publique apenas conteúdo autorizado e conferido tecnicamente:');
- if(entered===null)return;const url=v574SafeUrl(entered.trim());if(!url)return toast('Utilize um endereço HTTPS válido.');
- const title=prompt('Título da demonstração:', 'Execução técnica do exercício')||'';
- if(title.trim().length<3)return toast('Informe um título com pelo menos 3 caracteres.');
- if(!confirm('Você conferiu a execução e autoriza exibir esse vídeo ao aluno APÓS a publicação do treino?'))return;
- const row={exercicio_id:exId,titulo:title.trim().slice(0,120),video_url:url,aprovado_professor:true,atualizado_por:session.user.id,atualizado_em:new Date().toISOString()};
- try{let {error}=await sb.from('treino_demo_videos').upsert(row,{onConflict:'exercicio_id'});if(error)throw error;toast('Demonstração aprovada e vinculada.');await openAITrainingReview(trainId)}
- catch(e){console.error(e);toast('Falha ao salvar demonstração: '+(e.message||e))}
+const tafLinkChoice={exercicioId:null,treinoId:null,exercicio:null,videos:[]};
+function tafNorm(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
+function tafExerciseCategory(name){
+ const s=tafNorm(name);
+ if(s.includes('barra')&&(/isometr|sustent/.test(s)))return 'Isometria na barra';
+ if(s.includes('barra fixa')&&!/isometr|sustent/.test(s))return 'Barra fixa dinâmica';
+ if(s.includes('abdominal')&&s.includes('remador'))return 'Abdominal remador';
+ if(s.includes('abdominal')&&s.includes('supra'))return 'Abdominal supra';
+ if(s.includes('flexao de bracos')||s.includes('flexao dos bracos'))return 'Flexão de braços';
+ if(s.includes('shuttle')||s.includes('ir e vir'))return 'Shuttle run';
+ if(s.includes('natacao'))return 'Natação';
+ if(s.includes('corrida')&&!s.includes('shuttle'))return 'Corrida';
+ if(s.includes('mobilidade')&&!s.includes('aquecimento'))return 'Mobilidade';
+ if(s.includes('aquecimento')&&!s.includes('mobilidade'))return 'Aquecimento';
+ return null;
 }
-
+function tafCompatible(ex,video){
+ const cat=tafExerciseCategory(ex.nome_exercicio);
+ if(!cat||tafNorm(cat)!==tafNorm(video.modalidade))return false;
+ const spec=tafNorm((ex.nome_exercicio||'')+' '+(ex.orientacao||''));
+ const variation=tafNorm(video.variacao||'');
+ if(/\bcom elastico\b/.test(spec)&&(!/\bcom elastico\b/.test(variation)||/\bsem elastico\b/.test(variation)))return false;
+ if(/\bsem elastico\b/.test(spec)&&/\bcom elastico\b/.test(variation))return false;
+ if(/pegada pronada/.test(spec)&&/pegada supinada/.test(variation))return false;
+ if(/pegada supinada/.test(spec)&&/pegada pronada/.test(variation))return false;
+ return true;
+}
+async function tafFetchApprovedVideos(){
+ const q=sb.from('taf_biblioteca_videos')
+   .select('id,titulo,modalidade,variacao,orientacoes,aprovado,autor_user_id')
+   .eq('aprovado',true).limit(100);
+ const {data,error}=await (appRole==='admin'?q:q.eq('autor_user_id',session.user.id));
+ if(error)throw error;
+ return data||[];
+}
+async function setV574DemoVideo(exId,trainId){
+ if(!isStaff()||!session||trainId!==currentAITrainingId)return toast('Abra um treino autorizado no Painel do Professor.');
+ try{
+   const [{data:e,error:ee},{data:t,error:tt},videos]=await Promise.all([
+      sb.from('treino_exercicios').select('id,nome_exercicio,orientacao,treino_id').eq('id',exId).maybeSingle(),
+      sb.from('treinos_semanais').select('id,aluno_id').eq('id',trainId).maybeSingle(),
+      tafFetchApprovedVideos()]);
+   if(ee||tt||!e||!t||e.treino_id!==trainId||!adminAllowedAlunoIds.includes(t.aluno_id))throw new Error('Treino não autorizado');
+   tafLinkChoice.exercicioId=exId;tafLinkChoice.treinoId=trainId;tafLinkChoice.exercicio=e;
+   tafLinkChoice.videos=videos.filter(v=>tafCompatible(e,v));
+   $('#tafLinkExerciseTitle').textContent='Demonstração para: '+e.nome_exercicio;
+   $('#tafLinkInfo').textContent=tafLinkChoice.videos.length?'Selecione um vídeo já aprovado. O aluno só verá após a publicação do treino.':'Nenhum vídeo aprovado é compatível com esse exercício. Confira a modalidade ou grave uma demonstração específica.';
+   $('#tafLinkChoices').innerHTML=tafLinkChoice.videos.length?tafLinkChoice.videos.map(v=>`<div class="tafLinkChoice"><div><strong>${esc(v.titulo)}</strong><div class="small">${esc(v.modalidade)}${v.variacao?' • '+esc(v.variacao):''}</div></div><button class="btn gold" type="button" onclick="tafSaveExerciseVideo('${v574Id(v.id)}')">Usar este vídeo</button></div>`).join(''):'<div class="notice">Exercício sem correspondência segura. Não haverá associação automática.</div>';
+   $('#tafVideoLinkDialog').showModal();
+ }catch(e){console.error(e);toast('Falha ao listar vídeos: '+(e.message||e))}
+}
+async function tafSaveExerciseVideo(videoId){
+ const ex=tafLinkChoice.exercicio,video=tafLinkChoice.videos.find(v=>v.id===videoId);
+ if(!ex||!video||!tafCompatible(ex,video)||!isStaff())return toast('Vídeo incompatível ou sem autorização.');
+ if(!confirm(`Vincular “${video.titulo}” ao exercício “${ex.nome_exercicio}”? O vídeo será exibido ao aluno apenas se o treino for publicado.`))return;
+ const row={exercicio_id:ex.id,video_id:video.id,vinculado_por:session.user.id,atualizado_em:new Date().toISOString()};
+ const {error}=await sb.from('taf_video_exercicio_links').upsert(row,{onConflict:'exercicio_id'});
+ if(error)return toast('Não foi possível vincular: '+error.message);
+ $('#tafVideoLinkDialog').close();toast('Vídeo vinculado ao exercício.');await openAITrainingReview(tafLinkChoice.treinoId);
+}
+async function tafAutoLinkTraining(){
+ if(!isStaff()||!session||!currentAITrainingId)return;
+ try{
+   const id=currentAITrainingId;
+   const [{data:exs,error:ee},{data:t,error:tt},videos]=await Promise.all([
+      sb.from('treino_exercicios').select('id,nome_exercicio,orientacao').eq('treino_id',id),
+      sb.from('treinos_semanais').select('aluno_id,status').eq('id',id).maybeSingle(),
+      tafFetchApprovedVideos()
+   ]);
+   if(ee||tt||!t||!adminAllowedAlunoIds.includes(t.aluno_id))throw new Error('Treino não autorizado.');
+   if(!(exs||[]).length)return toast('Este treino ainda não possui exercícios.');
+   const {data:existing,error:le}=await sb.from('taf_video_exercicio_links')
+       .select('exercicio_id').in('exercicio_id',exs.map(x=>x.id));
+   if(le)throw new Error('Verifique o SQL da V5.7.4.3: '+le.message);
+   const linked=new Set((existing||[]).map(x=>x.exercicio_id));
+   const rows=[];
+   for(const e of exs||[]){
+     if(linked.has(e.id))continue;
+     const candidates=videos.filter(v=>tafCompatible(e,v));
+     if(candidates.length===1)rows.push({exercicio_id:e.id,video_id:candidates[0].id,vinculado_por:session.user.id});
+   }
+   if(!rows.length)return toast('Sem correspondências únicas pendentes. Use “Escolher vídeo” para vincular individualmente.');
+   if(!confirm(`Vincular ${rows.length} vídeo(s) com correspondência única de modalidade? Nenhuma demonstração incompatível será vinculada.`))return;
+   const {error}=await sb.from('taf_video_exercicio_links').upsert(rows,{onConflict:'exercicio_id'});
+   if(error)throw error;
+   toast(`${rows.length} demonstração(ões) vinculada(s).`);await openAITrainingReview(id);
+ }catch(e){console.error(e);toast('Falha ao associar: '+(e.message||e))}
+}
 
 async function showV574StudentProgress(alunoId){
  const target=$('#profComplianceBox');if(!target)return;
@@ -1116,6 +1204,13 @@ async function showV574StudentProgress(alunoId){
 
 
 </script>
+<dialog id="tafVideoLinkDialog" class="v574Modal" aria-labelledby="tafLinkExerciseTitle">
+  <span class="eyebrow">BIBLIOTECA DO PROFESSOR • V5.7.4.3</span>
+  <h3 id="tafLinkExerciseTitle">Escolher demonstração</h3>
+  <p id="tafLinkInfo" class="tafLinkInfo"></p>
+  <div id="tafLinkChoices" class="tafLinkGrid"></div>
+  <div class="actions"><button class="btn" type="button" onclick="document.querySelector('#tafVideoLinkDialog').close()">Fechar</button></div>
+</dialog>
 <!-- Reprodução privada somente para o professor enquanto esta etapa está em teste. -->
 <dialog id="tafVidDialog" class="v574Modal" aria-labelledby="tafVidPreviewTitle"><div class="eyebrow">REVISÃO TÉCNICA DO PROFESSOR</div><h3 id="tafVidPreviewTitle">Vídeo</h3><video id="tafVidPreviewPlayer" class="tafVidPlayer" controls playsinline preload="metadata"></video><p>Verifique a técnica antes da aprovação. O vídeo não aparece automaticamente para alunos.</p><div class="actions"><button type="button" class="btn gold" onclick="tafVideoClose()">Fechar</button></div></dialog>
 </body></html>
