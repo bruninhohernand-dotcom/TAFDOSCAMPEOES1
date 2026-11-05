@@ -635,8 +635,27 @@ async function analyzeLatestEdital(){
 }
 
 function planLockedMessage(){toast('Este recurso exige acompanhamento Online ou Full. A Área do Aluno continua disponível gratuitamente.')}
-async function selectPlan(nome){if(!session){sessionStorage.setItem('taf_plan_choice',nome);go('auth');toast('Crie sua conta ou entre para continuar.');return}sessionStorage.setItem('taf_plan_choice',nome);toast(`${nome} selecionado. A cobrança será conectada na próxima etapa da V5.7.`);go('area')}
-function hasPaidPlan(){return ['ONLINE','FULL'].includes((currentPlanData?.nome||'').toUpperCase()) && currentPlanData?.status==='ativa'}
+async function selectPlan(nome){
+ nome=String(nome||'').toUpperCase();
+ if(!['ONLINE','FULL'].includes(nome))return toast('Plano inválido.');
+ if(!session){sessionStorage.setItem('taf_plan_choice',nome);go('auth');toast('Crie sua conta ou entre para continuar.');return}
+ if(appRole!=='aluno')return toast('Entre com uma conta de aluno para assinar.');
+ if(hasPaidPlan())return toast('Você já possui assinatura ativa. Fale com o suporte para trocar de plano.');
+ toast('Preparando checkout seguro do Mercado Pago…');
+ try{
+  const {data,error}=await sb.functions.invoke('mp-iniciar-assinatura',{body:{plano:nome}});
+  if(error||!data?.checkout_url){
+   let msg=data?.error||'Checkout ainda em configuração. Nenhuma cobrança foi efetuada.';
+   if(error?.context?.json){try{const payload=await error.context.json();msg=payload?.error||msg}catch{}}
+   throw new Error(msg);
+  }
+  const url=new URL(data.checkout_url);
+  if(url.protocol!=='https:'||!/(^|\.)mercadopago\.com(\.br)?$/.test(url.hostname))throw new Error('Destino de pagamento não autorizado.');
+  // O próprio aluno escolheu assinar; apenas a página do MP processa o pagamento.
+  location.assign(url.href);
+ }catch(e){console.warn('Checkout Mercado Pago',e);toast(e.message||'Não foi possível abrir o pagamento.')}
+}
+function hasPaidPlan(){return ['ONLINE','FULL'].includes((currentPlanData?.nome||'').toUpperCase()) && currentPlanData?.status==='ativa' && new Date(currentPlanData?.acesso_ate||0).getTime()>Date.now()}
 function hasTrainingAccess(){return hasPaidPlan()||!!(currentTrainingTrial?.ativo&&new Date(currentTrainingTrial.expira_em).getTime()>Date.now())}
 function openWeeklyTrainingLegacy(){if(!hasPaidPlan())return planLockedMessage();toast('Seu treino semanal será exibido aqui assim que o professor publicar a prescrição.')}
 function openVideoArea(){if(!hasPaidPlan())return planLockedMessage();toast('Central de vídeos preparada. O upload por exercício será conectado ao Storage na próxima etapa.')}
@@ -659,8 +678,22 @@ async function loadV57Student(aluno){
  $('#weeklyTraining').textContent='Treinos semanais disponíveis nos planos Online e Full ou em testes autorizados.';
  $('#weeklyAccessHint').hidden=true;
  try{
-  let {data:ass}=await sb.from('assinaturas').select('status,desconto_percentual,planos(nome,valor)').eq('aluno_id',aluno.id).eq('status','ativa').order('criado_em',{ascending:false}).limit(1).maybeSingle();
-  if(ass?.planos){currentPlanData={...ass.planos,status:ass.status,desconto_percentual:ass.desconto_percentual};$('#currentPlan').textContent=`${ass.planos.nome} • ATIVO`;$('#weeklyTraining').textContent='Seu professor pode publicar e ajustar sua programação semanal.';$('#videoStatus').textContent='Envie vídeos dos exercícios e acompanhe os feedbacks.';$('#pdfStatus').textContent='Após aprovação do professor, você poderá imprimir ou salvar seu manual individual em PDF.'}
+  let {data:ass,error:assinaturaErro}=await sb.from('assinaturas')
+   .select('status,acesso_ate,desconto_percentual,planos(nome,valor)')
+   .eq('aluno_id',aluno.id).order('criado_em',{ascending:false}).limit(1).maybeSingle();
+  if(assinaturaErro)throw assinaturaErro;
+  if(ass?.planos&&ass.status==='ativa'&&new Date(ass.acesso_ate||0).getTime()>Date.now()){
+    currentPlanData={...ass.planos,status:ass.status,acesso_ate:ass.acesso_ate,desconto_percentual:ass.desconto_percentual};
+    $('#currentPlan').textContent=`${ass.planos.nome} • ATIVO`;
+    $('#weeklyTraining').textContent='Seu professor pode publicar e ajustar sua programação semanal.';
+    $('#videoStatus').textContent='Envie vídeos dos exercícios e acompanhe os feedbacks.';
+    $('#pdfStatus').textContent='Após aprovação do professor, você poderá imprimir ou salvar seu manual individual em PDF.';
+  }else if(ass?.status==='pendente'){
+    $('#currentPlan').textContent='PAGAMENTO EM VERIFICAÇÃO';
+    $('#weeklyTraining').textContent='O pagamento será confirmado pelo Mercado Pago e pelo servidor. Acesse novamente após a confirmação.';
+  }else if(ass?.status==='vencida'||ass?.status==='cancelada'||ass?.status==='estornada'||ass?.status==='pausada'){
+    $('#currentPlan').textContent='ASSINATURA '+ass.status.toUpperCase();
+  }
  }catch(err){console.warn('V5.7 assinaturas ainda não configuradas',err)}
  // Acesso de teste temporário é concedido exclusivamente no Supabase e consultado com a sessão do próprio aluno.
  try{
