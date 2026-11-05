@@ -183,7 +183,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 <div class="sectionTitle"><div><div class="eyebrow">ÁREA DO ALUNO</div><h1 id="hello">Minha evolução</h1></div><button class="btn" onclick="loadArea()">Atualizar</button></div>
 <div class="kpis"><div class="card"><div class="muted">Avaliações</div><div class="stat" id="myEval">0</div></div><div class="card"><div class="muted">Agendamentos</div><div class="stat" id="mySched">0</div></div><div class="card"><div class="muted">Último score</div><div class="stat" id="myScore">—</div></div><div class="card"><div class="muted">Status</div><div class="stat" style="font-size:18px" id="myStatus">—</div></div></div>
 <br>
-<div class="card"><div class="analysisHead"><div><div class="eyebrow">MEU ACOMPANHAMENTO</div><h3>Plano e professor</h3></div><span class="planBadge" id="currentPlan">AVALIAÇÃO GRATUITA</span></div><div class="studentHub"><div class="hubCard"><h4>📅 Meu treino</h4><div id="weeklyTraining" class="muted">Assine Online ou Full para receber seu treino semanal individualizado.</div><br><button class="btn" onclick="openWeeklyTraining()">VER SEMANA</button></div><div class="hubCard"><h4>📹 Meus vídeos</h4><div id="videoStatus" class="muted">Envie a execução dos exercícios exigidos no seu edital e receba feedback.</div><br><button class="btn" onclick="openVideoArea()">ENVIAR VÍDEO</button></div><div class="hubCard"><h4>📄 Meu plano</h4><div id="pdfStatus" class="muted">Plano individual e PDF são liberados nos planos Online e Full.</div><br><button class="btn" onclick="requestTrainingPdf()">MEU PLANO</button></div></div><div class="professorCard"><div class="professorInfo"><div class="profAvatar">👨‍🏫</div><div><div class="small">PROFESSOR RESPONSÁVEL</div><b id="profName">Aguardando vínculo</b><div class="small" id="profSpecialty">Disponível para alunos Online e Full.</div></div></div><div class="actions"><button class="btn" onclick="askProfessor()">💬 TIRAR DÚVIDA</button><a class="btn gold" id="profWhats" href="#" onclick="return professorWhatsapp(event)">📱 WHATSAPP</a></div></div></div><br><div class="card"><div class="analysisHead"><div><div class="eyebrow">INDIQUE E GANHE 10% OFF</div><h3>Seu código de indicação</h3><p class="muted">O desconto é liberado quando o indicado conclui o cadastro. Um desconto de 10% por mensalidade.</p></div><span class="tag gold" id="referralCount">0 benefício(s)</span></div><div class="actions"><input id="referralCode" readonly value="—" style="max-width:260px"><button class="btn gold" onclick="copyReferral()">COPIAR CÓDIGO</button></div></div><br>
+<div class="card"><div class="analysisHead"><div><div class="eyebrow">MEU ACOMPANHAMENTO</div><h3>Plano e professor</h3></div><span class="planBadge" id="currentPlan">AVALIAÇÃO GRATUITA</span></div><div class="studentHub"><div class="hubCard"><h4>📅 Meu treino</h4><div id="weeklyTraining" class="muted">Assine Online ou Full para receber seu treino semanal individualizado.</div><br><button class="btn" onclick="openWeeklyTraining()">VER SEMANA</button><div id="weeklyAccessHint" class="notice" hidden style="margin-top:12px">Seu diagnóstico gratuito está disponível. Para ver o treino individual, é necessário um plano Online/Full ou um acesso de teste autorizado.<div style="margin-top:10px"><button type="button" class="btn gold" onclick="go('planos')">CONHECER PLANOS</button></div></div></div><div class="hubCard"><h4>📹 Meus vídeos</h4><div id="videoStatus" class="muted">Envie a execução dos exercícios exigidos no seu edital e receba feedback.</div><br><button class="btn" onclick="openVideoArea()">ENVIAR VÍDEO</button></div><div class="hubCard"><h4>📄 Meu plano</h4><div id="pdfStatus" class="muted">Plano individual e PDF são liberados nos planos Online e Full.</div><br><button class="btn" onclick="requestTrainingPdf()">MEU PLANO</button></div></div><div class="professorCard"><div class="professorInfo"><div class="profAvatar">👨‍🏫</div><div><div class="small">PROFESSOR RESPONSÁVEL</div><b id="profName">Aguardando vínculo</b><div class="small" id="profSpecialty">Disponível para alunos Online e Full.</div></div></div><div class="actions"><button class="btn" onclick="askProfessor()">💬 TIRAR DÚVIDA</button><a class="btn gold" id="profWhats" href="#" onclick="return professorWhatsapp(event)">📱 WHATSAPP</a></div></div></div><br><div class="card"><div class="analysisHead"><div><div class="eyebrow">INDIQUE E GANHE 10% OFF</div><h3>Seu código de indicação</h3><p class="muted">O desconto é liberado quando o indicado conclui o cadastro. Um desconto de 10% por mensalidade.</p></div><span class="tag gold" id="referralCount">0 benefício(s)</span></div><div class="actions"><input id="referralCode" readonly value="—" style="max-width:260px"><button class="btn gold" onclick="copyReferral()">COPIAR CÓDIGO</button></div></div><br>
 
 <br>
 <div class="card trainingReality">
@@ -354,7 +354,7 @@ body.staff-mode .wrap,body.staff-mode .topin{max-width:1490px}
 <script>
 const SUPABASE_URL='https://niuwscihdpflodhwwdqr.supabase.co';
 const SUPABASE_KEY='sb_publishable_8IF0ZFxtxExIVyZMkyONFA_DIZ5xSjP';
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let session=null,currentAluno=null,aStep=1,totalA=5,adminCache=[],adminAllowedAlunoIds=[],appRole='visitante',appProfile=null,authRouteVersion=0,professorMeta=null,selectedProfessorStudentId=null,savingEvaluation=false,savingSchedule=false,analyzingEdital=false,currentPlanData=null,currentProfessor=null,currentAITrainingId=null;const $=s=>document.querySelector(s);
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let session=null,currentAluno=null,aStep=1,totalA=5,adminCache=[],adminAllowedAlunoIds=[],appRole='visitante',appProfile=null,authRouteVersion=0,professorMeta=null,selectedProfessorStudentId=null,savingEvaluation=false,savingSchedule=false,analyzingEdital=false,currentPlanData=null,currentTrainingTrial=null,currentProfessor=null,currentAITrainingId=null;const $=s=>document.querySelector(s);
 function toast(t){let e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',3200)}
 function isStaff(){return appRole==='admin'||appRole==='treinador'}
 function toggleMobileNav(){const nav=$('#nav'),btn=$('#menuToggle');const open=nav.classList.toggle('mobileOpen');btn.setAttribute('aria-expanded',String(open))}
@@ -633,9 +633,10 @@ async function analyzeLatestEdital(){
  return analyzeEdital(data.id,false)
 }
 
-function planLockedMessage(){toast('Este recurso faz parte dos planos Online ou Full. Veja os planos para liberar o acompanhamento.');go('planos')}
+function planLockedMessage(){toast('Este recurso exige acompanhamento Online ou Full. A Área do Aluno continua disponível gratuitamente.')}
 async function selectPlan(nome){if(!session){sessionStorage.setItem('taf_plan_choice',nome);go('auth');toast('Crie sua conta ou entre para continuar.');return}sessionStorage.setItem('taf_plan_choice',nome);toast(`${nome} selecionado. A cobrança será conectada na próxima etapa da V5.7.`);go('area')}
 function hasPaidPlan(){return ['ONLINE','FULL'].includes((currentPlanData?.nome||'').toUpperCase()) && currentPlanData?.status==='ativa'}
+function hasTrainingAccess(){return hasPaidPlan()||!!(currentTrainingTrial?.ativo&&new Date(currentTrainingTrial.expira_em).getTime()>Date.now())}
 function openWeeklyTrainingLegacy(){if(!hasPaidPlan())return planLockedMessage();toast('Seu treino semanal será exibido aqui assim que o professor publicar a prescrição.')}
 function openVideoArea(){if(!hasPaidPlan())return planLockedMessage();toast('Central de vídeos preparada. O upload por exercício será conectado ao Storage na próxima etapa.')}
 function requestTrainingPdf(){if(!hasPaidPlan())return planLockedMessage();toast('O PDF do plano será gerado a partir da avaliação, edital e prescrição revisada pelo professor.')}
@@ -643,11 +644,27 @@ function askProfessor(){if(!hasPaidPlan())return planLockedMessage();if(!current
 function professorWhatsapp(ev){if(!hasPaidPlan()){ev?.preventDefault();planLockedMessage();return false}if(!currentProfessor?.whatsapp){ev?.preventDefault();toast('O professor ainda não possui WhatsApp profissional cadastrado.');return false}let n=String(currentProfessor.whatsapp).replace(/\D/g,'');if(n && !n.startsWith('55'))n='55'+n;$('#profWhats').href=`https://wa.me/${n}?text=${encodeURIComponent('Olá, professor. Sou aluno do TAF dos Campeões e tenho uma dúvida sobre meu treino.')}`;return true}
 async function copyReferral(){let el=$('#referralCode');if(!el||el.value==='—')return toast('Código ainda não disponível.');try{await navigator.clipboard.writeText(el.value);toast('Código de indicação copiado!')}catch{el.select();document.execCommand('copy');toast('Código copiado!')}}
 async function loadV57Student(aluno){
- currentPlanData=null;currentProfessor=null;
+ currentPlanData=null;currentTrainingTrial=null;currentProfessor=null;
+ $('#currentPlan').textContent='AVALIAÇÃO GRATUITA';
+ $('#weeklyTraining').textContent='Treinos semanais disponíveis nos planos Online e Full ou em testes autorizados.';
+ $('#weeklyAccessHint').hidden=true;
  try{
   let {data:ass}=await sb.from('assinaturas').select('status,desconto_percentual,planos(nome,valor)').eq('aluno_id',aluno.id).eq('status','ativa').order('criado_em',{ascending:false}).limit(1).maybeSingle();
   if(ass?.planos){currentPlanData={...ass.planos,status:ass.status,desconto_percentual:ass.desconto_percentual};$('#currentPlan').textContent=`${ass.planos.nome} • ATIVO`;$('#weeklyTraining').textContent='Seu professor pode publicar e ajustar sua programação semanal.';$('#videoStatus').textContent='Envie vídeos dos exercícios e acompanhe os feedbacks.';$('#pdfStatus').textContent='Seu planejamento individual pode ser disponibilizado em PDF.'}
  }catch(err){console.warn('V5.7 assinaturas ainda não configuradas',err)}
+ // Acesso de teste temporário é concedido exclusivamente no Supabase e consultado com a sessão do próprio aluno.
+ try{
+  const agora=new Date().toISOString();
+  const {data:trial,error:trialErr}=await sb.from('taf_acessos_teste')
+   .select('aluno_id,ativo,expira_em').eq('aluno_id',aluno.id).eq('ativo',true)
+   .lte('inicio_em',agora).gt('expira_em',agora).limit(1).maybeSingle();
+  if(trialErr){console.info('Acesso de teste não configurado ou indisponível:',trialErr.message)}
+  else if(trial&&!hasPaidPlan()){
+   currentTrainingTrial=trial;
+   $('#currentPlan').textContent='ACESSO DE TESTE ATIVO';
+   $('#weeklyTraining').textContent='Treino publicado liberado até '+new Date(trial.expira_em).toLocaleDateString('pt-BR')+'.';
+  }
+ }catch(err){console.warn('Não foi possível verificar o acesso de teste:',err)}
  try{
   let {data:v}=await sb.from('professor_aluno').select('professores(nome,especialidade,whatsapp)').eq('aluno_id',aluno.id).eq('ativo',true).limit(1).maybeSingle();
   if(v?.professores){currentProfessor=v.professores;$('#profName').textContent=currentProfessor.nome||'Professor responsável';$('#profSpecialty').textContent=currentProfessor.especialidade||'Preparação para TAF'}
@@ -669,7 +686,7 @@ async function loadTrainingReality(aluno){
  try{let {data}=await sb.from('preferencias_treino').select('*').eq('aluno_id',aluno.id).maybeSingle();if(!data)return;$('#prefDays').value=data.dias_por_semana||3;$('#prefMinutes').value=data.minutos_por_sessao||60;$('#prefTafDate').value=data.data_taf||'';$('#prefWeekdays').value=(data.dias_disponiveis||[]).join(', ');$('#prefPlaces').value=(data.locais||[]).join(', ');$('#prefEquipment').value=(data.equipamentos||[]).join(', ');$('#prefSecondary').value=data.objetivo_secundario||'';$('#prefRestrictions').value=data.restricoes_declaradas||''}catch(e){console.warn(e)}
 }
 async function loadPublishedTraining(aluno){return loadPublishedTrainingV574(aluno)}
-function openWeeklyTraining(){if(!hasPaidPlan())return planLockedMessage();let box=$('#studentTrainingBox');box.classList.toggle('show');if(box.classList.contains('show'))box.scrollIntoView({behavior:'smooth',block:'start'})}
+function openWeeklyTraining(){if(!hasTrainingAccess()){$('#weeklyAccessHint').hidden=false;return toast('Os treinos exigem um plano ativo ou acesso de teste autorizado.')}$('#weeklyAccessHint').hidden=true;let box=$('#studentTrainingBox');box.classList.toggle('show');if(box.classList.contains('show'))box.scrollIntoView({behavior:'smooth',block:'start'})}
 async function generateAITraining(alunoId,baseId=null,obs=''){
  if(!session||!isStaff()||!adminAllowedAlunoIds.includes(alunoId))return toast('Aluno sem vínculo autorizado.');
  toast('Preparando rascunho científico…');
@@ -763,7 +780,10 @@ async function loadArea(){
  if(!session){go('auth');return}
  if(isStaff()){go('admin');return}
  let aluno=await ensureStudent();if(!aluno)return;
- $('#hello').textContent=`Olá, ${aluno.nome?.split(' ')[0]||'Campeão'}!`;await loadV57Student(aluno);await loadTrainingReality(aluno);await loadPublishedTraining(aluno);await loadAdaptiveIntelligence(aluno);
+ $('#hello').textContent=`Olá, ${aluno.nome?.split(' ')[0]||'Campeão'}!`;await loadV57Student(aluno);await loadTrainingReality(aluno);
+ if(hasTrainingAccess())await loadPublishedTraining(aluno);
+ else {$('#studentTrainingBox').classList.remove('show');$('#studentTrainingSessions').textContent='Seu diagnóstico é gratuito. A visualização dos treinos exige plano ativo ou acesso de teste.';}
+ await loadAdaptiveIntelligence(aluno);
  let [{data:e},{data:a},{data:edital,error:edErr}]=await Promise.all([
   sb.from('avaliacoes').select('*').eq('aluno_id',aluno.id).order('criado_em',{ascending:false}),
   sb.from('agendamentos').select('*').eq('aluno_id',aluno.id).order('criado_em',{ascending:false}),
