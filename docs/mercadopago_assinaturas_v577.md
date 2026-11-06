@@ -31,7 +31,7 @@ As variáveis SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY são mantidas exclusivame
 Para ambas as funções, se necessário, desative Verify JWT with legacy secret, porque uma usa auth.getUser(token) e a outra HMAC. Não dispense essas validações.
 
 ## 5. Configurar Webhook no painel Mercado Pago
-URL: https://niuwscihdpflodhwvdqr.supabase.co/functions/v1/mp-webhook
+URL: https://niuwscihdpflodhwwdqr.supabase.co/functions/v1/mp-webhook
 Tópicos: subscription_preapproval, subscription_authorized_payment e payment.
 Os webhooks devem incluir query data.id e os headers x-request-id e x-signature; falta destes é tratado como erro.
 A função compara as referências e preços com a assinatura registrada no Supabase e busca os recursos na API do Mercado Pago. O retorno da página não ativa assinatura.
