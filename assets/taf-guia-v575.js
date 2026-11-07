@@ -146,7 +146,7 @@ function tafGuiaImprimir(){
     ['Séries',e.series],['Repetições',e.repeticoes],['Carga',e.carga],
     ['Tempo',e.tempo],['Descanso',e.descanso],['Distância',e.distancia],
     ['Ritmo / pace',e.pace_alvo],['Esforço alvo',e.rpe_alvo]
-   ].filter(function(x){return x[1]}).map(function(x){
+   ].filter(function(x){return x[1]!=null && String(x[1]).trim()!==''}).map(function(x){
     return '<b>'+tafGuiaEscapeV575(x[0])+':</b> '+tafGuiaEscapeV575(x[1]);
    }).join(' &nbsp; • &nbsp; ');
    let paineis='';
